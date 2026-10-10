@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Botswana Business Toolkit — MVP</title>
+<style>
+:root{--navy:#13243a;--blue:#1f5eff;--gold:#e5ad32;--bg:#f3f6fb;--text:#182334;--muted:#65738a;--line:#dce3ed;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(125deg,#13243a,#214a78);color:white;padding:24px 18px 28px}
+.wrap{max-width:1120px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:12px;background:var(--gold);color:#13243a;display:grid;place-items:center;font-weight:900;font-size:19px}.brand h1{font-size:20px;margin:0}.brand p{margin:4px 0 0;color:#d6e2f0;font-size:12px}.hero{margin-top:24px;display:flex;justify-content:space-between;gap:18px;align-items:end;flex-wrap:wrap}.hero h2{font-size:clamp(25px,4vw,36px);line-height:1.12;margin:0 0 9px}.hero p{margin:0;color:#d6e2f0;max-width:620px;line-height:1.5}.badge{border:1px solid #7190b2;border-radius:30px;padding:8px 12px;font-size:12px;color:#f8e5b4}
+main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tab{border:1px solid var(--line);background:white;color:var(--navy);padding:11px 17px;border-radius:10px;font-weight:750;cursor:pointer}.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.85fr);gap:18px;align-items:start}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 18px #13243a08}.card h3{margin:0 0 15px;font-size:17px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:20px 0 12px}.section-title h3{margin:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;font-weight:750;color:#4e5d73}input,textarea,select{width:100%;border:1px solid #d4dce8;border-radius:9px;padding:10px 11px;font:inherit;font-size:14px;color:var(--text);background:#fff}textarea{min-height:68px;resize:vertical}input:focus,textarea:focus{outline:2px solid #d8e4ff;border-color:var(--blue)}
+.btn{border:0;border-radius:9px;padding:10px 13px;font-weight:750;cursor:pointer;font-size:13px}.btn.primary{background:var(--blue);color:#fff}.btn.secondary{background:#edf2fa;color:var(--navy)}.btn.danger{background:#fff0ef;color:#a52b26}.btn.gold{background:var(--gold);color:#17283e}.row-head,.item-row{display:grid;grid-template-columns:minmax(100px,1.7fr) 72px 95px 34px;gap:7px;align-items:center}.row-head{font-size:11px;color:var(--muted);font-weight:800;margin-bottom:7px}.item-row{margin-bottom:8px}.item-row input{padding:9px 7px;min-width:0}.remove{border:0;background:#fff0ef;color:#a52b26;border-radius:8px;height:36px;cursor:pointer;font-size:17px}.totals{border-top:1px solid var(--line);margin-top:16px;padding-top:14px;display:grid;gap:9px}.total-line{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}.total-line.grand{font-weight:850;color:var(--navy);font-size:20px;padding-top:9px;border-top:1px dashed var(--line)}.preview{position:sticky;top:14px}.paper{border:1px solid var(--line);border-radius:12px;padding:22px;background:white;min-height:450px}.paper-top{display:flex;justify-content:space-between;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:15px;margin-bottom:17px}.paper h2{font-size:20px;margin:0 0 5px;color:var(--navy)}.paper .small{font-size:11px;color:var(--muted);line-height:1.5;white-space:pre-line}.doc-title{text-align:right}.doc-title strong{font-size:22px;letter-spacing:1px}.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:15px 0}.paper table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px}.paper th{text-align:left;background:#edf2fa;color:var(--navy);padding:9px 7px}.paper td{padding:9px 7px;border-bottom:1px solid #e7ebf2;vertical-align:top}.paper th:last-child,.paper td:last-child{text-align:right}.paper .summary{margin:14px 0 0 auto;max-width:220px}.paper .summary div{display:flex;justify-content:space-between;padding:5px 0;font-size:12px}.paper .summary .grand{font-weight:850;font-size:15px;border-top:1px solid var(--navy);margin-top:5px;padding-top:9px}.paper .notes{margin-top:24px;border-top:1px solid var(--line);padding-top:12px}.paper .notes strong{font-size:11px}.paper .notes p{font-size:11px;color:var(--muted);white-space:pre-line;line-height:1.5}.notice{font-size:12px;line-height:1.5;color:var(--muted);margin-top:14px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px}.hide{display:none!important}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.preview{position:static}.fields{grid-template-columns:1fr 1fr}.paper{padding:15px}}
+@media(max-width:480px){.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.row-head,.item-row{grid-template-columns:minmax(85px,1.5fr) 52px 78px 30px;gap:5px}.card{padding:15px}.paper-grid{grid-template-columns:1fr}.paper-top{flex-direction:column}.doc-title{text-align:left}}
+@media print{body{background:#fff}.no-print,header,main>.tabs,main>.grid>.card:first-child,.footer{display:none!important}main{margin:0;padding:0;max-width:none}.grid{display:block}.preview{position:static}.card{border:0;box-shadow:none;padding:0}.paper{border:0;padding:8mm;min-height:auto}.paper table{font-size:10pt}.paper .small,.paper .notes p{font-size:9pt}@page{size:A4;margin:10mm}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <div class="brand"><div class="logo">BT</div><div><h1>Botswana Business Toolkit</h1><p>Simple, professional documents for small businesses</p></div></div>
+  <div class="hero"><div><h2>Make your business look<br>ready for the next client.</h2><p>Create quotations and invoices in Botswana pula, calculate totals automatically, and print or save a clean PDF — right from your phone or computer.</p></div><span class="badge">MVP · Free starter tool</span></div>
+ </div>
+</header>
+<main>
+ <div class="tabs no-print"><button class="tab active" id="quoteTab" onclick="setType('Quotation')">Quotation</button><button class="tab" id="invoiceTab" onclick="setType('Invoice')">Invoice</button><button class="tab" onclick="resetForm()">New document</button></div>
+ <div class="grid">
+  <section class="card no-print">
+   <h3>1. Your business details</h3>
+   <div class="fields">
+    <div class="field full"><label>Business name</label><input id="business" placeholder="e.g. Your Business Name" value=""></div>
+    <div class="field"><label>Phone</label><input id="phone" placeholder="+267 ..."></div>
+    <div class="field"><label>Email</label><input id="email" placeholder="you@example.com"></div>
+    <div class="field full"><label>Address (optional)</label><input id="address" placeholder="Town / Plot / Postal address"></div>
+   </div>
+   <div class="section-title"><h3>2. Document details</h3></div>
+   <div class="fields">
+    <div class="field"><label>Document number</label><input id="docNo" value="QT-0001"></div>
+    <div class="field"><label>Issue date</label><input id="date" type="date"></div>
+    <div class="field"><label>Valid until / Due date</label><input id="due" type="date"></div>
+    <div class="field"><label>Currency</label><select id="currency"><option value="BWP">BWP — Botswana pula (P)</option></select></div>
+   </div>
+   <div class="section-title"><h3>3. Customer details</h3></div>
+   <div class="fields">
+    <div class="field full"><label>Customer / company name</label><input id="client" placeholder="Customer name"></div>
+    <div class="field full"><label>Customer contact (optional)</label><input id="clientContact" placeholder="Phone or email"></div>
+   </div>
+   <div class="section-title"><h3>4. Items or services</h3><button class="btn secondary" onclick="addItem()">+ Add item</button></div>
+   <div class="row-head"><span>Description</span><span>Qty</span><span>Price (P)</span><span></span></div>
+   <div id="items"></div>
+   <div class="fields" style="margin-top:12px">
+    <div class="field"><label>Discount (P)</label><input id="discount" type="number" min="0" step=".01" value="0"></div>
+    <div class="field"><label>Tax / VAT (%) — if applicable</label><input id="tax" type="number" min="0" max="100" step=".01" value="0"></div>
+    <div class="field full"><label>Notes / payment terms</label><textarea id="notes" placeholder="e.g. Thank you for your business. Payment terms: ..."></textarea></div>
+   </div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:17px"><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn secondary" onclick="downloadCSV()">Export items CSV</button></div>
+   <p class="notice">Privacy note: this starter version runs in your browser and does not send document details to a server. Avoid using it on a shared device if you enter confidential customer information.</p>
+  </section>
+  <section class="card preview">
+   <div class="section-title no-print" style="margin-top:0"><h3>Live document preview</h3><button class="btn gold" onclick="window.print()">Save / PDF</button></div>
+   <div class="paper" id="paper"></div>
+   <p class="notice no-print">Tip: choose “Save as PDF” in your browser’s print menu. On a phone, you may need to select Print from the browser menu.</p>
+  </section>
+ </div>
+ <div class="footer">Botswana Business Toolkit · Independent starter prototype · Not tax or legal advice</div>
+</main>
+<script>
+let type='Quotation', itemCount=0;
+const $=id=>document.getElementById(id);
+function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function dateFmt(v){if(!v)return '—';const d=new Date(v+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}
+function setType(t){type=t;$('quoteTab').classList.toggle('active',t==='Quotation');$('invoiceTab').classList.toggle('active',t==='Invoice');if($('docNo').value.startsWith('QT-')||$('docNo').value.startsWith('INV-'))$('docNo').value=(t==='Quotation'?'QT-':'INV-')+'0001';render()}
+function addItem(desc='',qty=1,price=0){const id=++itemCount;const div=document.createElement('div');div.className='item-row';div.dataset.id=id;div.innerHTML=`<input aria-label="Description" class="desc" placeholder="Service or product" value="${esc(desc)}"><input aria-label="Quantity" class="qty" type="number" min="0" step="0.01" value="${qty}"><input aria-label="Unit price" class="price" type="number" min="0" step="0.01" value="${price}"><button class="remove" title="Remove item" aria-label="Remove item">×</button>`;$('items').appendChild(div);div.querySelectorAll('input').forEach(x=>x.addEventListener('input',render));div.querySelector('.remove').onclick=()=>{div.remove();if(!$('items').children.length)addItem();render()};render()}
+function getData(){let items=[...$('items').querySelectorAll('.item-row')].map(r=>({desc:r.querySelector('.desc').value,qty:Math.max(0,Number(r.querySelector('.qty').value)||0),price:Math.max(0,Number(r.querySelector('.price').value)||0)}));let subtotal=items.reduce((s,i)=>s+i.qty*i.price,0),discount=Math.min(subtotal,Math.max(0,Number($('discount').value)||0)),taxRate=Math.max(0,Number($('tax').value)||0),tax=Math.max(0,subtotal-discount)*taxRate/100,total=subtotal-discount+tax;return {items,subtotal,discount,taxRate,tax,total}}
+function render(){const d=getData(),business=$('business').value||'Your Business Name',client=$('client').value||'Customer name';let rows=d.items.map(i=>`<tr><td>${esc(i.desc||'Item / service')}</td><td>${i.qty.toLocaleString('en-BW',{maximumFractionDigits:2})}</td><td>${money(i.price)}</td><td>${money(i.qty*i.price)}</td></tr>`).join('');if(!rows)rows='<tr><td colspan="4">Add items to your document.</td></tr>';let contact=[$('phone').value,$('email').value,$('address').value].filter(Boolean).map(esc).join('<br>');$('paper').innerHTML=`<div class="paper-top"><div><h2>${esc(business)}</h2><div class="small">${contact||'Phone · Email · Address'}</div></div><div class="doc-title"><strong>${type.toUpperCase()}</strong><div class="small">No. ${esc($('docNo').value||'—')}<br>Issued: ${dateFmt($('date').value)}<br>${type==='Invoice'?'Due':'Valid until'}: ${dateFmt($('due').value)}</div></div></div><div class="paper-grid"><div><div class="small">PREPARED FOR</div><strong>${esc(client)}</strong><div class="small">${esc($('clientContact').value||'')}</div></div><div><div class="small">CURRENCY</div><strong>Botswana pula (BWP)</strong><div class="small">${type==='Quotation'?'Please confirm acceptance of this quotation.':'Please use the invoice number as payment reference.'}</div></div></div><table><thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th>Amount</th></tr></thead><tbody>${rows}</tbody></table><div class="summary"><div><span>Subtotal</span><span>${money(d.subtotal)}</span></div><div><span>Discount</span><span>− ${money(d.discount)}</span></div><div><span>Tax (${d.taxRate.toFixed(2)}%)</span><span>${money(d.tax)}</span></div><div class="grand"><span>Total</span><span>${money(d.total)}</span></div></div><div class="notes"><strong>NOTES / TERMS</strong><p>${esc($('notes').value||'Thank you for your business.')}</p></div>`}
+function resetForm(){['business','phone','email','address','client','clientContact','notes'].forEach(id=>$(id).value='');$('discount').value=0;$('tax').value=0;$('docNo').value=type==='Quotation'?'QT-0001':'INV-0001';$('items').innerHTML='';addItem();setDates();render()}
+function setDates(){const now=new Date();$('date').value=now.toISOString().slice(0,10);const due=new Date(now);due.setDate(due.getDate()+14);$('due').value=due.toISOString().slice(0,10)}
+function downloadCSV(){const d=getData();const lines=[['Description','Quantity','Unit Price (BWP)','Line Total (BWP)'],...d.items.map(i=>[i.desc,i.qty,i.price,(i.qty*i.price).toFixed(2)])];const csv=lines.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(($('docNo').value||'document')+'-items.csv').replace(/[^a-z0-9._-]/gi,'_');a.click();URL.revokeObjectURL(url)}
+['business','phone','email','address','docNo','date','due','client','clientContact','discount','tax','notes'].forEach(id=>$(id).addEventListener('input',render));
+setDates();addItem('Service / product',1,0);
+</script>
+</body></html>
