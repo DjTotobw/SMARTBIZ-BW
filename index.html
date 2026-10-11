@@ -354,7 +354,10 @@ Open Tool
   <div style="font-size:30px;">📱</div>
   <h3 style="color:#13243a;">Social Media Advertisements</h3>
   <p style="font-size:13px;color:#65738a;line-height:1.6;">Prepare advertising content for Facebook, WhatsApp Status, Instagram, and other platforms.</p>
-  <button type="button" class="btn primary" onclick="alert('Social Media Advertisements will be developed in a later phase.')">Open Tool</button>
+  <<button type="button" class="btn primary"
+onclick="document.getElementById('socialAds').style.display='block';document.getElementById('socialAds').scrollIntoView({behavior:'smooth'});">
+Open Tool
+</button>
 </div>
 
 <!-- TOOL 3 -->
@@ -523,6 +526,101 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
 
 </section>
 <!-- END SMARTBIZ BW PROMOTIONAL POSTER CREATOR -->
+
+<!-- SMARTBIZ BW SOCIAL MEDIA ADVERTISEMENTS -->
+<section id="socialAds"
+style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-sizing:border-box;">
+
+  <h2 style="color:#13243a;margin-top:0;">
+    Social Media Advertisements
+  </h2>
+
+  <p style="color:#65738a;line-height:1.6;">
+    Create promotional messages for Facebook, Instagram and WhatsApp.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px;">
+
+    <div>
+      <label for="socialPlatform"><strong>Social Media Platform</strong></label>
+      <select id="socialPlatform" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+        <option value="WhatsApp">WhatsApp</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="socialBusinessName"><strong>Business Name</strong></label>
+      <input id="socialBusinessName" type="text"
+      placeholder="Enter business name"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="socialProduct"><strong>Product or Service</strong></label>
+      <input id="socialProduct" type="text"
+      placeholder="e.g. Cakes, clothing, graphic design"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="socialPrice"><strong>Price or Special Offer</strong></label>
+      <input id="socialPrice" type="text"
+      placeholder="e.g. P150 or 20% OFF"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="socialContact"><strong>Contact Details</strong></label>
+      <input id="socialContact" type="text"
+      placeholder="Phone number or contact method"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="socialStyle"><strong>Advertisement Style</strong></label>
+      <select id="socialStyle" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="professional">Professional Business</option>
+        <option value="bold">Bold Promotion</option>
+        <option value="luxury">Premium Luxury</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
+
+    <button type="button" class="btn primary"
+    onclick="generateSocialAdvertisement()">
+      Generate Advertisement
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="copySocialAdvertisement()">
+      Copy Advertisement
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="document.getElementById('socialAds').style.display='none';document.getElementById('marketingToolsDashboard').scrollIntoView({behavior:'smooth'});">
+      Back to Marketing Tools
+    </button>
+
+  </div>
+
+  <div id="socialAdResult"
+  style="display:none;margin-top:22px;padding:20px;border:1px solid #d6dfeb;border-radius:10px;background:#f7f9fc;">
+
+    <h3 style="margin-top:0;color:#13243a;">Your Advertisement</h3>
+
+    <div id="socialAdOutput"
+    style="white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere;"></div>
+
+  </div>
+
+</section>
+<!-- END SMARTBIZ BW SOCIAL MEDIA ADVERTISEMENTS -->
+
   <script>
   
 
@@ -619,6 +717,128 @@ function downloadPromotionalPoster() {
     }
   });
 }
+// SMARTBIZ BW SOCIAL MEDIA ADVERTISEMENT GENERATOR
+
+function generateSocialAdvertisement() {
+  const getValue = id =>
+    document.getElementById(id).value.trim();
+
+  const platform = getValue('socialPlatform');
+  const business = getValue('socialBusinessName');
+  const product = getValue('socialProduct');
+  const price = getValue('socialPrice');
+  const contact = getValue('socialContact');
+  const style = getValue('socialStyle');
+
+  if (!business || !product) {
+    alert('Please enter your business name and product or service.');
+    return;
+  }
+
+  let headline = 'Discover Something Special!';
+  let introduction = 'We are ready to serve you with quality and care.';
+
+  if (style === 'professional') {
+    headline = 'QUALITY YOU CAN TRUST';
+    introduction = 'Professional service and quality you can rely on.';
+  } else if (style === 'bold') {
+    headline = 'SPECIAL OFFER! 🔥';
+    introduction = 'Do not miss out! Get yours today.';
+  } else if (style === 'luxury') {
+    headline = 'EXPERIENCE EXCELLENCE';
+    introduction = 'Enjoy a premium experience with exceptional quality.';
+  }
+
+  let advertisement =
+    headline + '\n\n' +
+    business + '\n\n' +
+    introduction + '\n\n' +
+    'Product/Service: ' + product;
+
+  if (price) {
+    advertisement += '\nSpecial Offer: ' + price;
+  }
+
+  if (contact) {
+    advertisement += '\nContact us: ' + contact;
+  }
+
+  if (platform === 'Instagram') {
+    advertisement +=
+      '\n\n#BotswanaBusiness #ShopLocal #SupportLocal';
+  } else if (platform === 'Facebook') {
+    advertisement +=
+      '\n\nShare this post with someone who needs our services!';
+  } else {
+    advertisement +=
+      '\n\nFeel free to message us for more information.';
+  }
+
+  const output = document.getElementById('socialAdOutput');
+  const result = document.getElementById('socialAdResult');
+
+  output.textContent = advertisement;
+  result.style.display = 'block';
+
+  if (style === 'professional') {
+    result.style.background = '#edf3fa';
+    result.style.color = '#13243a';
+  } else if (style === 'bold') {
+    result.style.background = '#fff5c2';
+    result.style.color = '#13243a';
+  } else {
+    result.style.background = '#111111';
+    result.style.color = '#ffffff';
+  }
+}
+
+function copySocialAdvertisement() {
+  const output = document.getElementById('socialAdOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate an advertisement before copying it.');
+    return;
+  }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(output.textContent)
+      .then(function() {
+        alert('Advertisement copied successfully!');
+      })
+      .catch(function() {
+        copySocialAdvertisementFallback(output.textContent);
+      });
+  } else {
+    copySocialAdvertisementFallback(output.textContent);
+  }
+}
+
+function copySocialAdvertisementFallback(text) {
+  const temporary = document.createElement('textarea');
+  temporary.value = text;
+  temporary.style.position = 'fixed';
+  temporary.style.opacity = '0';
+
+  document.body.appendChild(temporary);
+  temporary.select();
+
+  try {
+    const successful = document.execCommand('copy');
+
+    if (successful) {
+      alert('Advertisement copied successfully!');
+    } else {
+      alert('Copy failed. Please select and copy the advertisement manually.');
+    }
+  } catch (error) {
+    alert('Copy failed. Please select and copy the advertisement manually.');
+  }
+
+  document.body.removeChild(temporary);
+}
+
+// END SOCIAL MEDIA ADVERTISEMENT GENERATOR
+
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
