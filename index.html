@@ -645,7 +645,32 @@ setDates();addItem('Service / product',1,0);
     const previewEmail = $('bcPreviewEmail');
     const previewAddress = $('bcPreviewAddress');
     const previewServices = $('bcPreviewServices');
+    const card = $('bcPreview');
+    const colour = $('bcColour');
 
+    if (card && colour) {
+      const designs = {
+        navy: { background: '#13243a', text: '#ffffff', accent: '#e5ad32' },
+        black: { background: '#111111', text: '#ffffff', accent: '#e5ad32' },
+        blue: { background: '#eaf2ff', text: '#13243a', accent: '#1f5eff' },
+        maroon: { background: '#6b1f36', text: '#ffffff', accent: '#ffffff' }
+      };
+
+      const design = designs[colour.value] || designs.navy;
+
+      card.style.background = design.background;
+      card.style.color = design.text;
+      card.style.borderBottomColor = design.accent;
+
+      if (previewBusiness) {
+        previewBusiness.style.color = design.accent;
+      }
+
+      if (previewServices) {
+        previewServices.style.color =
+          colour.value === 'blue' ? '#46566d' : '#e1e7f0';
+      }
+    }
     if (previewBusiness) {
       previewBusiness.textContent =
         business && business.value.trim()
@@ -704,7 +729,11 @@ setDates();addItem('Service / product',1,0);
       field.addEventListener('input', updateBusinessCardPreview);
     }
   });
+  const cardColourSelector = $('bcColour');
 
+  if (cardColourSelector) {
+    cardColourSelector.addEventListener('change', updateBusinessCardPreview);
+  }
   // Display the initial business card details
   updateBusinessCardPreview();
   // Load saved details when SmartBiz BW opens
