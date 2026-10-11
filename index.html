@@ -264,7 +264,38 @@ alert('The logo could not be loaded. Please try another image.');
 
 reader.readAsDataURL(file);
 });
-function resetForm(){['business','phone','email','address','client','clientContact','notes'].forEach(id=>$(id).value='');$('discount').value=0;$('tax').value=0;$('docNo').value=type==='Quotation'?'QT-0001':'INV-0001';$('items').innerHTML='';addItem();setDates();render()}
+function nextDocumentNumber(documentType){
+const key=documentType==='Quotation'
+? 'smartbizBW_nextQuotationNumber'
+: 'smartbizBW_nextInvoiceNumber';
+
+let nextNumber=1;
+
+try{
+nextNumber=parseInt(localStorage.getItem(key)||'1',10);
+if(!Number.isFinite(nextNumber)||nextNumber<1)nextNumber=1;
+localStorage.setItem(key,String(nextNumber+1));
+}catch(error){
+console.warn('Could not save the document number.',error);
+}
+
+return (documentType==='Quotation'?'QT-':'INV-')
++String(nextNumber).padStart(4,'0');
+}
+
+function resetForm(){
+['business','phone','email','address','client','clientContact','notes']
+.forEach(id=>$(id).value='');
+
+$('discount').value=0;
+$('tax').value=0;
+$('docNo').value=nextDocumentNumber(type);
+$('items').innerHTML='';
+addItem();
+setDates();
+render();
+}
+
 function setDates(){const now=new Date();$('date').value=now.toISOString().slice(0,10);const due=new Date(now);due.setDate(due.getDate()+14);$('due').value=due.toISOString().slice(0,10)}
 function downloadCSV(){const d=getData();const lines=[['Description','Quantity','Unit Price (BWP)','Line Total (BWP)'],...d.items.map(i=>[i.desc,i.qty,i.price,(i.qty*i.price).toFixed(2)])];const csv=lines.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(($('docNo').value||'document')+'-items.csv').replace(/[^a-z0-9._-]/gi,'_');a.click();URL.revokeObjectURL(url)}
 ['business','phone','email','address','docNo','date','due','client','clientContact','discount','tax','notes'].forEach(id=>$(id).addEventListener('input',render));
