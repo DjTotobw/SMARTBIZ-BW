@@ -630,7 +630,83 @@ setDates();addItem('Service / product',1,0);
       reader.readAsDataURL(file);
     });
   }
+  // Update SmartBiz BW business card preview
+  function updateBusinessCardPreview() {
+    const business = $('bcBusinessName');
+    const owner = $('bcOwnerName');
+    const phone = $('bcPhone');
+    const email = $('bcEmail');
+    const address = $('bcAddress');
+    const services = $('bcServices');
 
+    const previewBusiness = $('bcPreviewBusiness');
+    const previewOwner = $('bcPreviewOwner');
+    const previewPhone = $('bcPreviewPhone');
+    const previewEmail = $('bcPreviewEmail');
+    const previewAddress = $('bcPreviewAddress');
+    const previewServices = $('bcPreviewServices');
+
+    if (previewBusiness) {
+      previewBusiness.textContent =
+        business && business.value.trim()
+          ? business.value.trim()
+          : 'YOUR BUSINESS NAME';
+    }
+
+    if (previewOwner) {
+      previewOwner.textContent =
+        owner && owner.value.trim()
+          ? owner.value.trim()
+          : 'Your Name';
+    }
+
+    if (previewServices) {
+      previewServices.textContent =
+        services && services.value.trim()
+          ? services.value.trim()
+          : 'Your products or services';
+    }
+
+    if (previewPhone) {
+      previewPhone.textContent =
+        'Phone: ' + (phone && phone.value.trim()
+          ? phone.value.trim()
+          : 'Your phone number');
+    }
+
+    if (previewEmail) {
+      previewEmail.textContent =
+        'Email: ' + (email && email.value.trim()
+          ? email.value.trim()
+          : 'Your email address');
+    }
+
+    if (previewAddress) {
+      previewAddress.textContent =
+        'Location: ' + (address && address.value.trim()
+          ? address.value.trim()
+          : 'Your business location');
+    }
+  }
+
+  // Refresh the card whenever its fields change
+  [
+    'bcBusinessName',
+    'bcOwnerName',
+    'bcPhone',
+    'bcEmail',
+    'bcAddress',
+    'bcServices'
+  ].forEach(function (id) {
+    const field = $(id);
+
+    if (field) {
+      field.addEventListener('input', updateBusinessCardPreview);
+    }
+  });
+
+  // Display the initial business card details
+  updateBusinessCardPreview();
   // Load saved details when SmartBiz BW opens
   loadBusinessDetails();
 })();
