@@ -243,6 +243,138 @@ render();
 
 function addItem(desc='',qty=1,price=0){const id=++itemCount;const div=document.createElement('div');div.className='item-row';div.dataset.id=id;div.innerHTML=`<input aria-label="Description" class="desc" placeholder="Service or product" value="${esc(desc)}"><input aria-label="Quantity" class="qty" type="number" min="0" step="0.01" value="${qty}"><input aria-label="Unit price" class="price" type="number" min="0" step="0.01" value="${price}"><button class="remove" title="Remove item" aria-label="Remove item">×</button>`;$('items').appendChild(div);div.querySelectorAll('input').forEach(x=>x.addEventListener('input',render));div.querySelector('.remove').onclick=()=>{div.remove();if(!$('items').children.length)addItem();render()};render()}
 function getData(){let items=[...$('items').querySelectorAll('.item-row')].map(r=>({desc:r.querySelector('.desc').value,qty:Math.max(0,Number(r.querySelector('.qty').value)||0),price:Math.max(0,Number(r.querySelector('.price').value)||0)}));let subtotal=items.reduce((s,i)=>s+i.qty*i.price,0),discount=Math.min(subtotal,Math.max(0,Number($('discount').value)||0)),taxRate=Math.max(0,Number($('tax').value)||0),tax=Math.max(0,subtotal-discount)*taxRate/100,total=subtotal-discount+tax;return {items,subtotal,discount,taxRate,tax,total}}
+function getSavedDocuments(){
+try{
+return JSON.parse(localStorage.getItem('smartbizBW_documentHistory')||'[]');
+}catch(error){
+console.warn('Could not read document history.',error);
+return [];
+}
+}
+
+function saveCurrentDocument(){
+const data=getData();
+const documentNumber=$('docNo').value.trim();
+
+if(!documentNumber){
+alert('Please enter a document number before saving.');
+return;
+}
+
+const savedDocument={
+id:Date.now().toString(),
+type:type,
+number:documentNumber,
+date:$('date').value,
+due:$('due').value,
+business:$('business').value,
+phone:$('phone').value,
+email:$('email').value,
+address:$('address').value,
+client:$('client').value,
+clientContact:$('clientContact').value,
+notes:$('notes').value,
+discount:Number($('discount').value)||0,
+tax:Number($('tax').value)||0,
+items:data.items,
+logo:$('businessLogo').dataset.logoUrl||localStorage.getItem('smartbizBW_businessLogo_v1')||'',
+subtotal:data.subtotal,
+taxAmount:data.tax,
+total:data.total,
+savedAt:new Date().toISOString()
+};
+
+const documents=getSavedDocuments();
+const existingIndex=documents.findIndex(doc=>doc.number===documentNumber&&doc.type===type);
+
+if(existingIndex>=0){
+if(!confirm('A saved document with this type and number already exists. Replace it?')){
+return;
+}
+documents[existingIndex]=savedDocument;
+}else{
+documents.unshift(savedDocument);
+}
+
+try{
+localStorage.setItem('smartbizBW_documentHistory',JSON.stringify(documents));
+renderDocumentHistory();
+alert('Document saved successfully.');
+}catch(error){
+alert('Could not save this document. Browser storage may be full. Try using a smaller logo.');
+}
+}
+
+function renderDocumentHistory(){
+const container=$('documentHistoryList');
+if(!container)return;
+
+const documents=getSavedDocuments();
+
+if(!documents.length){
+container.innerHTML='<p style="color:#65738a;font-size:13px;">No saved documents yet.</p>';
+return;
+}
+
+container.innerHTML=documents.map(doc=>`     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #e7ebf2;">       <div>         <strong style="color:#13243a;">${esc(doc.number)}</strong>         <div style="font-size:12px;color:#65738a;margin-top:4px;">
+          ${esc(doc.type)} · ${esc(doc.client||'Customer not entered')} · ${money(doc.total)}         </div>         <div style="font-size:11px;color:#65738a;margin-top:3px;">
+          ${esc(doc.date||'No date')}         </div>       </div>       <div style="display:flex;gap:7px;flex-wrap:wrap;">         <button class="btn secondary" type="button" onclick="openSavedDocument('${esc(doc.id)}')">Open</button>         <button class="btn danger" type="button" onclick="deleteSavedDocument('${esc(doc.id)}')">Delete</button>       </div>     </div>
+  `).join('');
+}
+
+function openSavedDocument(id){
+const doc=getSavedDocuments().find(item=>item.id===id);
+if(!doc)return;
+
+type=doc.type;
+$('quoteTab').classList.toggle('active',type==='Quotation');
+$('invoiceTab').classList.toggle('active',type==='Invoice');
+
+$('docNo').value=doc.number||'';
+$('date').value=doc.date||'';
+$('due').value=doc.due||'';
+$('business').value=doc.business||'';
+$('phone').value=doc.phone||'';
+$('email').value=doc.email||'';
+$('address').value=doc.address||'';
+$('client').value=doc.client||'';
+$('clientContact').value=doc.clientContact||'';
+$('notes').value=doc.notes||'';
+$('discount').value=doc.discount||0;
+$('tax').value=doc.tax||0;
+
+const logoInput=$('businessLogo');
+if(logoInput)logoInput.dataset.logoUrl=doc.logo||'';
+
+$('items').innerHTML='';
+itemCount=0;
+
+(doc.items||[]).forEach(item=>{
+addItem();
+const row=$('items').lastElementChild;
+row.querySelector('.desc').value=item.desc||'';
+row.querySelector('.qty').value=item.qty;
+row.querySelector('.price').value=item.price;
+});
+
+if(!doc.items||!doc.items.length)addItem();
+
+render();
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function deleteSavedDocument(id){
+if(!confirm('Delete this saved document? This cannot be undone.'))return;
+
+const documents=getSavedDocuments().filter(doc=>doc.id!==id);
+
+try{
+localStorage.setItem('smartbizBW_documentHistory',JSON.stringify(documents));
+renderDocumentHistory();
+}catch(error){
+alert('Could not update document history.');
+}
+}
 function render(){
 const d=getData(),
 business=$('business').value||'Your Business Name',
@@ -430,5 +562,7 @@ setDates();addItem('Service / product',1,0);
 
   // Load saved details when SmartBiz BW opens
   loadBusinessDetails();
-})();</script>
+})();
+  renderDocumentHistory();
+</script>
 </body></html>
