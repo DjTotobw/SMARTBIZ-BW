@@ -358,6 +358,120 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
   </div>
 </section>
 <!-- END SMARTBIZ BW MARKETING TOOLS DASHBOARD -->
+  <!-- SMARTBIZ BW PROMOTIONAL POSTER CREATOR -->
+<section id="posterCreator"
+style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-sizing:border-box;">
+
+  <h2 style="color:#13243a;margin-top:0;">Promotional Poster Creator</h2>
+
+  <p style="color:#65738a;font-size:14px;line-height:1.6;">
+    Create promotional posters for your business, products, services and special offers.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+
+    <!-- POSTER DETAILS -->
+    <div>
+
+      <label for="posterBusinessName">Business Name</label>
+      <input id="posterBusinessName"
+      type="text"
+      placeholder="e.g. Thato Fashion"
+      style="margin:7px 0 15px;">
+
+      <label for="posterHeadline">Promotion Headline</label>
+      <input id="posterHeadline"
+      type="text"
+      placeholder="e.g. BIG WEEKEND SALE!"
+      style="margin:7px 0 15px;">
+
+      <label for="posterProduct">Product or Service</label>
+      <input id="posterProduct"
+      type="text"
+      placeholder="e.g. Designer Clothing"
+      style="margin:7px 0 15px;">
+
+      <label for="posterPrice">Price or Special Offer</label>
+      <input id="posterPrice"
+      type="text"
+      placeholder="e.g. P150 or 20% OFF"
+      style="margin:7px 0 15px;">
+
+      <label for="posterContact">Contact Details</label>
+      <input id="posterContact"
+      type="text"
+      placeholder="Phone number or WhatsApp"
+      style="margin:7px 0 15px;">
+
+      <label for="posterStyle">Choose Poster Design</label>
+      <select id="posterStyle" style="margin:7px 0 15px;">
+        <option value="professional">Professional Business</option>
+        <option value="bold">Bold Promotion</option>
+        <option value="luxury">Premium Luxury</option>
+      </select>
+
+      <button type="button" class="btn primary"
+      onclick="updatePosterPreview()">
+        Update Poster Preview
+      </button>
+
+      <button type="button" class="btn secondary"
+      onclick="document.getElementById('posterCreator').style.display='none';document.getElementById('marketingTools').scrollIntoView({behavior:'smooth'});">
+        Back to Marketing Tools
+      </button>
+
+    </div>
+
+    <!-- POSTER PREVIEW -->
+    <div>
+
+      <h3 style="color:#13243a;margin-top:0;">Poster Preview</h3>
+
+      <div id="posterPreview"
+      style="min-height:400px;padding:28px 18px;border-radius:12px;background:#13243a;color:white;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;box-sizing:border-box;overflow-wrap:anywhere;">
+
+        <div style="font-size:13px;letter-spacing:2px;">
+          SMARTBIZ BW
+        </div>
+
+        <h2 id="posterPreviewBusiness"
+        style="margin:0;font-size:25px;">
+          YOUR BUSINESS
+        </h2>
+
+        <div id="posterPreviewHeadline"
+        style="font-size:29px;font-weight:900;">
+          YOUR NEXT BIG PROMOTION
+        </div>
+
+        <div id="posterPreviewProduct"
+        style="font-size:18px;">
+          Your product or service
+        </div>
+
+        <div id="posterPreviewPrice"
+        style="font-size:34px;font-weight:900;color:#e5ad32;">
+          YOUR SPECIAL OFFER
+        </div>
+
+        <div id="posterPreviewContact"
+        style="font-size:14px;">
+          Contact your business today
+        </div>
+
+      </div>
+
+      <p style="font-size:12px;color:#65738a;line-height:1.5;">
+        Your poster preview will update when you click the update button.
+        We will add PNG downloading in a later step.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- END SMARTBIZ BW PROMOTIONAL POSTER CREATOR -->
   <script>
   
 
