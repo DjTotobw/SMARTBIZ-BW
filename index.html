@@ -150,6 +150,38 @@ main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;ga
     box-shadow: none !important;
   }
 }
+```css
+/* SMARTBIZ BW: PRINT ONLY THE PROMOTIONAL POSTER */
+@media print {
+  @page {
+    margin: 10mm;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  #posterPreview,
+  #posterPreview * {
+    visibility: visible !important;
+  }
+
+  #posterPreview {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+/* END POSTER PRINT FIX */
+```
+
 </style>
 </head>
 <body>
