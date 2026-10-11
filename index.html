@@ -215,7 +215,78 @@ main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;ga
  </div>
  <div class="footer">Botswana Business Toolkit · Independent starter prototype · Not tax or legal advice</div>
 </main>
-<script>
+<!-- SMARTBIZ BW BUSINESS CARD CREATOR -->
+
+<section id="businessCardCreator" class="no-print"
+style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px solid #d6dfeb;border-radius:12px;">
+
+  <h2 style="color:#13243a;margin-top:0;">Business Card Creator</h2>
+
+  <p style="color:#65738a;font-size:13px;">
+    Create a professional business card for your business.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;">
+
+```
+<div>
+  <label for="bcBusinessName">Business Name</label>
+  <input id="bcBusinessName" type="text" placeholder="Your business name" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+
+  <label for="bcOwnerName">Owner's Name</label>
+  <input id="bcOwnerName" type="text" placeholder="Your name" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+
+  <label for="bcPhone">Phone Number</label>
+  <input id="bcPhone" type="tel" placeholder="+267 ..." style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+
+  <label for="bcEmail">Email Address</label>
+  <input id="bcEmail" type="email" placeholder="Your email" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+
+  <label for="bcAddress">Business Location</label>
+  <input id="bcAddress" type="text" placeholder="Town or address" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+
+  <label for="bcServices">Products or Services</label>
+  <input id="bcServices" type="text" placeholder="What you offer" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+
+  <label for="bcColour">Card Design</label>
+  <select id="bcColour" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
+    <option value="navy">Navy Blue & Gold</option>
+    <option value="black">Black & Gold</option>
+    <option value="blue">Blue & White</option>
+    <option value="maroon">Maroon & White</option>
+  </select>
+</div>
+
+<div>
+  <h3 style="color:#13243a;margin-top:0;">Live Preview</h3>
+
+  <div id="bcPreview" style="box-sizing:border-box;width:100%;max-width:420px;min-height:230px;padding:25px;border-radius:10px;background:#13243a;color:#fff;border-bottom:5px solid #e5ad32;display:flex;flex-direction:column;justify-content:space-between;overflow-wrap:anywhere;">
+
+    <div>
+      <div id="bcPreviewBusiness" style="font-size:21px;font-weight:800;color:#e5ad32;">YOUR BUSINESS NAME</div>
+      <div id="bcPreviewOwner" style="font-size:14px;margin-top:12px;">Your Name</div>
+      <div id="bcPreviewServices" style="font-size:12px;margin-top:6px;color:#e1e7f0;">Your products or services</div>
+    </div>
+
+    <div style="font-size:12px;line-height:1.8;margin-top:18px;">
+      <div id="bcPreviewPhone">Phone: Your phone number</div>
+      <div id="bcPreviewEmail">Email: Your email address</div>
+      <div id="bcPreviewAddress">Location: Your business location</div>
+    </div>
+
+  </div>
+
+  <p style="font-size:12px;color:#65738a;">
+    Your card details will appear in this preview.
+  </p>
+</div>
+```
+
+  </div>
+</section>
+<!-- END SMARTBIZ BW BUSINESS CARD CREATOR -->
+
+  <script>
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
