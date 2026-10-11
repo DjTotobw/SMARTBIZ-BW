@@ -748,6 +748,50 @@ setDates();addItem('Service / product',1,0);
   loadBusinessDetails();
 })();
   renderDocumentHistory();
+    // Download business card as PNG
+const bcDownloadButton = $('bcDownloadButton');
+
+if (bcDownloadButton) {
+bcDownloadButton.addEventListener('click', function () {
+const card = $('bcPreview');
+
+```
+if (!card) {
+  alert('Business card preview could not be found.');
+  return;
+}
+
+if (typeof html2canvas !== 'function') {
+  alert('The image library has not loaded. Please refresh the page and try again.');
+  return;
+}
+
+bcDownloadButton.disabled = true;
+bcDownloadButton.textContent = 'Preparing download...';
+
+html2canvas(card, {
+  scale: 3,
+  backgroundColor: null,
+  useCORS: true
+}).then(function (canvas) {
+  const link = document.createElement('a');
+  const businessName = $('bcBusinessName').value.trim() || 'Business';
+
+  link.download = businessName.replace(/[^a-z0-9_-]/gi, '_') + '_Business_Card.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}).catch(function (error) {
+  console.error('Business card download failed:', error);
+  alert('Could not download the business card. Please try again.');
+}).finally(function () {
+  bcDownloadButton.disabled = false;
+  bcDownloadButton.textContent = 'Download Business Card (PNG)';
+});
+```
+
+});
+}
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body></html>
