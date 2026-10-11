@@ -634,7 +634,8 @@ setDates();addItem('Service / product',1,0);
   // Load saved details when SmartBiz BW opens
   loadBusinessDetails();
 })();
-  renderDocumentHistory();// BUSINESS CARD LIVE PREVIEW
+  renderDocumentHistory();
+  // BUSINESS CARD LIVE PREVIEW
 (function () {
 const fields = {
 bcBusinessName: 'bcPreviewBusiness',
@@ -643,6 +644,15 @@ bcPhone: 'bcPreviewPhone',
 bcEmail: 'bcPreviewEmail',
 bcAddress: 'bcPreviewAddress',
 bcServices: 'bcPreviewServices'
+};
+
+const placeholders = {
+bcBusinessName: 'YOUR BUSINESS NAME',
+bcOwnerName: 'Your Name',
+bcPhone: 'Phone: Your phone number',
+bcEmail: 'Email: Your email address',
+bcAddress: 'Location: Your business location',
+bcServices: 'Your products or services'
 };
 
 function updateBusinessCard() {
@@ -655,21 +665,12 @@ const preview = document.getElementById(previewId);
 
   const value = input.value.trim();
 
-  const placeholders = {
-    bcBusinessName: 'YOUR BUSINESS NAME',
-    bcOwnerName: 'Your Name',
-    bcPhone: 'Phone: Your phone number',
-    bcEmail: 'Email: Your email address',
-    bcAddress: 'Location: Your business location',
-    bcServices: 'Your products or services'
-  };
-
-  if (inputId === 'bcPhone') {
-    preview.textContent = value ? 'Phone: ' + value : placeholders[inputId];
-  } else if (inputId === 'bcEmail') {
-    preview.textContent = value ? 'Email: ' + value : placeholders[inputId];
-  } else if (inputId === 'bcAddress') {
-    preview.textContent = value ? 'Location: ' + value : placeholders[inputId];
+  if (inputId === 'bcPhone' && value) {
+    preview.textContent = 'Phone: ' + value;
+  } else if (inputId === 'bcEmail' && value) {
+    preview.textContent = 'Email: ' + value;
+  } else if (inputId === 'bcAddress' && value) {
+    preview.textContent = 'Location: ' + value;
   } else {
     preview.textContent = value || placeholders[inputId];
   }
@@ -678,9 +679,11 @@ const preview = document.getElementById(previewId);
 
 }
 
-Object.keys(fields).forEach(id => {
+Object.keys(fields).forEach(function (id) {
 const input = document.getElementById(id);
-if (input) input.addEventListener('input', updateBusinessCard);
+if (input) {
+input.addEventListener('input', updateBusinessCard);
+}
 });
 
 const colourSelect = document.getElementById('bcColour');
@@ -710,6 +713,7 @@ if (!preview) return;
 
   if (businessName) businessName.style.color = design.accent;
   if (owner) owner.style.color = design.text;
+
   if (services) {
     services.style.color = design.text;
     services.style.opacity = '0.85';
@@ -721,6 +725,7 @@ if (!preview) return;
 
 updateBusinessCard();
 })();
+
 
 </script>
 </body></html>
