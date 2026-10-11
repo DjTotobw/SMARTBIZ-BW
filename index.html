@@ -634,6 +634,93 @@ setDates();addItem('Service / product',1,0);
   // Load saved details when SmartBiz BW opens
   loadBusinessDetails();
 })();
-  renderDocumentHistory();
+  renderDocumentHistory();// BUSINESS CARD LIVE PREVIEW
+(function () {
+const fields = {
+bcBusinessName: 'bcPreviewBusiness',
+bcOwnerName: 'bcPreviewOwner',
+bcPhone: 'bcPreviewPhone',
+bcEmail: 'bcPreviewEmail',
+bcAddress: 'bcPreviewAddress',
+bcServices: 'bcPreviewServices'
+};
+
+function updateBusinessCard() {
+Object.entries(fields).forEach(([inputId, previewId]) => {
+const input = document.getElementById(inputId);
+const preview = document.getElementById(previewId);
+
+```
+  if (!input || !preview) return;
+
+  const value = input.value.trim();
+
+  const placeholders = {
+    bcBusinessName: 'YOUR BUSINESS NAME',
+    bcOwnerName: 'Your Name',
+    bcPhone: 'Phone: Your phone number',
+    bcEmail: 'Email: Your email address',
+    bcAddress: 'Location: Your business location',
+    bcServices: 'Your products or services'
+  };
+
+  if (inputId === 'bcPhone') {
+    preview.textContent = value ? 'Phone: ' + value : placeholders[inputId];
+  } else if (inputId === 'bcEmail') {
+    preview.textContent = value ? 'Email: ' + value : placeholders[inputId];
+  } else if (inputId === 'bcAddress') {
+    preview.textContent = value ? 'Location: ' + value : placeholders[inputId];
+  } else {
+    preview.textContent = value || placeholders[inputId];
+  }
+});
+```
+
+}
+
+Object.keys(fields).forEach(id => {
+const input = document.getElementById(id);
+if (input) input.addEventListener('input', updateBusinessCard);
+});
+
+const colourSelect = document.getElementById('bcColour');
+
+if (colourSelect) {
+colourSelect.addEventListener('change', function () {
+const preview = document.getElementById('bcPreview');
+if (!preview) return;
+
+```
+  const designs = {
+    navy: { background: '#13243a', text: '#ffffff', accent: '#e5ad32' },
+    black: { background: '#171717', text: '#ffffff', accent: '#e5ad32' },
+    blue: { background: '#ffffff', text: '#13243a', accent: '#1f5eff' },
+    maroon: { background: '#6b2035', text: '#ffffff', accent: '#ffffff' }
+  };
+
+  const design = designs[this.value] || designs.navy;
+
+  preview.style.background = design.background;
+  preview.style.color = design.text;
+  preview.style.borderBottomColor = design.accent;
+
+  const businessName = document.getElementById('bcPreviewBusiness');
+  const owner = document.getElementById('bcPreviewOwner');
+  const services = document.getElementById('bcPreviewServices');
+
+  if (businessName) businessName.style.color = design.accent;
+  if (owner) owner.style.color = design.text;
+  if (services) {
+    services.style.color = design.text;
+    services.style.opacity = '0.85';
+  }
+});
+```
+
+}
+
+updateBusinessCard();
+})();
+
 </script>
 </body></html>
