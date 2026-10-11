@@ -208,7 +208,26 @@ const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function dateFmt(v){if(!v)return '—';const d=new Date(v+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}
-function setType(t){type=t;$('quoteTab').classList.toggle('active',t==='Quotation');$('invoiceTab').classList.toggle('active',t==='Invoice');if($('docNo').value.startsWith('QT-')||$('docNo').value.startsWith('INV-'))$('docNo').value=(t==='Quotation'?'QT-':'INV-')+'0001';render()}
+function setType(t){
+const previousType=type;
+type=t;
+
+$('quoteTab').classList.toggle('active',t==='Quotation');
+$('invoiceTab').classList.toggle('active',t==='Invoice');
+
+const currentNumber=$('docNo').value;
+
+if(
+!currentNumber ||
+(t==='Quotation' && currentNumber.startsWith('INV-')) ||
+(t==='Invoice' && currentNumber.startsWith('QT-'))
+){
+$('docNo').value=nextDocumentNumber(t);
+}
+
+render();
+}
+
 function addItem(desc='',qty=1,price=0){const id=++itemCount;const div=document.createElement('div');div.className='item-row';div.dataset.id=id;div.innerHTML=`<input aria-label="Description" class="desc" placeholder="Service or product" value="${esc(desc)}"><input aria-label="Quantity" class="qty" type="number" min="0" step="0.01" value="${qty}"><input aria-label="Unit price" class="price" type="number" min="0" step="0.01" value="${price}"><button class="remove" title="Remove item" aria-label="Remove item">×</button>`;$('items').appendChild(div);div.querySelectorAll('input').forEach(x=>x.addEventListener('input',render));div.querySelector('.remove').onclick=()=>{div.remove();if(!$('items').children.length)addItem();render()};render()}
 function getData(){let items=[...$('items').querySelectorAll('.item-row')].map(r=>({desc:r.querySelector('.desc').value,qty:Math.max(0,Number(r.querySelector('.qty').value)||0),price:Math.max(0,Number(r.querySelector('.price').value)||0)}));let subtotal=items.reduce((s,i)=>s+i.qty*i.price,0),discount=Math.min(subtotal,Math.max(0,Number($('discount').value)||0)),taxRate=Math.max(0,Number($('tax').value)||0),tax=Math.max(0,subtotal-discount)*taxRate/100,total=subtotal-discount+tax;return {items,subtotal,discount,taxRate,tax,total}}
 function render(){
