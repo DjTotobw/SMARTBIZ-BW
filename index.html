@@ -536,6 +536,57 @@ function updatePosterPreview() {
     offer.style.color = '#e5ad32';
   }
 }
+
+function downloadPromotionalPoster() {
+  const poster = document.getElementById('posterPreview');
+
+  if (!poster) {
+    alert('The poster preview could not be found.');
+    return;
+  }
+
+  if (typeof html2canvas !== 'function') {
+    alert('The image library has not loaded. Please refresh the page and try again.');
+    return;
+  }
+
+  const button = document.querySelector(
+    '#posterCreator button[onclick="downloadPromotionalPoster()"]'
+  );
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = 'Preparing Poster...';
+  }
+
+  html2canvas(poster, {
+    scale: 3,
+    backgroundColor: null,
+    useCORS: true
+  })
+  .then(function(canvas) {
+    const businessName =
+      document.getElementById('posterBusinessName').value.trim()
+      || 'SmartBiz_BW';
+
+    const safeName = businessName.replace(/[^a-z0-9_-]/gi, '_');
+
+    const link = document.createElement('a');
+    link.download = safeName + '_Promotional_Poster.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  })
+  .catch(function(error) {
+    console.error('Poster download failed:', error);
+    alert('Could not download the poster. Please try again.');
+  })
+  .finally(function() {
+    if (button) {
+      button.disabled = false;
+      button.textContent = 'Download Poster (PNG)';
+    }
+  });
+}
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
