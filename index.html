@@ -464,9 +464,25 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
 
       </div>
 
-      <p style="font-size:12px;color:#65738a;line-height:1.5;">
-        Your poster preview will update when you click the update button.
-        We will add PNG downloading in a later step.
+      <p <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:15px;">
+
+  <button type="button"
+  class="btn primary"
+  onclick="downloadPromotionalPoster()">
+    Download Poster (PNG)
+  </button>
+
+  <button type="button"
+  class="btn secondary"
+  onclick="window.print()">
+    Print Poster
+  </button>
+
+</div>
+
+<p style="font-size:12px;color:#65738a;line-height:1.5;">
+  Download your poster as a PNG image or print it for your business.
+</p>
       </p>
 
     </div>
