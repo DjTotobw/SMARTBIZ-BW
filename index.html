@@ -1582,6 +1582,188 @@ function shareBusinessPromotion() {
 }
 
 // END BUSINESS PROMOTION FUNCTIONS
+// SMARTBIZ BW MARKETING CAPTIONS FUNCTIONS
+
+function generateMarketingCaption() {
+  const getValue = id =>
+    document.getElementById(id).value.trim();
+
+  const platform = getValue('mcPlatform');
+  const business = getValue('mcBusiness');
+  const product = getValue('mcProduct');
+  const audience = getValue('mcAudience');
+  const purpose = getValue('mcPurpose');
+  const offer = getValue('mcOffer');
+  const style = getValue('mcStyle');
+  const contact = getValue('mcContact');
+
+  if (!business) {
+    alert('Please enter your business name.');
+    return;
+  }
+
+  if (!product) {
+    alert('Please enter your product or service.');
+    return;
+  }
+
+  let caption = '';
+  let introduction = '';
+  let closing = '';
+
+  if (purpose === 'product') {
+    introduction = 'Discover ' + product + ' at ' + business + '.';
+    closing = 'Contact us today to learn more!';
+  } else if (purpose === 'offer') {
+    introduction = 'A special offer is here at ' + business + '!';
+    closing = 'Take advantage of this offer today!';
+  } else if (purpose === 'engagement') {
+    introduction = 'We want to hear from you! What do you think about ' + product + '?';
+    closing = 'Share your thoughts with us in the comments!';
+  } else if (purpose === 'awareness') {
+    introduction = 'Meet ' + business + ', your business destination for ' + product + '.';
+    closing = 'Follow us for more updates and information!';
+  } else if (purpose === 'launch') {
+    introduction = 'Something new has arrived! Introducing ' + product + ' from ' + business + '.';
+    closing = 'Get in touch to find out more!';
+  }
+
+  if (style === 'friendly') {
+    caption = 'Hello everyone! 😊\n\n' + introduction;
+    closing += ' Thank you for supporting our business!';
+  } else if (style === 'persuasive') {
+    caption = '✨ READY TO DISCOVER SOMETHING GREAT? ✨\n\n' + introduction;
+    closing += ' Do not miss out!';
+  } else if (style === 'humorous') {
+    caption = '👀 Stop scrolling for a moment!\n\n' + introduction;
+    closing += ' Your future self might thank you!';
+  } else {
+    caption = introduction;
+  }
+
+  if (offer) {
+    caption += '\n\nPrice / Special Offer: ' + offer;
+  }
+
+  if (audience) {
+    caption += '\n\nPerfect for: ' + audience + '.';
+  }
+
+  caption += '\n\n' + closing;
+
+  if (contact) {
+    caption += '\n\nContact us: ' + contact;
+  }
+
+  caption += '\n\n' + business;
+
+  const hashtags = [];
+
+  if (platform !== 'WhatsApp Status') {
+    hashtags.push(
+      '#' + business.replace(/[^a-zA-Z0-9]/g, ''),
+      '#' + product.replace(/[^a-zA-Z0-9]/g, ''),
+      '#BotswanaBusiness',
+      '#SupportLocal'
+    );
+
+    caption += '\n\n' + [...new Set(hashtags)].join(' ');
+  }
+
+  const output = document.getElementById('mcOutput');
+  const result = document.getElementById('mcResult');
+
+  output.textContent = caption;
+  result.style.display = 'block';
+
+  if (style === 'professional') {
+    result.style.background = '#edf3fa';
+    result.style.color = '#13243a';
+  } else if (style === 'friendly') {
+    result.style.background = '#edf8ef';
+    result.style.color = '#174b2a';
+  } else if (style === 'persuasive') {
+    result.style.background = '#fff5c2';
+    result.style.color = '#13243a';
+  } else {
+    result.style.background = '#fceef3';
+    result.style.color = '#51243a';
+  }
+
+  result.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest'
+  });
+}
+
+
+function copyMarketingCaption() {
+  const output = document.getElementById('mcOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate a caption before copying it.');
+    return;
+  }
+
+  const caption = output.textContent;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(caption)
+      .then(function() {
+        alert('Marketing caption copied successfully!');
+      })
+      .catch(function() {
+        copyMarketingCaptionFallback(caption);
+      });
+  } else {
+    copyMarketingCaptionFallback(caption);
+  }
+}
+
+
+function copyMarketingCaptionFallback(caption) {
+  const temporary = document.createElement('textarea');
+
+  temporary.value = caption;
+  temporary.style.position = 'fixed';
+  temporary.style.opacity = '0';
+
+  document.body.appendChild(temporary);
+  temporary.select();
+
+  try {
+    const successful = document.execCommand('copy');
+
+    if (successful) {
+      alert('Marketing caption copied successfully!');
+    } else {
+      alert('Copy failed. Please select and copy the caption manually.');
+    }
+  } catch (error) {
+    alert('Copy failed. Please select and copy the caption manually.');
+  }
+
+  document.body.removeChild(temporary);
+}
+
+
+function shareMarketingCaption() {
+  const output = document.getElementById('mcOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate a caption before sharing it.');
+    return;
+  }
+
+  const caption = output.textContent;
+
+  const whatsappURL =
+    'https://wa.me/?text=' + encodeURIComponent(caption);
+
+  window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+}
+
+// END MARKETING CAPTIONS FUNCTIONS
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
