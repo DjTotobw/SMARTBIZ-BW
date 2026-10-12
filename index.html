@@ -852,6 +852,130 @@ Open Tool
 
 <!-- END SMARTBIZ BW BUSINESS PROMOTION TEMPLATES -->
 
+  <!-- SMARTBIZ BW MARKETING CAPTIONS GENERATOR -->
+
+<section id="marketingCaptions"
+style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-sizing:border-box;">
+
+  <h2 style="color:#13243a;margin-top:0;">
+    Marketing Captions Generator
+  </h2>
+
+  <p style="color:#65738a;line-height:1.6;">
+    Create engaging social media captions to promote your business,
+    attract customers and increase awareness of your products and services.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px;">
+
+    <div>
+      <label for="mcPlatform"><strong>Social Media Platform</strong></label>
+      <select id="mcPlatform" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+        <option value="WhatsApp Status">WhatsApp Status</option>
+        <option value="LinkedIn">LinkedIn</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="mcBusiness"><strong>Business Name</strong></label>
+      <input id="mcBusiness" type="text"
+      placeholder="Enter business name"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="mcProduct"><strong>Product or Service</strong></label>
+      <input id="mcProduct" type="text"
+      placeholder="e.g. Cakes, clothing, graphic design"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="mcAudience"><strong>Target Audience</strong></label>
+      <input id="mcAudience" type="text"
+      placeholder="e.g. Students, families, entrepreneurs"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="mcPurpose"><strong>Caption Purpose</strong></label>
+      <select id="mcPurpose" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="product">Promote a Product or Service</option>
+        <option value="offer">Announce a Special Offer</option>
+        <option value="engagement">Engage Customers</option>
+        <option value="awareness">Build Brand Awareness</option>
+        <option value="launch">Announce a New Product</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="mcOffer"><strong>Price or Special Offer</strong></label>
+      <input id="mcOffer" type="text"
+      placeholder="e.g. P150 or 20% discount"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="mcStyle"><strong>Caption Style</strong></label>
+      <select id="mcStyle" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="professional">Professional</option>
+        <option value="friendly">Friendly</option>
+        <option value="persuasive">Persuasive</option>
+        <option value="humorous">Humorous</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="mcContact"><strong>Contact Details (Optional)</strong></label>
+      <input id="mcContact" type="text"
+      placeholder="Phone number or contact details"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
+
+    <button type="button" class="btn primary"
+    onclick="generateMarketingCaption()">
+      Generate Caption
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="copyMarketingCaption()">
+      Copy Caption
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="shareMarketingCaption()">
+      Share on WhatsApp
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="document.getElementById('marketingCaptions').style.display='none';document.getElementById('marketingToolsDashboard').scrollIntoView({behavior:'smooth'});">
+      Back to Marketing Tools
+    </button>
+
+  </div>
+
+  <div id="mcResult"
+  style="display:none;margin-top:22px;padding:20px;border:1px solid #d6dfeb;border-radius:10px;background:#f7f9fc;">
+
+    <h3 style="margin-top:0;color:#13243a;">
+      Your Marketing Caption
+    </h3>
+
+    <div id="mcOutput"
+    style="white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere;"></div>
+
+  </div>
+
+</section>
+
+<!-- END SMARTBIZ BW MARKETING CAPTIONS GENERATOR -->
+
   <script>
   
 
