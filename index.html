@@ -1272,6 +1272,186 @@ function shareWhatsAppMessage() {
 }
 
 // END WHATSAPP MARKETING FUNCTIONS
+// SMARTBIZ BW BUSINESS PROMOTION FUNCTIONS
+
+function generateBusinessPromotion() {
+  const getValue = id =>
+    document.getElementById(id).value.trim();
+
+  const type = getValue('bpType');
+  const business = getValue('bpBusinessName');
+  const product = getValue('bpProduct');
+  const price = getValue('bpPrice');
+  const audience = getValue('bpAudience');
+  const contact = getValue('bpContact');
+  const style = getValue('bpStyle');
+
+  if (!business) {
+    alert('Please enter your business name.');
+    return;
+  }
+
+  if (!product) {
+    alert('Please enter your product or service.');
+    return;
+  }
+
+  let heading = '';
+  let introduction = '';
+  let closing = '';
+
+  if (type === 'special') {
+    heading = 'SPECIAL OFFER';
+    introduction = 'Discover our offer on ' + product + '.';
+  } else if (type === 'launch') {
+    heading = 'NEW PRODUCT LAUNCH';
+    introduction = 'Introducing ' + product + ' from ' + business + '!';
+  } else if (type === 'discount') {
+    heading = 'DISCOUNT PROMOTION';
+    introduction = 'Enjoy savings on ' + product + '.';
+  } else if (type === 'event') {
+    heading = 'YOU ARE INVITED';
+    introduction = 'Discover our business event featuring ' + product + '.';
+  } else if (type === 'clearance') {
+    heading = 'CLEARANCE SALE';
+    introduction = 'Take advantage of our clearance sale on ' + product + '.';
+  } else if (type === 'service') {
+    heading = 'OUR SERVICES';
+    introduction = 'Looking for ' + product + '? ' + business + ' is ready to help.';
+  }
+
+  if (style === 'friendly') {
+    closing = 'We would love to hear from you! Thank you for supporting our business.';
+  } else if (style === 'persuasive') {
+    closing = 'Do not miss this opportunity! Contact us today to find out more.';
+  } else {
+    closing = 'For enquiries and further information, please contact us.';
+  }
+
+  let promotion = '';
+
+  if (style === 'persuasive') {
+    promotion =
+      '🔥 ' + heading + ' 🔥\n\n' +
+      introduction;
+  } else if (style === 'friendly') {
+    promotion =
+      'Hello everyone! 😊\n\n' +
+      heading + '\n\n' +
+      introduction;
+  } else {
+    promotion =
+      heading + '\n\n' +
+      introduction;
+  }
+
+  if (price) {
+    promotion += '\n\nPrice / Offer: ' + price;
+  }
+
+  if (audience) {
+    promotion += '\n\nPerfect for: ' + audience + '.';
+  }
+
+  promotion += '\n\n' + closing;
+
+  if (contact) {
+    promotion += '\n\nContact: ' + contact;
+  }
+
+  promotion += '\n\n' + business;
+
+  const output = document.getElementById('bpOutput');
+  const result = document.getElementById('bpResult');
+
+  output.textContent = promotion;
+  result.style.display = 'block';
+
+  if (style === 'professional') {
+    result.style.background = '#edf3fa';
+    result.style.color = '#13243a';
+  } else if (style === 'friendly') {
+    result.style.background = '#edf8ef';
+    result.style.color = '#174b2a';
+  } else {
+    result.style.background = '#fff5c2';
+    result.style.color = '#13243a';
+  }
+
+  result.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest'
+  });
+}
+
+
+function copyBusinessPromotion() {
+  const output = document.getElementById('bpOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate a promotion before copying it.');
+    return;
+  }
+
+  const promotion = output.textContent;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(promotion)
+      .then(function() {
+        alert('Business promotion copied successfully!');
+      })
+      .catch(function() {
+        copyBusinessPromotionFallback(promotion);
+      });
+  } else {
+    copyBusinessPromotionFallback(promotion);
+  }
+}
+
+
+function copyBusinessPromotionFallback(promotion) {
+  const temporary = document.createElement('textarea');
+
+  temporary.value = promotion;
+  temporary.style.position = 'fixed';
+  temporary.style.opacity = '0';
+
+  document.body.appendChild(temporary);
+  temporary.select();
+
+  try {
+    const successful = document.execCommand('copy');
+
+    if (successful) {
+      alert('Business promotion copied successfully!');
+    } else {
+      alert('Copy failed. Please select and copy the promotion manually.');
+    }
+  } catch (error) {
+    alert('Copy failed. Please select and copy the promotion manually.');
+  }
+
+  document.body.removeChild(temporary);
+}
+
+
+function shareBusinessPromotion() {
+  const output = document.getElementById('bpOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate a promotion before sharing it.');
+    return;
+  }
+
+  const promotion = output.textContent;
+
+  const whatsappURL =
+    'https://wa.me/?text=' + encodeURIComponent(promotion);
+
+  window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+}
+
+// END BUSINESS PROMOTION FUNCTIONS
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
