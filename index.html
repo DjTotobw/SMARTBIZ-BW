@@ -365,7 +365,10 @@ Open Tool
   <div style="font-size:30px;">💬</div>
   <h3 style="color:#13243a;">WhatsApp Marketing Messages</h3>
   <p style="font-size:13px;color:#65738a;line-height:1.6;">Prepare sales messages, special offers, product announcements, and customer follow-ups.</p>
-  <button type="button" class="btn primary" onclick="alert('WhatsApp Marketing Messages will be developed in a later phase.')">Open Tool</button>
+  <button type="button" class="btn primary"
+onclick="document.getElementById('whatsappMarketing').style.display='block';document.getElementById('whatsappMarketing').scrollIntoView({behavior:'smooth'});">
+Open Tool
+</button>
 </div>
 
 <!-- TOOL 4 -->
@@ -621,6 +624,117 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
 </section>
 <!-- END SMARTBIZ BW SOCIAL MEDIA ADVERTISEMENTS -->
 
+  <!-- SMARTBIZ BW WHATSAPP MARKETING MESSAGES -->
+<section id="whatsappMarketing"
+style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-sizing:border-box;">
+
+  <h2 style="color:#13243a;margin-top:0;">
+    WhatsApp Marketing Messages
+  </h2>
+
+  <p style="color:#65738a;line-height:1.6;">
+    Create professional WhatsApp messages to promote your business,
+    communicate with customers and increase sales.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px;">
+
+    <div>
+      <label for="waMessageType"><strong>Message Type</strong></label>
+      <select id="waMessageType" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="welcome">Welcome New Customer</option>
+        <option value="promotion">Promote Special Offer</option>
+        <option value="newproduct">Announce New Product</option>
+        <option value="thankyou">Thank Customer</option>
+        <option value="followup">Customer Follow-up</option>
+        <option value="payment">Payment Reminder</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="waBusinessName"><strong>Business Name</strong></label>
+      <input id="waBusinessName" type="text"
+      placeholder="Enter business name"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="waCustomerName"><strong>Customer Name</strong></label>
+      <input id="waCustomerName" type="text"
+      placeholder="Enter customer name (optional)"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="waProduct"><strong>Product or Service</strong></label>
+      <input id="waProduct" type="text"
+      placeholder="Enter product or service"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="waOffer"><strong>Price or Special Offer</strong></label>
+      <input id="waOffer" type="text"
+      placeholder="e.g. P150 or 20% discount"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="waContact"><strong>Business Contact</strong></label>
+      <input id="waContact" type="text"
+      placeholder="Phone number or contact details"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
+
+    <div>
+      <label for="waStyle"><strong>Message Style</strong></label>
+      <select id="waStyle" style="width:100%;padding:10px;margin-top:6px;">
+        <option value="professional">Professional</option>
+        <option value="friendly">Friendly</option>
+        <option value="persuasive">Persuasive</option>
+        <option value="short">Short and Direct</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
+
+    <button type="button" class="btn primary"
+    onclick="generateWhatsAppMessage()">
+      Generate Message
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="copyWhatsAppMessage()">
+      Copy Message
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="shareWhatsAppMessage()">
+      Share on WhatsApp
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="document.getElementById('whatsappMarketing').style.display='none';document.getElementById('marketingToolsDashboard').scrollIntoView({behavior:'smooth'});">
+      Back to Marketing Tools
+    </button>
+
+  </div>
+
+  <div id="waMessageResult"
+  style="display:none;margin-top:22px;padding:20px;border:1px solid #d6dfeb;border-radius:10px;background:#f7f9fc;">
+
+    <h3 style="margin-top:0;color:#13243a;">Your WhatsApp Message</h3>
+
+    <div id="waMessageOutput"
+    style="white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere;"></div>
+
+  </div>
+
+</section>
+<!-- END SMARTBIZ BW WHATSAPP MARKETING MESSAGES -->
+
   <script>
   
 
@@ -839,6 +953,211 @@ function copySocialAdvertisementFallback(text) {
 
 // END SOCIAL MEDIA ADVERTISEMENT GENERATOR
 
+// SMARTBIZ BW WHATSAPP MARKETING FUNCTIONS
+
+function generateWhatsAppMessage() {
+  const getValue = id =>
+    document.getElementById(id).value.trim();
+
+  const messageType = getValue('waMessageType');
+  const business = getValue('waBusinessName');
+  const customer = getValue('waCustomerName') || 'there';
+  const product = getValue('waProduct');
+  const offer = getValue('waOffer');
+  const contact = getValue('waContact');
+  const style = getValue('waStyle');
+
+  if (!business) {
+    alert('Please enter your business name.');
+    return;
+  }
+
+  if (
+    ['promotion', 'newproduct'].includes(messageType) &&
+    !product
+  ) {
+    alert('Please enter the product or service.');
+    return;
+  }
+
+  let greeting = 'Hello ' + customer + ',';
+  let message = '';
+
+  if (messageType === 'welcome') {
+    if (style === 'short') {
+      message =
+        greeting + '\n\nWelcome to ' + business +
+        '! Thank you for connecting with us.';
+    } else if (style === 'friendly') {
+      message =
+        'Hi ' + customer + '! 😊\n\n' +
+        'Welcome to ' + business + '! We are happy to have you here. ' +
+        'Please contact us whenever you need our products or services.';
+    } else {
+      message =
+        greeting + '\n\n' +
+        'Welcome to ' + business + '. Thank you for choosing to connect with us. ' +
+        'We look forward to serving you.';
+    }
+
+  } else if (messageType === 'promotion') {
+    if (style === 'persuasive') {
+      message =
+        '🔥 SPECIAL OFFER FROM ' + business.toUpperCase() + '!\n\n' +
+        greeting + '\n\n' +
+        'Take advantage of our offer on ' + product + '!' +
+        (offer ? '\nOffer: ' + offer : '') +
+        '\n\nContact us today to find out more.';
+    } else if (style === 'short') {
+      message =
+        'SPECIAL OFFER!\n\n' + business +
+        ' is promoting ' + product +
+        (offer ? ' for ' + offer : '') +
+        '. Contact us today!';
+    } else {
+      message =
+        greeting + '\n\n' +
+        'We are pleased to share a special offer from ' + business + '.\n\n' +
+        'Product/service: ' + product +
+        (offer ? '\nSpecial offer: ' + offer : '') +
+        '\n\nContact us to learn more. We look forward to serving you!';
+    }
+
+  } else if (messageType === 'newproduct') {
+    message =
+      greeting + '\n\n' +
+      (style === 'friendly'
+        ? 'Good news! 😊 We have something new for you at ' + business + '!'
+        : 'We are pleased to announce a new product or service from ' + business + '.') +
+      '\n\nIntroducing: ' + product +
+      (offer ? '\nPrice or offer: ' + offer : '') +
+      '\n\nContact us for more information.';
+
+  } else if (messageType === 'thankyou') {
+    message =
+      (style === 'short'
+        ? 'Thank you, ' + customer + ', for choosing ' + business + '!'
+        : 'Hello ' + customer + ',\n\n' +
+          'Thank you for choosing ' + business + '. We truly appreciate your support ' +
+          'and look forward to serving you again.') +
+      (product ? '\n\nProduct/service: ' + product : '');
+
+  } else if (messageType === 'followup') {
+    message =
+      greeting + '\n\n' +
+      'We are following up on your recent enquiry' +
+      (product ? ' about ' + product : '') +
+      '. Please let us know if you need any further information. ' +
+      'Thank you for considering ' + business + '.';
+
+  } else if (messageType === 'payment') {
+    message =
+      'Hello ' + customer + ',\n\n' +
+      'This is a friendly reminder from ' + business +
+      ' regarding an outstanding payment' +
+      (product ? ' for ' + product : '') +
+      (offer ? '\nAmount due: ' + offer : '') +
+      '.\n\nPlease contact us if you have already made the payment or need to discuss the details. Thank you.';
+  }
+
+  if (style === 'friendly' && !['welcome', 'promotion', 'newproduct'].includes(messageType)) {
+    message += '\n\nThank you, and have a wonderful day! 😊';
+  }
+
+  if (contact) {
+    message += '\n\nContact: ' + contact;
+  }
+
+  message += '\n\n' + business;
+
+  const output = document.getElementById('waMessageOutput');
+  const result = document.getElementById('waMessageResult');
+
+  output.textContent = message;
+  result.style.display = 'block';
+
+  if (style === 'professional') {
+    result.style.background = '#edf3fa';
+    result.style.color = '#13243a';
+  } else if (style === 'friendly') {
+    result.style.background = '#edf8ef';
+    result.style.color = '#174b2a';
+  } else if (style === 'persuasive') {
+    result.style.background = '#fff5c2';
+    result.style.color = '#13243a';
+  } else {
+    result.style.background = '#f1f3f5';
+    result.style.color = '#222222';
+  }
+}
+
+
+function copyWhatsAppMessage() {
+  const output = document.getElementById('waMessageOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate a message before copying it.');
+    return;
+  }
+
+  const message = output.textContent;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(message)
+      .then(function() {
+        alert('WhatsApp message copied successfully!');
+      })
+      .catch(function() {
+        copyWhatsAppMessageFallback(message);
+      });
+  } else {
+    copyWhatsAppMessageFallback(message);
+  }
+}
+
+
+function copyWhatsAppMessageFallback(message) {
+  const temporary = document.createElement('textarea');
+
+  temporary.value = message;
+  temporary.style.position = 'fixed';
+  temporary.style.opacity = '0';
+
+  document.body.appendChild(temporary);
+  temporary.select();
+
+  try {
+    const successful = document.execCommand('copy');
+
+    if (successful) {
+      alert('WhatsApp message copied successfully!');
+    } else {
+      alert('Copy failed. Please select and copy the message manually.');
+    }
+  } catch (error) {
+    alert('Copy failed. Please select and copy the message manually.');
+  }
+
+  document.body.removeChild(temporary);
+}
+
+
+function shareWhatsAppMessage() {
+  const output = document.getElementById('waMessageOutput');
+
+  if (!output || !output.textContent.trim()) {
+    alert('Please generate a message before sharing it.');
+    return;
+  }
+
+  const message = output.textContent;
+  const whatsappURL =
+    'https://wa.me/?text=' + encodeURIComponent(message);
+
+  window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+}
+
+// END WHATSAPP MARKETING FUNCTIONS
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
