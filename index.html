@@ -1906,6 +1906,153 @@ function shareMarketingCaption() {
 }
 
 // END MARKETING CAPTIONS FUNCTIONS
+// SMARTBIZ BW MARKETING CAMPAIGN PLANNER FUNCTIONS
+
+function generateMarketingCampaign() {
+  const $cp = id => document.getElementById(id);
+
+  const business = $cp('cpBusiness').value.trim();
+  const product = $cp('cpProduct').value.trim();
+  const goal = $cp('cpGoal').value;
+  const audience = $cp('cpAudience').value.trim();
+  const budget = Number($cp('cpBudget').value);
+  const duration = $cp('cpDuration').value;
+  const channels = $cp('cpChannels').value;
+  const frequency = $cp('cpFrequency').value;
+  const offer = $cp('cpOffer').value.trim();
+
+  if (!business || !product || !audience || $cp('cpBudget').value === '') {
+    alert('Please enter your business name, product or service, target customers and campaign budget.');
+    return;
+  }
+
+  if (!Number.isFinite(budget) || budget < 0) {
+    alert('Please enter a valid campaign budget of zero or more pula.');
+    return;
+  }
+
+  const budgetText = 'P' + budget.toFixed(2);
+
+  let plan = '';
+
+  plan += 'SMARTBIZ BW — MARKETING CAMPAIGN PLAN\n';
+  plan += '=====================================\n\n';
+
+  plan += 'BUSINESS DETAILS\n';
+  plan += 'Business: ' + business + '\n';
+  plan += 'Product or Service: ' + product + '\n';
+  plan += 'Target Customers: ' + audience + '\n\n';
+
+  plan += 'CAMPAIGN OBJECTIVES\n';
+  plan += 'Main Goal: ' + goal + '\n';
+  plan += 'Duration: ' + duration + '\n';
+  plan += 'Marketing Channels: ' + channels + '\n';
+  plan += 'Posting Frequency: ' + frequency + '\n';
+  plan += 'Total Budget: ' + budgetText + '\n\n';
+
+  plan += 'CAMPAIGN ACTIVITIES\n';
+  plan += '1. Prepare a clear promotional message explaining the benefits of ' + product + '.\n';
+  plan += '2. Create an attractive promotional poster using SmartBiz BW.\n';
+  plan += '3. Publish the promotion through ' + channels + '.\n';
+  plan += '4. Respond promptly to customer questions and enquiries.\n';
+  plan += '5. Follow up with interested customers and encourage purchases.\n';
+  plan += '6. Record enquiries, sales and customer feedback throughout the campaign.\n\n';
+
+  plan += 'POSTING PLAN\n';
+
+  if (frequency === 'Daily') {
+    plan += 'Publish or share relevant promotional content every day.\n';
+  } else if (frequency === '3 times per week') {
+    plan += 'Publish content three times each week, using different messages or product benefits.\n';
+  } else {
+    plan += 'Publish at least one main promotional post each week and share important updates when necessary.\n';
+  }
+
+  plan += '\nBUDGET MANAGEMENT\n';
+  plan += 'Maximum planned campaign budget: ' + budgetText + '\n';
+  plan += 'Track every expense and compare actual spending with the planned budget.\n';
+  plan += 'Prioritise the channels that generate genuine customer enquiries and sales.\n\n';
+
+  plan += 'SUCCESS MEASUREMENTS\n';
+  plan += '• Number of enquiries received.\n';
+  plan += '• Number of new customers acquired.\n';
+  plan += '• Number of sales completed.\n';
+  plan += '• Total revenue generated.\n';
+  plan += '• Campaign spending compared with revenue.\n\n';
+
+  plan += 'REVIEW SCHEDULE\n';
+  plan += 'Review performance weekly. At the end of ' + duration + ', compare results with your original goal and decide what to improve.\n\n';
+
+  if (offer) {
+    plan += 'SPECIAL OFFER / CAMPAIGN MESSAGE\n';
+    plan += offer + '\n\n';
+  }
+
+  plan += 'IMPORTANT NOTE\n';
+  plan += 'This is a suggested campaign plan, not a guarantee of sales. Adjust activities and spending according to your results and available resources.';
+
+  $cp('cpOutput').textContent = plan;
+  $cp('cpResult').style.display = 'block';
+  $cp('cpResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+
+function copyMarketingCampaign() {
+  const output = document.getElementById('cpOutput');
+
+  if (!output.textContent.trim()) {
+    alert('Please generate a campaign plan before copying it.');
+    return;
+  }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(output.textContent)
+      .then(() => alert('Marketing campaign plan copied successfully.'))
+      .catch(() => copyMarketingCampaignFallback(output.textContent));
+  } else {
+    copyMarketingCampaignFallback(output.textContent);
+  }
+}
+
+
+function copyMarketingCampaignFallback(plan) {
+  const textArea = document.createElement('textarea');
+  textArea.value = plan;
+  textArea.style.position = 'fixed';
+  textArea.style.left = '-9999px';
+  document.body.appendChild(textArea);
+  textArea.select();
+
+  try {
+    const copied = document.execCommand('copy');
+
+    if (copied) {
+      alert('Marketing campaign plan copied successfully.');
+    } else {
+      alert('Copy failed. Please select and copy the campaign plan manually.');
+    }
+  } catch (error) {
+    alert('Copy failed. Please select and copy the campaign plan manually.');
+  }
+
+  document.body.removeChild(textArea);
+}
+
+
+function shareMarketingCampaign() {
+  const output = document.getElementById('cpOutput');
+  const plan = output.textContent.trim();
+
+  if (!plan) {
+    alert('Please generate a campaign plan before sharing it.');
+    return;
+  }
+
+  const whatsappURL = 'https://wa.me/?text=' + encodeURIComponent(plan);
+  window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+}
+
+// END SMARTBIZ BW MARKETING CAMPAIGN PLANNER FUNCTIONS
 let type='Quotation', itemCount=0;
 const $=id=>document.getElementById(id);
 function money(n){return 'P '+(Number(n)||0).toLocaleString('en-BW',{minimumFractionDigits:2,maximumFractionDigits:2})}
