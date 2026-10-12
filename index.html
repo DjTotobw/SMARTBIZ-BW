@@ -186,11 +186,97 @@ main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;ga
 </head>
 <body>
 <header>
- <div class="wrap">
- <div class="brand"><div class="logo">SB</div><div><h1>SmartBiz BW</h1><p>Work Smarter. Grow Bigger.</p></div></div>
-  <div class="hero"><div><h2>Make your business look<br>ready for the next client.</h2><p>Create quotations and invoices in Botswana pula, calculate totals automatically, and print or save a clean PDF — right from your phone or computer.</p></div><span class="badge">MVP · Free starter tool</span></div>
- </div>
+  <div class="wrap">
+
+```
+<div class="brand">
+  <div class="logo">SB</div>
+  <div>
+    <h1>SmartBiz BW</h1>
+    <p>Work Smarter. Grow Bigger.</p>
+  </div>
+</div>
+
+<div class="hero">
+
+  <div style="max-width:680px;">
+
+    <span style="
+      display:inline-block;
+      padding:7px 12px;
+      margin-bottom:15px;
+      border:1px solid rgba(229,173,50,0.55);
+      border-radius:20px;
+      background:rgba(229,173,50,0.12);
+      color:#f5c75e;
+      font-size:12px;
+      font-weight:bold;
+      letter-spacing:0.5px;
+    ">
+      YOUR BUSINESS. YOUR NEXT LEVEL.
+    </span>
+
+    <h2>
+      Everything You Need<br>
+      to Build a Better Business.
+    </h2>
+
+    <p>
+      From professional invoices and quotations to marketing tools
+      and practical business education, SmartBiz BW helps Botswana
+      entrepreneurs organise their work, promote their businesses
+      and prepare for growth.
+    </p>
+
+    <div style="
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    ">
+
+      <button
+        type="button"
+        class="btn gold"
+        onclick="document.getElementById('marketingTools').scrollIntoView({behavior:'smooth'});"
+      >
+        Explore Business Tools →
+      </button>
+
+      <button
+        type="button"
+        class="btn secondary"
+        onclick="document.getElementById('digitalResourceLibrary').scrollIntoView({behavior:'smooth'});"
+      >
+        Explore Free Resources
+      </button>
+
+    </div>
+
+    <div style="
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      margin-top:24px;
+      color:#e0e8f3;
+      font-size:12px;
+      line-height:1.7;
+    ">
+      <span>✓ Tools for everyday business tasks</span>
+      <span>✓ Practical learning resources</span>
+      <span>✓ Designed with Botswana entrepreneurs in mind</span>
+    </div>
+
+  </div>
+
+  <span class="badge">Free tools · Practical resources</span>
+
+</div>
+```
+
+  </div>
 </header>
+
 <main>
  <div class="tabs no-print"><button class="tab active" id="quoteTab" onclick="setType('Quotation')">Quotation</button><button class="tab" id="invoiceTab" onclick="setType('Invoice')">Invoice</button><button class="tab" onclick="resetForm()">New document</button></div>
  <div class="grid">
