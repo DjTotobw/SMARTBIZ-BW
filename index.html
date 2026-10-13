@@ -3402,7 +3402,80 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
       onclick="updatePosterPreview()">
         Update Poster Preview
       </button>
+<!-- SMARTBIZ BW GRAPHICS & IMAGES -->
 
+<div id="posterGraphicsPanel"
+style="margin:20px 0;padding:18px;background:#f3f6fb;border:1px solid #d6dfeb;border-radius:12px;">
+
+  <h3 style="margin:0 0 8px;color:#13243a;">
+    Graphics & Images
+  </h3>
+
+  <p style="margin:0 0 16px;color:#65738a;font-size:13px;line-height:1.6;">
+    Enhance your poster with decorative graphics or a photograph
+    of your product, service or business.
+  </p>
+
+  <label for="posterGraphicStyle">
+    Choose Decorative Graphics
+  </label>
+
+  <select id="posterGraphicStyle"
+  style="width:100%;margin:7px 0 12px;padding:11px;border:1px solid #d6dfeb;border-radius:8px;">
+
+    <option value="none">No Extra Graphics</option>
+
+    <option value="simple">Simple Professional Accents — Free</option>
+
+    <option value="circles">Geometric Decorations — Free</option>
+
+    <option value="starter-badge">Promotional Sale Badge — Starter</option>
+
+    <option value="starter-ribbon">Bold Promotional Ribbon — Starter</option>
+
+    <option value="luxury-gold">Elegant Gold Accents — Premium</option>
+
+    <option value="luxury-frame">Luxury Decorative Frame — Premium</option>
+
+  </select>
+
+  <div id="posterGraphicsNotice"
+  role="status"
+  aria-live="polite"
+  style="margin:0 0 14px;padding:10px;background:#ffffff;border:1px solid #d6dfeb;border-radius:8px;color:#65738a;font-size:13px;line-height:1.5;">
+
+    Free graphics are ready to use. Starter and Premium graphics
+    require the appropriate subscription.
+  </div>
+
+  <label for="posterImageUpload">
+    Add Your Own Business or Product Photograph
+  </label>
+
+  <input
+    type="file"
+    id="posterImageUpload"
+    accept="image/png,image/jpeg,image/webp"
+    style="display:block;width:100%;margin:8px 0 10px;">
+
+  <p style="margin:0;color:#65738a;font-size:12px;line-height:1.5;">
+    Supported formats: PNG, JPG and WebP. Choose a clear photograph
+    that complements your promotion.
+  </p>
+
+  <button
+    type="button"
+    class="btn secondary"
+    id="removePosterImage"
+    style="margin-top:12px;">
+
+    Remove Uploaded Photograph
+
+  </button>
+
+</div>
+
+<!-- END SMARTBIZ BW GRAPHICS & IMAGES -->
       <button type="button" class="btn secondary"
       onclick="document.getElementById('posterCreator').style.display='none';document.getElementById('marketingTools').scrollIntoView({behavior:'smooth'});">
         Back to Marketing Tools
