@@ -4157,48 +4157,55 @@ onclick="document.getElementById('marketingCampaignPlanner').style.display='none
   <script>
   
 
-function updatePosterPreview() {
-  const posterField = id => document.getElementById(id);
+// SMARTBIZ BW POSTER IMAGE UPLOAD
+(function () {
+  const imageInput = document.getElementById('posterImageUpload');
+  const removeButton = document.getElementById('removePosterImage');
 
-  const business = posterField('posterBusinessName').value.trim();
-  const headline = posterField('posterHeadline').value.trim();
-  const product = posterField('posterProduct').value.trim();
-  const price = posterField('posterPrice').value.trim();
-  const contact = posterField('posterContact').value.trim();
-  const style = posterField('posterStyle').value;
+  if (!imageInput || !removeButton) return;
 
-  posterField('posterPreviewBusiness').textContent =
-    business || 'YOUR BUSINESS';
+  imageInput.addEventListener('change', function () {
+    const file = imageInput.files && imageInput.files[0];
 
-  posterField('posterPreviewHeadline').textContent =
-    headline || 'YOUR NEXT BIG PROMOTION';
+    if (!file) return;
 
-  posterField('posterPreviewProduct').textContent =
-    product || 'Your product or service';
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+      alert('Please choose a PNG, JPG or WebP image.');
+      imageInput.value = '';
+      return;
+    }
 
-  posterField('posterPreviewPrice').textContent =
-    price || 'YOUR SPECIAL OFFER';
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Please choose an image smaller than 5 MB.');
+      imageInput.value = '';
+      return;
+    }
 
-  posterField('posterPreviewContact').textContent =
-    contact || 'Contact your business today';
+    if (window.smartBizPosterImageURL) {
+      URL.revokeObjectURL(window.smartBizPosterImageURL);
+    }
 
-  const preview = posterField('posterPreview');
-  const offer = posterField('posterPreviewPrice');
+    window.smartBizPosterImageURL = URL.createObjectURL(file);
 
-  if (style === 'professional') {
-    preview.style.background = '#13243a';
-    preview.style.color = '#ffffff';
-    offer.style.color = '#e5ad32';
-  } else if (style === 'bold') {
-    preview.style.background = '#f5c400';
-    preview.style.color = '#13243a';
-    offer.style.color = '#d71920';
-  } else {
-    preview.style.background = '#111111';
-    preview.style.color = '#ffffff';
-    offer.style.color = '#e5ad32';
+    updatePosterPreview();
+  });
+
+  removeButton.addEventListener('click', function () {
+    if (window.smartBizPosterImageURL) {
+      URL.revokeObjectURL(window.smartBizPosterImageURL);
+      window.smartBizPosterImageURL = null;
+    }
+
+    imageInput.value = '';
+    updatePosterPreview();
+  });
+
+  const graphicChoice = document.getElementById('posterGraphicStyle');
+
+  if (graphicChoice) {
+    graphicChoice.addEventListener('change', updatePosterPreview);
   }
-}
+})();
 
 function downloadPromotionalPoster() {
   const poster = document.getElementById('posterPreview');
