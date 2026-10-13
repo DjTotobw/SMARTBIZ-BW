@@ -8,7 +8,7 @@
 :root{--navy:#13243a;--blue:#1f5eff;--gold:#e5ad32;--bg:#f3f6fb;--text:#182334;--muted:#65738a;--line:#dce3ed;--white:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 header{background:linear-gradient(125deg,#13243a,#214a78);color:white;padding:24px 18px 28px}
-.wr.hero{
+.hero{
   margin-top:24px;
   position:relative;
   display:flex;
@@ -23,19 +23,13 @@ header{background:linear-gradient(125deg,#13243a,#214a78);color:white;padding:24
   background-image:
     linear-gradient(
       90deg,
-      rgba(19,36,58,0.97) 0%,
-      rgba(19,36,58,0.82) 48%,
-      rgba(19,36,58,0.20) 100%
+      rgba(19,36,58,0.94) 0%,
+      rgba(19,36,58,0.78) 50%,
+      rgba(19,36,58,0.25) 100%
     ),
     url("https://images.pexels.com/photos/20068076/pexels-photo-20068076.jpeg?auto=compress&cs=tinysrgb&w=2000");
   background-size:cover;
   background-position:center;
-}
-  margin-top:24px;
-  display:grid;
-  grid-template-columns:minmax(0,1.2fr) minmax(280px,0.8fr);
-  gap:30px;
-  align-items:center;
 }
 main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tab{border:1px solid var(--line);background:white;color:var(--navy);padding:11px 17px;border-radius:10px;font-weight:750;cursor:pointer}.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
 .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.85fr);gap:18px;align-items:start}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 18px #13243a08}.card h3{margin:0 0 15px;font-size:17px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:20px 0 12px}.section-title h3{margin:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;font-weight:750;color:#4e5d73}input,textarea,select{width:100%;border:1px solid #d4dce8;border-radius:9px;padding:10px 11px;font:inherit;font-size:14px;color:var(--text);background:#fff}textarea{min-height:68px;resize:vertical}input:focus,textarea:focus{outline:2px solid #d8e4ff;border-color:var(--blue)}
