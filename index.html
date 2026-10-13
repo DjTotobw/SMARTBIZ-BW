@@ -1479,33 +1479,181 @@ font-size: 22px;
 
 </section>
 <!-- END SMARTBIZ BW PREMIUM BUSINESS SUPPORT -->
-  <!-- SMARTBIZ BW KEY BENEFITS STRIP -->
+ <!-- SMARTBIZ BW KEY BENEFITS STRIP -->
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:0 0 28px;">
+<style>
+.smartbiz-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0 0 30px;
+}
 
-  <div style="padding:17px;background:#ffffff;border:1px solid #dce3ed;border-radius:12px;">
-    <div style="font-size:25px;margin-bottom:8px;">🇧🇼</div>
-    <h3 style="margin:0 0 6px;color:#13243a;font-size:15px;">Made for Botswana</h3>
-    <p style="margin:0;color:#65738a;font-size:12px;line-height:1.7;">
-      Practical tools designed with Botswana entrepreneurs in mind.
-    </p>
-  </div>
+.smartbiz-benefit-card {
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(19,36,58,0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-  <div style="padding:17px;background:#ffffff;border:1px solid #dce3ed;border-radius:12px;">
-    <div style="font-size:25px;margin-bottom:8px;">📄</div>
-    <h3 style="margin:0 0 6px;color:#13243a;font-size:15px;">Work Professionally</h3>
-    <p style="margin:0;color:#65738a;font-size:12px;line-height:1.7;">
-      Prepare quotations and invoices and create business promotional materials.
-    </p>
-  </div>
+.smartbiz-benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(19,36,58,0.13);
+}
 
-  <div style="padding:17px;background:#ffffff;border:1px solid #dce3ed;border-radius:12px;">
-    <div style="font-size:25px;margin-bottom:8px;">📈</div>
-    <h3 style="margin:0 0 6px;color:#13243a;font-size:15px;">Learn and Grow</h3>
-    <p style="margin:0;color:#65738a;font-size:12px;line-height:1.7;">
-      Explore practical learning resources and marketing tools to support your business.
-    </p>
-  </div>
+.smartbiz-benefit-image {
+  display: block;
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  background: #e9eef5;
+}
+
+.smartbiz-benefit-content {
+  padding: 21px;
+  border-top: 3px solid #e5ad32;
+}
+
+.smartbiz-benefit-label {
+  display: inline-block;
+  margin-bottom: 11px;
+  color: #9a7014;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.smartbiz-benefit-card h3 {
+  margin: 0 0 9px;
+  color: #13243a;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.smartbiz-benefit-card p {
+  margin: 0;
+  color: #65738a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  .smartbiz-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .smartbiz-benefit-image {
+    height: 155px;
+  }
+
+  .smartbiz-benefit-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .smartbiz-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .smartbiz-benefit-image {
+    height: 200px;
+  }
+}
+</style>
+
+<div class="smartbiz-benefits-grid">
+
+  <!-- BENEFIT 1: MADE FOR BOTSWANA -->
+
+  <article class="smartbiz-benefit-card">
+
+    <img
+      class="smartbiz-benefit-image"
+      src="https://images.pexels.com/photos/36390056/pexels-photo-36390056.jpeg?auto=compress&cs=tinysrgb&w=1000"
+      alt="African woman selling fresh produce at an outdoor market"
+      loading="lazy"
+    >
+
+    <div class="smartbiz-benefit-content">
+
+      <span class="smartbiz-benefit-label">
+        Proudly Botswana-focused
+      </span>
+
+      <h3>Made for Botswana</h3>
+
+      <p>
+        Practical business tools and learning resources designed
+        with the needs of Botswana entrepreneurs and small
+        businesses in mind.
+      </p>
+
+    </div>
+  </article>
+
+
+  <!-- BENEFIT 2: WORK PROFESSIONALLY -->
+
+  <article class="smartbiz-benefit-card">
+
+    <img
+      class="smartbiz-benefit-image"
+      src="https://images.pexels.com/photos/6373944/pexels-photo-6373944.jpeg?auto=compress&cs=tinysrgb&w=1000"
+      alt="Professional workspace with business documents and laptop"
+      loading="lazy"
+    >
+
+    <div class="smartbiz-benefit-content">
+
+      <span class="smartbiz-benefit-label">
+        Tools for everyday business
+      </span>
+
+      <h3>Work Professionally</h3>
+
+      <p>
+        Create quotations, invoices, business cards, and
+        promotional materials to help your business present
+        itself confidently to customers.
+      </p>
+
+    </div>
+  </article>
+
+
+  <!-- BENEFIT 3: LEARN AND GROW -->
+
+  <article class="smartbiz-benefit-card">
+
+    <img
+      class="smartbiz-benefit-image"
+      src="https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&w=1000"
+      alt="Books and learning materials arranged on a desk"
+      loading="lazy"
+    >
+
+    <div class="smartbiz-benefit-content">
+
+      <span class="smartbiz-benefit-label">
+        Build your knowledge
+      </span>
+
+      <h3>Learn and Grow</h3>
+
+      <p>
+        Explore practical business guides, educational resources,
+        and marketing tools to strengthen your skills and
+        prepare your business for growth.
+      </p>
+
+    </div>
+  </article>
 
 </div>
 
