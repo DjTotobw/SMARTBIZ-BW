@@ -997,6 +997,20 @@ font-size: 22px;
 /* END SMARTBIZ BW PREMIUM DASHBOARD */
 
 </style>
+<!-- SMARTBIZ BW DASHBOARD REFRESH FIX -->
+
+<script>
+  if (window.location.hash) {
+    window.history.replaceState(
+      null,
+      '',
+      window.location.pathname + window.location.search
+    );
+  }
+</script>
+
+<!-- END SMARTBIZ BW DASHBOARD REFRESH FIX -->
+
 </head>
 <body>
 <header>
