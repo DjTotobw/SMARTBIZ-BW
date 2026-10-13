@@ -1660,34 +1660,201 @@ font-size: 22px;
 <!-- END SMARTBIZ BW KEY BENEFITS STRIP -->
 <!-- SMARTBIZ BW QUICK ACCESS NAVIGATION -->
 
-<section style="margin:0 0 24px;padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;">
+<style>
+.smartbiz-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
 
-  <div style="margin-bottom:14px;">
-    <h2 style="margin:0 0 5px;color:#13243a;font-size:20px;">
-      Quick Access
-    </h2>
-    <p style="margin:0;color:#65738a;font-size:13px;line-height:1.6;">
-      Where would you like to start today?
-    </p>
+.smartbiz-quick-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 21px;
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 16px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(19,36,58,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              border-color 0.25s ease;
+}
+
+.smartbiz-quick-card:hover {
+  transform: translateY(-4px);
+  border-color: #e5ad32;
+  box-shadow: 0 12px 26px rgba(19,36,58,0.12);
+}
+
+.smartbiz-quick-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 17px;
+  border-radius: 14px;
+  background: #edf2fa;
+  font-size: 26px;
+}
+
+.smartbiz-quick-card h3 {
+  margin: 0 0 8px;
+  color: #13243a;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.smartbiz-quick-card p {
+  margin: 0 0 17px;
+  color: #65738a;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.smartbiz-quick-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 13px;
+  border-top: 1px solid #edf0f5;
+  color: #1f5eff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.smartbiz-quick-card:first-child .smartbiz-quick-icon {
+  background: #e8efff;
+}
+
+.smartbiz-quick-card:nth-child(2) .smartbiz-quick-icon {
+  background: #fff4d6;
+}
+
+.smartbiz-quick-card:nth-child(3) .smartbiz-quick-icon {
+  background: #e8f7ee;
+}
+
+@media (max-width: 650px) {
+  .smartbiz-quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 440px) {
+  .smartbiz-quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smartbiz-quick-card {
+    padding: 19px;
+  }
+}
+</style>
+
+<section style="margin:0 0 28px;padding:24px;background:#f7f9fc;border:1px solid #e1e7ef;border-radius:19px;">
+
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:20px;">
+
+    <div>
+      <span style="display:inline-block;margin-bottom:8px;color:#9a7014;font-size:10px;font-weight:800;letter-spacing:1.4px;">
+        YOUR BUSINESS WORKSPACE
+      </span>
+
+      <h2 style="margin:0 0 6px;color:#13243a;font-size:clamp(21px,3vw,27px);">
+        Quick Access
+      </h2>
+
+      <p style="margin:0;color:#65738a;font-size:13px;line-height:1.7;">
+        Your essential business tools and resources, all in one place.
+      </p>
+    </div>
+
+    <span style="display:inline-block;padding:7px 11px;background:#ffffff;border:1px solid #e1e7ef;border-radius:30px;color:#64748b;font-size:11px;font-weight:700;">
+      SMARTBIZ BW
+    </span>
+
   </div>
 
-  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+  <div class="smartbiz-quick-grid">
 
-<a href="#"
-   onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'});return false;"
-   style="display:inline-block;padding:12px 15px;border-radius:9px;background:#1f5eff;color:#ffffff;text-decoration:none;font-size:13px;font-weight:800;">
-  📄 Invoices & Quotations
-</a>
+    <!-- INVOICES AND QUOTATIONS -->
 
-<a href="#marketingTools"
-   style="display:inline-block;padding:12px 15px;border-radius:9px;background:#edf2fa;color:#13243a;text-decoration:none;font-size:13px;font-weight:800;">
-  📣 Marketing Tools
-</a>
+    <a
+      class="smartbiz-quick-card"
+      href="#"
+      onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'});return false;"
+      aria-label="Open the invoice and quotation generator"
+    >
 
-<a href="#digitalResourceLibrary"
-   style="display:inline-block;padding:12px 15px;border-radius:9px;background:#fff5dc;color:#13243a;text-decoration:none;font-size:13px;font-weight:800;">
-  📚 Free Business Resources
-</a>
+      <div class="smartbiz-quick-icon">📄</div>
+
+      <h3>Invoices &amp; Quotations</h3>
+
+      <p>
+        Prepare professional quotations and invoices for your customers
+        and keep your business documents organized.
+      </p>
+
+      <div class="smartbiz-quick-action">
+        <span>Open document tools</span>
+        <span aria-hidden="true">→</span>
+      </div>
+
+    </a>
+
+
+    <!-- MARKETING TOOLS -->
+
+    <a
+      class="smartbiz-quick-card"
+      href="#marketingTools"
+      aria-label="Explore SmartBiz BW marketing tools"
+    >
+
+      <div class="smartbiz-quick-icon">📣</div>
+
+      <h3>Marketing Tools</h3>
+
+      <p>
+        Create promotional posters and social media advertisements
+        to help present your products and services.
+      </p>
+
+      <div class="smartbiz-quick-action">
+        <span>Explore marketing tools</span>
+        <span aria-hidden="true">→</span>
+      </div>
+
+    </a>
+
+
+    <!-- FREE BUSINESS RESOURCES -->
+
+    <a
+      class="smartbiz-quick-card"
+      href="#digitalResourceLibrary"
+      aria-label="Explore free business resources"
+    >
+
+      <div class="smartbiz-quick-icon">📚</div>
+
+      <h3>Free Business Resources</h3>
+
+      <p>
+        Discover useful guides and learning materials to build
+        your business knowledge and skills.
+      </p>
+
+      <div class="smartbiz-quick-action">
+        <span>Browse resources</span>
+        <span aria-hidden="true">→</span>
+      </div>
+
+    </a>
 
   </div>
 
