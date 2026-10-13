@@ -180,7 +180,300 @@ main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;ga
   }
 }
 /* END POSTER PRINT FIX */
-```
+/* SMARTBIZ BW PREMIUM MAIN DASHBOARD */
+
+.sb-home{
+max-width:1400px;
+margin:0 auto;
+padding:24px;
+}
+
+.sb-welcome{
+position:relative;
+display:grid;
+grid-template-columns:1.1fr .9fr;
+align-items:center;
+gap:25px;
+min-height:360px;
+padding:38px;
+overflow:hidden;
+border-radius:22px;
+background:linear-gradient(115deg,#091b32 0%,#132f50 55%,#214a78 100%);
+color:#ffffff;
+box-shadow:0 14px 35px rgba(19,36,58,.16);
+}
+
+.sb-welcome-copy{
+position:relative;
+z-index:2;
+}
+
+.sb-brand-label{
+display:inline-flex;
+align-items:center;
+gap:9px;
+margin-bottom:20px;
+color:#f5cb68;
+font-size:13px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+.sb-brand-label span{
+display:grid;
+place-items:center;
+width:38px;
+height:38px;
+border-radius:11px;
+background:#e5ad32;
+color:#13243a;
+font-size:17px;
+}
+
+.sb-welcome h2{
+margin:0 0 16px;
+color:#ffffff;
+font-size:clamp(32px,4vw,49px);
+line-height:1.12;
+letter-spacing:-1px;
+}
+
+.sb-welcome h2 strong{
+color:#f5c451;
+}
+
+.sb-welcome p{
+max-width:590px;
+margin:0;
+color:#e0e9f4;
+font-size:15px;
+line-height:1.85;
+}
+
+.sb-welcome-actions{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:24px;
+}
+
+.sb-welcome-actions .btn{
+min-height:45px;
+padding:13px 18px;
+border-radius:9px;
+}
+
+.sb-welcome-image{
+position:relative;
+min-height:285px;
+height:100%;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.2);
+border-radius:17px;
+background:#214a78;
+}
+
+.sb-welcome-image img{
+display:block;
+width:100%;
+height:100%;
+min-height:285px;
+position:absolute;
+inset:0;
+object-fit:cover;
+}
+
+.sb-image-caption{
+position:absolute;
+right:12px;
+bottom:12px;
+left:12px;
+padding:13px 15px;
+border:1px solid rgba(255,255,255,.18);
+border-radius:10px;
+background:rgba(9,27,50,.88);
+color:#ffffff;
+font-size:13px;
+font-weight:700;
+line-height:1.5;
+}
+
+.sb-section-heading{
+display:flex;
+justify-content:space-between;
+align-items:end;
+flex-wrap:wrap;
+gap:12px;
+margin:32px 0 17px;
+}
+
+.sb-section-heading h2{
+margin:0;
+color:#13243a;
+font-size:clamp(23px,3vw,30px);
+}
+
+.sb-section-heading p{
+margin:6px 0 0;
+color:#65738a;
+font-size:14px;
+line-height:1.7;
+}
+
+.sb-pillars{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:19px;
+}
+
+.sb-pillar{
+overflow:hidden;
+border:1px solid #dce5f0;
+border-radius:16px;
+background:#ffffff;
+box-shadow:0 5px 18px rgba(19,36,58,.06);
+transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.sb-pillar:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 25px rgba(19,36,58,.12);
+}
+
+.sb-pillar-image{
+position:relative;
+height:165px;
+overflow:hidden;
+background:#e7edf6;
+}
+
+.sb-pillar-image img{
+display:block;
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .3s ease;
+}
+
+.sb-pillar:hover .sb-pillar-image img{
+transform:scale(1.04);
+}
+
+.sb-pillar-body{
+padding:20px;
+}
+
+.sb-pillar-label{
+display:inline-block;
+margin-bottom:9px;
+color:#1f5eff;
+font-size:11px;
+font-weight:800;
+letter-spacing:1.2px;
+}
+
+.sb-pillar h3{
+margin:0 0 9px;
+color:#13243a;
+font-size:22px;
+}
+
+.sb-pillar p{
+min-height:70px;
+margin:0 0 17px;
+color:#65738a;
+font-size:13px;
+line-height:1.8;
+}
+
+.sb-pillar .btn{
+width:100%;
+min-height:42px;
+}
+
+.sb-pillar:nth-child(2) .btn{
+background:#e5ad32;
+color:#13243a;
+}
+
+.sb-botswana-strip{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+margin-top:25px;
+padding:21px 24px;
+border:1px solid #d6e5f6;
+border-radius:14px;
+background:linear-gradient(110deg,#e7f2ff,#ffffff);
+}
+
+.sb-botswana-strip strong{
+display:block;
+margin-bottom:5px;
+color:#13243a;
+font-size:16px;
+}
+
+.sb-botswana-strip p{
+margin:0;
+color:#65738a;
+font-size:13px;
+line-height:1.7;
+}
+
+@media(max-width:850px){
+.sb-welcome{
+grid-template-columns:1fr;
+padding:27px;
+}
+
+.sb-welcome-image{
+min-height:250px;
+}
+
+.sb-welcome-image img{
+min-height:250px;
+}
+
+.sb-pillars{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:560px){
+.sb-home{
+padding:14px;
+}
+
+.sb-welcome{
+padding:22px;
+border-radius:16px;
+}
+
+.sb-welcome h2{
+font-size:34px;
+}
+
+.sb-welcome-image,
+.sb-welcome-image img{
+min-height:220px;
+}
+
+.sb-pillars{
+grid-template-columns:1fr;
+}
+
+.sb-pillar p{
+min-height:0;
+}
+
+.sb-botswana-strip{
+padding:18px;
+}
+}
 
 </style>
 </head>
