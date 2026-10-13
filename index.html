@@ -150,7 +150,7 @@ main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;ga
     box-shadow: none !important;
   }
 }
-```css
+css
 /* SMARTBIZ BW: PRINT ONLY THE PROMOTIONAL POSTER */
 @media print {
   @page {
@@ -1002,7 +1002,6 @@ font-size: 22px;
 <header>
   <div class="wrap">
 
-```
 <div class="brand">
   <div class="logo">SB</div>
   <div>
@@ -1086,7 +1085,6 @@ font-size: 22px;
   <span class="badge">Free tools · Practical resources</span>
 
 </div>
-```
 
   </div>
 </header>
@@ -1098,7 +1096,6 @@ font-size: 22px;
 
   <div class="sb-welcome">
 
-```
 <div class="sb-welcome-copy">
 
   <span class="sb-brand-label">YOUR BUSINESS. YOUR FUTURE.</span>
@@ -1133,7 +1130,6 @@ font-size: 22px;
   </div>
 
 </div>
-```
 
   </div>
 
@@ -1309,6 +1305,42 @@ font-size: 22px;
 </div>
 
 <!-- END SMARTBIZ BW KEY BENEFITS STRIP -->
+<!-- SMARTBIZ BW QUICK ACCESS NAVIGATION -->
+
+<section style="margin:0 0 24px;padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;">
+
+  <div style="margin-bottom:14px;">
+    <h2 style="margin:0 0 5px;color:#13243a;font-size:20px;">
+      Quick Access
+    </h2>
+    <p style="margin:0;color:#65738a;font-size:13px;line-height:1.6;">
+      Where would you like to start today?
+    </p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+
+<a href="#"
+   onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'});return false;"
+   style="display:inline-block;padding:12px 15px;border-radius:9px;background:#1f5eff;color:#ffffff;text-decoration:none;font-size:13px;font-weight:800;">
+  📄 Invoices & Quotations
+</a>
+
+<a href="#marketingTools"
+   style="display:inline-block;padding:12px 15px;border-radius:9px;background:#edf2fa;color:#13243a;text-decoration:none;font-size:13px;font-weight:800;">
+  📣 Marketing Tools
+</a>
+
+<a href="#digitalResourceLibrary"
+   style="display:inline-block;padding:12px 15px;border-radius:9px;background:#fff5dc;color:#13243a;text-decoration:none;font-size:13px;font-weight:800;">
+  📚 Free Business Resources
+</a>
+
+  </div>
+
+</section>
+
+<!-- END SMARTBIZ BW QUICK ACCESS NAVIGATION -->
 
 
  <div class="tabs no-print"><button class="tab active" id="quoteTab" onclick="setType('Quotation')">Quotation</button><button class="tab" id="invoiceTab" onclick="setType('Invoice')">Invoice</button><button class="tab" onclick="resetForm()">New document</button></div>
