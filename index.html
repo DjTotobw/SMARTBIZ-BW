@@ -8,7 +8,29 @@
 :root{--navy:#13243a;--blue:#1f5eff;--gold:#e5ad32;--bg:#f3f6fb;--text:#182334;--muted:#65738a;--line:#dce3ed;--white:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 header{background:linear-gradient(125deg,#13243a,#214a78);color:white;padding:24px 18px 28px}
-.wrap{max-width:1120px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:12px;background:var(--gold);color:.hero{
+.wr.hero{
+  margin-top:24px;
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+  min-height:380px;
+  padding:clamp(24px,5vw,52px);
+  border-radius:22px;
+  overflow:hidden;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(19,36,58,0.97) 0%,
+      rgba(19,36,58,0.82) 48%,
+      rgba(19,36,58,0.20) 100%
+    ),
+    url("https://images.pexels.com/photos/20068076/pexels-photo-20068076.jpeg?auto=compress&cs=tinysrgb&w=2000");
+  background-size:cover;
+  background-position:center;
+}
   margin-top:24px;
   display:grid;
   grid-template-columns:minmax(0,1.2fr) minmax(280px,0.8fr);
@@ -1102,21 +1124,7 @@ font-size: 22px;
 
   </div>
 
-  <img
-  src="https://images.unsplash.com/photo-1687422808311-a776f467a468?auto=format&fit=crop&fm=jpg&q=85&w=1000"
-  alt="African woman running her small shop"
-  style="
-    width:100%;
-    max-width:460px;
-    height:360px;
-    object-fit:cover;
-    object-position:center;
-    border-radius:18px;
-    border:1px solid rgba(229,173,50,0.45);
-    box-shadow:0 15px 35px rgba(0,0,0,0.25);
-    display:block;
-  "
->
+  
 
 </div>
 
