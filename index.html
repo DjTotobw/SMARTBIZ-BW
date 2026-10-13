@@ -1567,182 +1567,361 @@ font-size: 22px;
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;">
 
-<!-- SERVICE 1 -->
+<!-- PREMIUM SERVICE CARDS -->
 
-<article style="padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;box-shadow:0 5px 18px #13243a08;">
-  <div style="font-size:30px;margin-bottom:12px;">📄</div>
+<style>
+.smartbiz-service-card {
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(19,36,58,0.07);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-  <h3 style="margin:0 0 9px;color:#13243a;font-size:17px;">
-    Business Documents
-  </h3>
+.smartbiz-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(19,36,58,0.13);
+}
 
-  <p style="margin:0 0 15px;color:#65738a;font-size:13px;line-height:1.7;">
-    Get professional business documents and practical assistance preparing documents for your business. Our goal is to make every step simple, clear, and worthwhile.
-  </p>
+.smartbiz-service-image {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  display: block;
+  background: #e9eef5;
+}
 
-  <span style="display:inline-block;margin-bottom:15px;padding:7px 10px;background:#fff4d6;border-radius:7px;color:#765511;font-size:11px;font-weight:800;">
-    SERVICE DETAILS BEING FINALised
-  </span>
+.smartbiz-service-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
-<a
-href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Business%20Documents%20service.%20Please%20share%20the%20available%20options%2C%20pricing%2C%20deliverables%2C%20and%20turnaround%20time."
-target="_blank"
-rel="noopener noreferrer"
-style="display:block;padding:12px 14px;background:#13243a;color:#ffffff;text-align:center;text-decoration:none;border-radius:9px;font-size:13px;font-weight:800;"
+.smartbiz-service-card h3 {
+  margin: 0 0 10px;
+  color: #13243a;
+  font-size: 18px;
+  line-height: 1.35;
+}
 
->
+.smartbiz-service-card p {
+  margin: 0 0 17px;
+  color: #65738a;
+  font-size: 13px;
+  line-height: 1.75;
+}
 
-Enquire on WhatsApp
+.smartbiz-service-status {
+  align-self: flex-start;
+  margin: 0 0 18px;
+  padding: 7px 10px;
+  background: #fff4d6;
+  color: #765511;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
 
-  </a>
-</article>
+.smartbiz-service-button {
+  display: block;
+  margin-top: auto;
+  padding: 12px 14px;
+  background: #13243a;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: background 0.2s ease;
+}
 
+.smartbiz-service-button:hover {
+  background: #1f5eff;
+}
 
-<!-- SERVICE 2 -->
+.smartbiz-membership-card {
+  background: linear-gradient(145deg,#13243a,#214a78);
+  border-color: #d5a52d;
+}
 
-<article style="padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;box-shadow:0 5px 18px #13243a08;">
-  <div style="font-size:30px;margin-bottom:12px;">🎨</div>
+.smartbiz-membership-card .smartbiz-service-body {
+  background: linear-gradient(145deg,#13243a,#214a78);
+}
 
-  <h3 style="margin:0 0 9px;color:#13243a;font-size:17px;">
-    Business Branding
-  </h3>
+.smartbiz-membership-card h3 {
+  color: #ffffff;
+}
 
-  <p style="margin:0 0 15px;color:#65738a;font-size:13px;line-height:1.7;">
-    Give your business a professional identity with custom business cards and promotional designs. We aim to deliver attractive, practical designs suited to your business and customers.
-  </p>
+.smartbiz-membership-card p {
+  color: #d6e2f0;
+}
 
-  <span style="display:inline-block;margin-bottom:15px;padding:7px 10px;background:#fff4d6;border-radius:7px;color:#765511;font-size:11px;font-weight:800;">
-    SERVICE DETAILS BEING FINALised
-  </span>
+.smartbiz-membership-card .smartbiz-service-status {
+  background: #e5ad32;
+  color: #13243a;
+}
 
-<a
-href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Business%20Branding%20service.%20Please%20share%20the%20available%20design%20options%2C%20pricing%2C%20deliverables%2C%20and%20turnaround%20time."
-target="_blank"
-rel="noopener noreferrer"
-style="display:block;padding:12px 14px;background:#13243a;color:#ffffff;text-align:center;text-decoration:none;border-radius:9px;font-size:13px;font-weight:800;"
+.smartbiz-membership-card .smartbiz-service-button {
+  background: #e5ad32;
+  color: #13243a;
+}
 
->
+.smartbiz-membership-card .smartbiz-service-button:hover {
+  background: #ffd36a;
+}
 
-Enquire on WhatsApp
+@media (max-width: 480px) {
+  .smartbiz-service-image {
+    height: 190px;
+  }
 
-  </a>
-</article>
+  .smartbiz-service-body {
+    padding: 18px;
+  }
+}
+</style>
 
-<!-- SERVICE 3 -->
-<article style="padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;box-shadow:0 5px 18px #13243a08;">
+<!-- SERVICE 1: BUSINESS DOCUMENTS -->
 
-  <div style="font-size:30px;margin-bottom:12px;">📣</div>
+<article class="smartbiz-service-card">
 
-  <h3 style="margin:0 0 9px;color:#13243a;font-size:17px;">
-    Marketing Services
-  </h3>
-
-  <p style="margin:0 0 15px;color:#65738a;font-size:13px;line-height:1.7;">
-    Promote your business with professional promotional posters, social media advertising designs, and practical marketing support tailored to your business goals.
-  </p>
-
-  <span style="display:inline-block;margin-bottom:15px;padding:7px 10px;background:#fff4d6;border-radius:7px;color:#765511;font-size:11px;font-weight:800;">
-    SERVICE DETAILS BEING FINALIZED
-  </span>
-
-  <a
-    href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Marketing%20Services.%20Please%20share%20the%20available%20options%2C%20pricing%2C%20deliverables%2C%20and%20turnaround%20time."
-    target="_blank"
-    rel="noopener noreferrer"
-    style="display:block;padding:12px 14px;background:#13243a;color:#ffffff;text-align:center;text-decoration:none;border-radius:9px;font-size:13px;font-weight:800;"
+  <img
+    class="smartbiz-service-image"
+    src="https://images.pexels.com/photos/6373944/pexels-photo-6373944.jpeg?auto=compress&cs=tinysrgb&w=1000"
+    alt="Professional business workspace with documents and laptop"
+    loading="lazy"
   >
-    Enquire on WhatsApp
-  </a>
 
-</article>
-<!-- SERVICE 4 -->
-<article style="padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;box-shadow:0 5px 18px #13243a08;">
+  <div class="smartbiz-service-body">
 
-  <div style="font-size:30px;margin-bottom:12px;">🏢</div>
+    <h3>Business Documents</h3>
 
-  <h3 style="margin:0 0 9px;color:#13243a;font-size:17px;">
-    Registration Assistance
-  </h3>
+    <p>
+      Prepare professional business documents with practical guidance.
+      We aim to make the process simpler, clearer, and more manageable
+      for Botswana entrepreneurs.
+    </p>
 
-  <p style="margin:0 0 15px;color:#65738a;font-size:13px;line-height:1.7;">
-    Understand the business registration process step by step. Get practical guidance on preparing your business information, organizing documents, and understanding the next steps for your application in Botswana.
-  </p>
+    <span class="smartbiz-service-status">
+      SERVICE DETAILS BEING FINALIZED
+    </span>
 
-  <span style="display:inline-block;margin-bottom:15px;padding:7px 10px;background:#fff4d6;border-radius:7px;color:#765511;font-size:11px;font-weight:800;">
-    SERVICE DETAILS BEING FINALIZED
-  </span>
-
-  <a
-    href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20need%20help%20understanding%20the%20business%20registration%20process%20in%20Botswana.%20Please%20share%20your%20assistance%20options%2C%20pricing%2C%20required%20information%2C%20and%20next%20steps."
-    target="_blank"
-    rel="noopener noreferrer"
-    style="display:block;padding:12px 14px;background:#13243a;color:#ffffff;text-align:center;text-decoration:none;border-radius:9px;font-size:13px;font-weight:800;"
-  >
-    Enquire on WhatsApp
-  </a>
-
-  <p style="margin:12px 0 0;color:#7b8798;font-size:11px;line-height:1.6;">
-    SmartBiz BW provides guidance and preparation support. Registration decisions are made by the relevant authorities.
-  </p>
-
-</article>
-<!-- SERVICE 5 -->
-<article style="padding:20px;background:#ffffff;border:1px solid #dce3ed;border-radius:15px;box-shadow:0 5px 18px #13243a08;">
-
-  <div style="font-size:30px;margin-bottom:12px;">📚</div>
-
-  <h3 style="margin:0 0 9px;color:#13243a;font-size:17px;">
-    Premium Resources
-  </h3>
-
-  <p style="margin:0 0 15px;color:#65738a;font-size:13px;line-height:1.7;">
-    Access practical business guides, ready-to-use templates, and downloadable learning materials designed to help Botswana entrepreneurs organize, manage, and grow their businesses.
-  </p>
-
-  <span style="display:inline-block;margin-bottom:15px;padding:7px 10px;background:#fff4d6;border-radius:7px;color:#765511;font-size:11px;font-weight:800;">
-    PREMIUM COLLECTION BEING DEVELOPED
-  </span>
-
-  <a
-    href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Premium%20Resources.%20Please%20share%20the%20available%20guides%2C%20templates%2C%20pricing%2C%20and%20how%20to%20access%20them."
-    target="_blank"
-    rel="noopener noreferrer"
-    style="display:block;padding:12px 14px;background:#13243a;color:#ffffff;text-align:center;text-decoration:none;border-radius:9px;font-size:13px;font-weight:800;"
-  >
-    Enquire on WhatsApp
-  </a>
-
-</article>
-
-<!-- SERVICE 6 -->
-<article style="padding:20px;background:linear-gradient(145deg,#13243a,#214a78);border:1px solid #214a78;border-radius:15px;box-shadow:0 5px 18px #13243a12;color:#ffffff;">
-
-  <div style="font-size:30px;margin-bottom:12px;">⭐</div>
-
-  <h3 style="margin:0 0 9px;color:#ffffff;font-size:17px;">
-    SmartBiz Membership
-  </h3>
-
-  <p style="margin:0 0 15px;color:#d6e2f0;font-size:13px;line-height:1.7;">
-    Explore our planned membership for business owners who want ongoing support, practical business resources, and help developing their businesses. Contact us to express your interest and learn about the membership plans as they become available.
-  </p>
-
-  <span style="display:inline-block;margin-bottom:15px;padding:7px 10px;background:#e5ad32;border-radius:7px;color:#13243a;font-size:11px;font-weight:850;">
-    MEMBERSHIP COMING SOON
-  </span>
-
-  <a
-    href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20the%20SmartBiz%20Membership.%20Please%20tell%20me%20about%20the%20planned%20membership%20benefits%2C%20pricing%2C%20and%20when%20it%20will%20be%20available."
-    target="_blank"
-    rel="noopener noreferrer"
-    style="display:block;padding:12px 14px;background:#e5ad32;color:#13243a;text-align:center;text-decoration:none;border-radius:9px;font-size:13px;font-weight:800;"
-  >
-    Enquire About Membership
-  </a>
-
-</article>
+    <a
+      class="smartbiz-service-button"
+      href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Business%20Documents%20service.%20Please%20share%20the%20available%20options%2C%20pricing%2C%20deliverables%2C%20and%20turnaround%20time."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Enquire on WhatsApp
+    </a>
 
   </div>
+</article>
+
+
+<!-- SERVICE 2: BUSINESS BRANDING -->
+
+<article class="smartbiz-service-card">
+
+  <img
+    class="smartbiz-service-image"
+    src="https://images.pexels.com/photos/6373930/pexels-photo-6373930.jpeg?auto=compress&cs=tinysrgb&w=1000"
+    alt="Business branding and stationery in a professional workspace"
+    loading="lazy"
+  >
+
+  <div class="smartbiz-service-body">
+
+    <h3>Business Branding</h3>
+
+    <p>
+      Build a professional business identity with business cards,
+      branded materials, and promotional designs suited to your
+      business and customers.
+    </p>
+
+    <span class="smartbiz-service-status">
+      SERVICE DETAILS BEING FINALIZED
+    </span>
+
+    <a
+      class="smartbiz-service-button"
+      href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Business%20Branding%20service.%20Please%20share%20the%20available%20design%20options%2C%20pricing%2C%20deliverables%2C%20and%20turnaround%20time."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Enquire on WhatsApp
+    </a>
+
+  </div>
+</article>
+
+
+<!-- SERVICE 3: MARKETING SERVICES -->
+
+<article class="smartbiz-service-card">
+
+  <img
+    class="smartbiz-service-image"
+    src="https://images.pexels.com/photos/6476589/pexels-photo-6476589.jpeg?auto=compress&cs=tinysrgb&w=1000"
+    alt="Digital marketing work on a laptop"
+    loading="lazy"
+  >
+
+  <div class="smartbiz-service-body">
+
+    <h3>Marketing Services</h3>
+
+    <p>
+      Promote your products and services with promotional posters,
+      social media advertising designs, and practical marketing
+      support for your business goals.
+    </p>
+
+    <span class="smartbiz-service-status">
+      SERVICE DETAILS BEING FINALIZED
+    </span>
+
+    <a
+      class="smartbiz-service-button"
+      href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Marketing%20Services.%20Please%20share%20the%20available%20options%2C%20pricing%2C%20deliverables%2C%20and%20turnaround%20time."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Enquire on WhatsApp
+    </a>
+
+  </div>
+</article>
+
+
+<!-- SERVICE 4: REGISTRATION ASSISTANCE -->
+
+<article class="smartbiz-service-card">
+
+  <img
+    class="smartbiz-service-image"
+    src="https://images.pexels.com/photos/4427611/pexels-photo-4427611.jpeg?auto=compress&cs=tinysrgb&w=1000"
+    alt="Person working with business paperwork"
+    loading="lazy"
+  >
+
+  <div class="smartbiz-service-body">
+
+    <h3>Registration Assistance</h3>
+
+    <p>
+      Understand the business registration process step by step.
+      Get guidance on preparing your business information, organizing
+      documents, and understanding the next steps in Botswana.
+    </p>
+
+    <span class="smartbiz-service-status">
+      SERVICE DETAILS BEING FINALIZED
+    </span>
+
+    <a
+      class="smartbiz-service-button"
+      href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20need%20help%20understanding%20the%20business%20registration%20process%20in%20Botswana.%20Please%20share%20your%20assistance%20options%2C%20pricing%2C%20required%20information%2C%20and%20next%20steps."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Enquire on WhatsApp
+    </a>
+
+    <p style="margin:13px 0 0;font-size:11px;color:#7b8798;">
+      SmartBiz BW provides guidance and preparation support.
+      Registration decisions are made by the relevant authorities.
+    </p>
+
+  </div>
+</article>
+
+
+<!-- SERVICE 5: PREMIUM RESOURCES -->
+
+<article class="smartbiz-service-card">
+
+  <img
+    class="smartbiz-service-image"
+    src="https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&w=1000"
+    alt="Books and learning materials arranged on a desk"
+    loading="lazy"
+  >
+
+  <div class="smartbiz-service-body">
+
+    <h3>Premium Resources</h3>
+
+    <p>
+      Explore practical business guides, useful templates, and
+      downloadable learning materials designed to help Botswana
+      entrepreneurs organize and grow their businesses.
+    </p>
+
+    <span class="smartbiz-service-status">
+      PREMIUM COLLECTION BEING DEVELOPED
+    </span>
+
+    <a
+      class="smartbiz-service-button"
+      href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20your%20Premium%20Resources.%20Please%20share%20the%20available%20guides%2C%20templates%2C%20pricing%2C%20and%20how%20to%20access%20them."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Enquire on WhatsApp
+    </a>
+
+  </div>
+</article>
+
+
+<!-- SERVICE 6: SMARTBIZ MEMBERSHIP -->
+
+<article class="smartbiz-service-card smartbiz-membership-card">
+
+  <img
+    class="smartbiz-service-image"
+    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1000"
+    alt="Business professionals collaborating"
+    loading="lazy"
+  >
+
+  <div class="smartbiz-service-body">
+
+    <h3>SmartBiz Membership</h3>
+
+    <p>
+      Express your interest in our planned membership for business
+      owners seeking ongoing support, practical resources, and
+      opportunities to develop their businesses.
+    </p>
+
+    <span class="smartbiz-service-status">
+      MEMBERSHIP COMING SOON
+    </span>
+
+    <a
+      class="smartbiz-service-button"
+      href="https://wa.me/26773755424?text=Hello%20SmartBiz%20BW.%20I%20am%20interested%20in%20the%20SmartBiz%20Membership.%20Please%20tell%20me%20about%20the%20planned%20membership%20benefits%2C%20pricing%2C%20and%20when%20it%20will%20be%20available."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Enquire About Membership
+    </a>
+
+  </div>
+</article>
+
+<!-- END PREMIUM SERVICE CARDS -->  </div>
 
   <div style="margin-top:18px;padding:17px 20px;border:1px solid #ead9a9;border-radius:12px;background:#fffaf0;">
     <p style="margin:0;color:#594b2c;font-size:12px;line-height:1.8;">
