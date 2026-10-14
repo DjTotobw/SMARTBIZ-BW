@@ -3464,23 +3464,7 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
         style="font-size:18px;">
           Your product or service
         </div>
-<!-- POSTER GRAPHICS DISPLAY AREA -->
-<div
-  id="posterGraphicsDisplay"
-  style="width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;"
->
-  <div
-    id="posterDecorativeGraphic"
-    style="display:none;width:100%;min-height:35px;align-items:center;justify-content:center;"
-  ></div>
 
-  <img
-    id="posterUploadedImage"
-    alt="Uploaded business or product photograph"
-    style="display:none;width:100%;max-width:260px;max-height:180px;object-fit:cover;border-radius:10px;border:2px solid rgba(255,255,255,0.7);"
-  >
-</div>
-<!-- END POSTER GRAPHICS DISPLAY AREA -->
         <div id="posterPreviewPrice"
         style="font-size:34px;font-weight:900;color:#e5ad32;">
           YOUR SPECIAL OFFER
@@ -4149,30 +4133,6 @@ function updatePosterPreview() {
     preview.style.background = '#111111';
     preview.style.color = '#ffffff';
     offer.style.color = '#e5ad32';
-  }
-    // SMARTBIZ BW: DISPLAY DECORATIVE GRAPHICS
-  const graphicSelect = document.getElementById('posterGraphicStyle');
-  const graphicDisplay = document.getElementById('posterDecorativeGraphic');
-
-     if (selectedGraphic === 'simple') {
-      graphicDisplay.style.display = 'flex';
-      graphicDisplay.innerHTML =
-        '<div style="font-size:30px;color:#e5ad32;letter-spacing:8px;">✦ ◆ ✦</div>';
-
-    } else if (selectedGraphic === 'circles') {
-      graphicDisplay.style.display = 'flex';
-      graphicDisplay.innerHTML =
-        '<div style="display:flex;gap:12px;justify-content:center;">' +
-        '<span style="width:35px;height:35px;border:3px solid #e5ad32;border-radius:50%;"></span>' +
-        '<span style="width:35px;height:35px;border:3px solid currentColor;border-radius:50%;"></span>' +
-        '<span style="width:35px;height:35px;border:3px solid #e5ad32;border-radius:50%;"></span>' +
-        '</div>';
-
-    } else {
-      graphicDisplay.innerHTML = '';
-      graphicDisplay.style.display = 'none';
-    }
-    }
   }
 }
 
