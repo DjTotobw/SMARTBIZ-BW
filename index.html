@@ -3069,6 +3069,189 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
   </div>
 </section>
 <!-- END SMARTBIZ BW MARKETING TOOLS DASHBOARD -->
+  <!-- SMARTBIZ BW BUSINESS RECORDS & GROWTH TRACKER -->
+
+<section id="businessRecords" class="no-print" style="max-width:1100px;margin:25px auto;padding:22px;background:#ffffff;border:1px solid #d6dfeb;border-radius:14px;box-sizing:border-box;">
+
+  <div style="background:linear-gradient(135deg,#13243a,#214a78);padding:24px;border-radius:12px;color:#ffffff;margin-bottom:22px;">
+
+```
+<div style="font-size:12px;color:#ffd779;font-weight:bold;letter-spacing:1px;margin-bottom:8px;">
+  SMARTBIZ BW BUSINESS MANAGEMENT
+</div>
+
+<h2 style="color:#ffffff;margin:0 0 10px;font-size:26px;">
+  Business Records & Growth Tracker
+</h2>
+
+<p style="color:#e2eaf6;font-size:14px;line-height:1.8;margin:0;">
+  Keep track of daily business activities, monitor recorded amounts
+  and build a clearer picture of your business progress—all in one place.
+</p>
+```
+
+  </div>
+
+  <!-- BUSINESS SUMMARY -->
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-bottom:24px;">
+
+```
+<div style="padding:18px;background:#f3f6fb;border:1px solid #dce3ed;border-radius:10px;">
+  <div style="font-size:12px;color:#65738a;">Activities Recorded</div>
+  <div id="brTotalActivities" style="font-size:27px;font-weight:bold;color:#13243a;margin-top:8px;">0</div>
+</div>
+
+<div style="padding:18px;background:#f3f6fb;border:1px solid #dce3ed;border-radius:10px;">
+  <div style="font-size:12px;color:#65738a;">Recorded Income</div>
+  <div id="brTotalIncome" style="font-size:23px;font-weight:bold;color:#16794b;margin-top:8px;">P 0.00</div>
+</div>
+
+<div style="padding:18px;background:#f3f6fb;border:1px solid #dce3ed;border-radius:10px;">
+  <div style="font-size:12px;color:#65738a;">Recorded Expenses</div>
+  <div id="brTotalExpenses" style="font-size:23px;font-weight:bold;color:#b42318;margin-top:8px;">P 0.00</div>
+</div>
+
+<div style="padding:18px;background:#f3f6fb;border:1px solid #dce3ed;border-radius:10px;">
+  <div style="font-size:12px;color:#65738a;">Recorded Difference</div>
+  <div id="brNetDifference" style="font-size:23px;font-weight:bold;color:#13243a;margin-top:8px;">P 0.00</div>
+</div>
+```
+
+  </div>
+
+  <p style="font-size:12px;color:#65738a;line-height:1.6;">
+    Financial figures are calculated from entries categorized as Income and Expense.
+    The difference is not necessarily accounting profit. Other activities do not affect these totals.
+  </p>
+
+  <!-- ADD BUSINESS ACTIVITY -->
+
+  <div style="padding:20px;border:1px solid #d6dfeb;border-radius:12px;margin-bottom:24px;">
+
+```
+<h3 style="color:#13243a;margin-top:0;">Record a Business Activity</h3>
+
+<form id="brActivityForm">
+
+  <input type="hidden" id="brEditId" value="">
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:15px;">
+
+    <div>
+      <label for="brDate" style="display:block;font-weight:bold;font-size:13px;color:#334155;margin-bottom:7px;">Activity Date</label>
+      <input id="brDate" type="date" required style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:14px;">
+    </div>
+
+    <div>
+      <label for="brCategory" style="display:block;font-weight:bold;font-size:13px;color:#334155;margin-bottom:7px;">Activity Category</label>
+      <select id="brCategory" required style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:14px;">
+        <option value="General">General Activity</option>
+        <option value="Income">Income Received</option>
+        <option value="Expense">Business Expense</option>
+        <option value="Sales">Sales Activity</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Customers">Customer Service</option>
+        <option value="Stock">Stock & Supplies</option>
+        <option value="Orders">Orders & Deliveries</option>
+        <option value="Administration">Administration</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="brAmount" style="display:block;font-weight:bold;font-size:13px;color:#334155;margin-bottom:7px;">Amount (P, optional)</label>
+      <input id="brAmount" type="number" min="0" step="0.01" placeholder="e.g. 250.00" style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:14px;">
+      <small style="display:block;color:#65738a;margin-top:5px;">For income and expenses, enter the amount received or spent.</small>
+    </div>
+
+  </div>
+
+  <div style="margin-top:15px;">
+    <label for="brDescription" style="display:block;font-weight:bold;font-size:13px;color:#334155;margin-bottom:7px;">Description</label>
+    <textarea id="brDescription" required maxlength="500" rows="3" placeholder="What happened in your business today?" style="width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;font-size:14px;resize:vertical;"></textarea>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+
+    <button id="brSaveButton" type="submit" class="btn primary" style="padding:12px 18px;">
+      Save Activity
+    </button>
+
+    <button id="brCancelEdit" type="button" class="btn secondary" style="display:none;padding:12px 18px;">
+      Cancel Edit
+    </button>
+
+  </div>
+
+  <p id="brFormMessage" role="status" aria-live="polite" style="font-size:13px;margin-bottom:0;"></p>
+
+</form>
+```
+
+  </div>
+
+  <!-- ACTIVITY HISTORY -->
+
+  <div>
+
+```
+<h3 style="color:#13243a;margin-top:0;">Business Activity History</h3>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin-bottom:16px;">
+
+  <div>
+    <label for="brFilterCategory" style="display:block;font-size:13px;font-weight:bold;margin-bottom:6px;color:#334155;">Filter by Category</label>
+    <select id="brFilterCategory" style="width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;">
+      <option value="">All Categories</option>
+      <option value="General">General Activity</option>
+      <option value="Income">Income Received</option>
+      <option value="Expense">Business Expense</option>
+      <option value="Sales">Sales Activity</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Customers">Customer Service</option>
+      <option value="Stock">Stock & Supplies</option>
+      <option value="Orders">Orders & Deliveries</option>
+      <option value="Administration">Administration</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="brFilterDate" style="display:block;font-size:13px;font-weight:bold;margin-bottom:6px;color:#334155;">Filter by Date</label>
+    <input id="brFilterDate" type="date" style="width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+
+  <button type="button" id="brClearFilters" class="btn secondary">
+    Clear Filters
+  </button>
+
+  <button type="button" id="brExportCsv" class="btn secondary">
+    Export Records to CSV
+  </button>
+
+</div>
+
+<div id="brActivityList" aria-live="polite">
+  <p style="color:#65738a;">Your saved business activities will appear here.</p>
+</div>
+```
+
+  </div>
+
+  <div style="margin-top:24px;padding:14px;background:#fff8e6;border:1px solid #f0d58a;border-radius:9px;font-size:12px;line-height:1.7;color:#705516;">
+    <strong>Important record-keeping notice:</strong>
+    These records are saved in this browser on this device. They are not automatically backed up online or synchronized across devices. Export your records regularly and do not treat this first version as a substitute for formal accounting records.
+  </div>
+
+</section>
+
+<!-- END SMARTBIZ BW BUSINESS RECORDS & GROWTH TRACKER -->
+
 
   <!-- START SMARTBIZ BW ENTREPRENEURSHIP ACADEMY -->
 
