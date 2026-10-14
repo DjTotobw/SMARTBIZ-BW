@@ -5734,4 +5734,21 @@ if (bcDownloadButton) {
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+(function () {
+  const form = document.getElementById("brActivityForm");
+
+  if (!form) {
+    console.error("SmartBiz BW: Tracker form not found.");
+    return;
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    alert("Tracker form detected successfully. Page refresh prevented.");
+  });
+
+  console.log("SmartBiz BW: Tracker diagnostic loaded.");
+})();
+</script>
 </body></html>
