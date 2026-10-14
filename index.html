@@ -3386,6 +3386,46 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
         <option value="luxury">Premium Luxury</option>
       </select>
 
+     <!-- SMARTBIZ BW GRAPHICS & IMAGES -->
+<div id="posterGraphicsPanel" style="margin:20px 0;padding:18px;background:#f3f6fb;border:1px solid #d6dfeb;border-radius:12px;">
+
+  <h3 style="color:#13243a;margin-top:0;">Graphics & Images</h3>
+
+  <p style="color:#65738a;font-size:14px;line-height:1.6;">
+    Enhance your promotional poster with decorative graphics or your own business photographs.
+  </p>
+
+  <label for="posterGraphicStyle">Choose Decorative Graphics</label>
+
+  <select id="posterGraphicStyle" style="display:block;width:100%;margin:8px 0 16px;padding:12px;border:1px solid #d6dfeb;border-radius:8px;">
+    <option value="none">No Extra Graphics — Free</option>
+    <option value="simple">Simple Professional Accents — Free</option>
+    <option value="circles">Geometric Decorations — Free</option>
+    <option value="starter-badge">Promotional Sale Badge — Starter</option>
+    <option value="starter-ribbon">Bold Promotional Ribbon — Starter</option>
+    <option value="luxury-gold">Elegant Gold Accents — Premium</option>
+    <option value="luxury-frame">Luxury Decorative Frame — Premium</option>
+  </select>
+
+  <label for="posterImageUpload">Upload Your Business or Product Photograph</label>
+
+  <input
+    type="file"
+    id="posterImageUpload"
+    accept="image/png,image/jpeg,image/webp"
+    style="display:block;width:100%;margin:8px 0 16px;"
+  >
+
+  <button type="button" id="removePosterImage" class="btn secondary">
+    Remove Uploaded Photograph
+  </button>
+
+  <p style="color:#65738a;font-size:12px;line-height:1.5;margin-bottom:0;">
+    Your photograph and selected graphics will be added to the poster preview in a later step.
+  </p>
+
+</div>
+<!-- END SMARTBIZ BW GRAPHICS & IMAGES -->
       <button type="button" class="btn primary"
       onclick="updatePosterPreview()">
         Update Poster Preview
