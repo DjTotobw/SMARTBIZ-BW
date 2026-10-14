@@ -3380,102 +3380,17 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
       style="margin:7px 0 15px;">
 
       <label for="posterStyle">Choose Poster Design</label>
-
-<select id="posterStyle" style="margin:7px 0 15px;width:100%;padding:12px;border:1px solid #d6dfeb;border-radius:8px;">
-
-  <option value="professional">Professional Business — Free</option>
-
-  <option value="bold">Bold Commercial Promotion — Free</option>
-
-  <option value="african">Modern African Business — Free</option>
-
-  <option value="industry">Industry-Specific Promotion — Free</option>
-
-  <option value="luxury">Premium Luxury — Premium</option>
-
-  <option value="premium">Premium Professional Campaign — Premium</option>
-
-</select>
-
+      <select id="posterStyle" style="margin:7px 0 15px;">
+        <option value="professional">Professional Business</option>
+        <option value="bold">Bold Promotion</option>
+        <option value="luxury">Premium Luxury</option>
+      </select>
 
       <button type="button" class="btn primary"
       onclick="updatePosterPreview()">
         Update Poster Preview
       </button>
-<!-- SMARTBIZ BW GRAPHICS & IMAGES -->
 
-<div id="posterGraphicsPanel"
-style="margin:20px 0;padding:18px;background:#f3f6fb;border:1px solid #d6dfeb;border-radius:12px;">
-
-  <h3 style="margin:0 0 8px;color:#13243a;">
-    Graphics & Images
-  </h3>
-
-  <p style="margin:0 0 16px;color:#65738a;font-size:13px;line-height:1.6;">
-    Enhance your poster with decorative graphics or a photograph
-    of your product, service or business.
-  </p>
-
-  <label for="posterGraphicStyle">
-    Choose Decorative Graphics
-  </label>
-
-  <select id="posterGraphicStyle"
-  style="width:100%;margin:7px 0 12px;padding:11px;border:1px solid #d6dfeb;border-radius:8px;">
-
-    <option value="none">No Extra Graphics</option>
-
-    <option value="simple">Simple Professional Accents — Free</option>
-
-    <option value="circles">Geometric Decorations — Free</option>
-
-    <option value="starter-badge">Promotional Sale Badge — Starter</option>
-
-    <option value="starter-ribbon">Bold Promotional Ribbon — Starter</option>
-
-    <option value="luxury-gold">Elegant Gold Accents — Premium</option>
-
-    <option value="luxury-frame">Luxury Decorative Frame — Premium</option>
-
-  </select>
-
-  <div id="posterGraphicsNotice"
-  role="status"
-  aria-live="polite"
-  style="margin:0 0 14px;padding:10px;background:#ffffff;border:1px solid #d6dfeb;border-radius:8px;color:#65738a;font-size:13px;line-height:1.5;">
-
-    Free graphics are ready to use. Starter and Premium graphics
-    require the appropriate subscription.
-  </div>
-
-  <label for="posterImageUpload">
-    Add Your Own Business or Product Photograph
-  </label>
-
-  <input
-    type="file"
-    id="posterImageUpload"
-    accept="image/png,image/jpeg,image/webp"
-    style="display:block;width:100%;margin:8px 0 10px;">
-
-  <p style="margin:0;color:#65738a;font-size:12px;line-height:1.5;">
-    Supported formats: PNG, JPG and WebP. Choose a clear photograph
-    that complements your promotion.
-  </p>
-
-  <button
-    type="button"
-    class="btn secondary"
-    id="removePosterImage"
-    style="margin-top:12px;">
-
-    Remove Uploaded Photograph
-
-  </button>
-
-</div>
-
-<!-- END SMARTBIZ BW GRAPHICS & IMAGES -->
       <button type="button" class="btn secondary"
       onclick="document.getElementById('posterCreator').style.display='none';document.getElementById('marketingTools').scrollIntoView({behavior:'smooth'});">
         Back to Marketing Tools
@@ -3509,20 +3424,7 @@ style="margin:20px 0;padding:18px;background:#f3f6fb;border:1px solid #d6dfeb;bo
         style="font-size:18px;">
           Your product or service
         </div>
-<!-- POSTER GRAPHICS DISPLAY AREA -->
-<div id="posterGraphicsDisplay"
-style="width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;">
 
-  <div id="posterDecorativeGraphic"
-  style="display:none;width:100%;min-height:35px;align-items:center;justify-content:center;">
-  </div>
-
-  <img id="posterUploadedImage"
-  alt="Uploaded business or product photograph"
-  style="display:none;width:100%;max-width:260px;max-height:180px;object-fit:cover;border-radius:10px;border:2px solid rgba(255,255,255,0.7);">
-
-</div>
-<!-- END POSTER GRAPHICS DISPLAY AREA -->
         <div id="posterPreviewPrice"
         style="font-size:34px;font-weight:900;color:#e5ad32;">
           YOUR SPECIAL OFFER
@@ -4157,55 +4059,48 @@ onclick="document.getElementById('marketingCampaignPlanner').style.display='none
   <script>
   
 
-// SMARTBIZ BW POSTER IMAGE UPLOAD
-(function () {
-  const imageInput = document.getElementById('posterImageUpload');
-  const removeButton = document.getElementById('removePosterImage');
+function updatePosterPreview() {
+  const posterField = id => document.getElementById(id);
 
-  if (!imageInput || !removeButton) return;
+  const business = posterField('posterBusinessName').value.trim();
+  const headline = posterField('posterHeadline').value.trim();
+  const product = posterField('posterProduct').value.trim();
+  const price = posterField('posterPrice').value.trim();
+  const contact = posterField('posterContact').value.trim();
+  const style = posterField('posterStyle').value;
 
-  imageInput.addEventListener('change', function () {
-    const file = imageInput.files && imageInput.files[0];
+  posterField('posterPreviewBusiness').textContent =
+    business || 'YOUR BUSINESS';
 
-    if (!file) return;
+  posterField('posterPreviewHeadline').textContent =
+    headline || 'YOUR NEXT BIG PROMOTION';
 
-    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
-      alert('Please choose a PNG, JPG or WebP image.');
-      imageInput.value = '';
-      return;
-    }
+  posterField('posterPreviewProduct').textContent =
+    product || 'Your product or service';
 
-    if (file.size > 5 * 1024 * 1024) {
-      alert('Please choose an image smaller than 5 MB.');
-      imageInput.value = '';
-      return;
-    }
+  posterField('posterPreviewPrice').textContent =
+    price || 'YOUR SPECIAL OFFER';
 
-    if (window.smartBizPosterImageURL) {
-      URL.revokeObjectURL(window.smartBizPosterImageURL);
-    }
+  posterField('posterPreviewContact').textContent =
+    contact || 'Contact your business today';
 
-    window.smartBizPosterImageURL = URL.createObjectURL(file);
+  const preview = posterField('posterPreview');
+  const offer = posterField('posterPreviewPrice');
 
-    updatePosterPreview();
-  });
-
-  removeButton.addEventListener('click', function () {
-    if (window.smartBizPosterImageURL) {
-      URL.revokeObjectURL(window.smartBizPosterImageURL);
-      window.smartBizPosterImageURL = null;
-    }
-
-    imageInput.value = '';
-    updatePosterPreview();
-  });
-
-  const graphicChoice = document.getElementById('posterGraphicStyle');
-
-  if (graphicChoice) {
-    graphicChoice.addEventListener('change', updatePosterPreview);
+  if (style === 'professional') {
+    preview.style.background = '#13243a';
+    preview.style.color = '#ffffff';
+    offer.style.color = '#e5ad32';
+  } else if (style === 'bold') {
+    preview.style.background = '#f5c400';
+    preview.style.color = '#13243a';
+    offer.style.color = '#d71920';
+  } else {
+    preview.style.background = '#111111';
+    preview.style.color = '#ffffff';
+    offer.style.color = '#e5ad32';
   }
-})();
+}
 
 function downloadPromotionalPoster() {
   const poster = document.getElementById('posterPreview');
