@@ -4150,6 +4150,22 @@ function updatePosterPreview() {
     preview.style.color = '#ffffff';
     offer.style.color = '#e5ad32';
   }
+    // SMARTBIZ BW: DISPLAY DECORATIVE GRAPHICS
+  const graphicSelect = document.getElementById('posterGraphicStyle');
+  const graphicDisplay = document.getElementById('posterDecorativeGraphic');
+
+  if (graphicSelect && graphicDisplay) {
+    const selectedGraphic = graphicSelect.value;
+
+    if (selectedGraphic === 'simple') {
+      graphicDisplay.style.display = 'flex';
+      graphicDisplay.innerHTML =
+        '<div style="font-size:30px;color:#e5ad32;letter-spacing:8px;">✦ ◆ ✦</div>';
+    } else {
+      graphicDisplay.innerHTML = '';
+      graphicDisplay.style.display = 'none';
+    }
+  }
 }
 
 function downloadPromotionalPoster() {
