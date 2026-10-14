@@ -4154,16 +4154,24 @@ function updatePosterPreview() {
   const graphicSelect = document.getElementById('posterGraphicStyle');
   const graphicDisplay = document.getElementById('posterDecorativeGraphic');
 
-  if (graphicSelect && graphicDisplay) {
-    const selectedGraphic = graphicSelect.value;
-
-    if (selectedGraphic === 'simple') {
+     if (selectedGraphic === 'simple') {
       graphicDisplay.style.display = 'flex';
       graphicDisplay.innerHTML =
         '<div style="font-size:30px;color:#e5ad32;letter-spacing:8px;">✦ ◆ ✦</div>';
+
+    } else if (selectedGraphic === 'circles') {
+      graphicDisplay.style.display = 'flex';
+      graphicDisplay.innerHTML =
+        '<div style="display:flex;gap:12px;justify-content:center;">' +
+        '<span style="width:35px;height:35px;border:3px solid #e5ad32;border-radius:50%;"></span>' +
+        '<span style="width:35px;height:35px;border:3px solid currentColor;border-radius:50%;"></span>' +
+        '<span style="width:35px;height:35px;border:3px solid #e5ad32;border-radius:50%;"></span>' +
+        '</div>';
+
     } else {
       graphicDisplay.innerHTML = '';
       graphicDisplay.style.display = 'none';
+    }
     }
   }
 }
