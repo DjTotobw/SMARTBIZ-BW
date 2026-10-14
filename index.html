@@ -5732,23 +5732,346 @@ if (bcDownloadButton) {
 
   
 
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script>
+<script>
 (function () {
-  const form = document.getElementById("brActivityForm");
+  "use strict";
 
-  if (!form) {
-    console.error("SmartBiz BW: Tracker form not found.");
+  const KEY = "smartbizBW_businessActivities";
+  const $ = id => document.getElementById(id);
+
+  const form = $("brActivityForm");
+
+  if (!form || form.dataset.trackerReady === "true") return;
+
+  const date = $("brDate");
+  const category = $("brCategory");
+  const amount = $("brAmount");
+  const description = $("brDescription");
+  const editId = $("brEditId");
+  const saveButton = $("brSaveButton");
+  const cancelButton = $("brCancelEdit");
+  const message = $("brFormMessage");
+  const list = $("brActivityList");
+  const filterCategory = $("brFilterCategory");
+  const filterDate = $("brFilterDate");
+
+  const totalActivities = $("brTotalActivities");
+  const totalIncome = $("brTotalIncome");
+  const totalExpenses = $("brTotalExpenses");
+  const netDifference = $("brNetDifference");
+
+  const required = [
+    date, category, amount, description, editId, saveButton,
+    cancelButton, message, list, filterCategory, filterDate,
+    totalActivities, totalIncome, totalExpenses, netDifference,
+    $("brClearFilters"), $("brExportCsv")
+  ];
+
+  if (required.some(element => !element)) {
+    console.error("SmartBiz BW: Tracker HTML elements are missing.");
     return;
+  }
+
+  let records = [];
+  let storageReady = false;
+
+  function today() {
+    const now = new Date();
+    return [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0")
+    ].join("-");
+  }
+
+  function money(value) {
+    return "P " + value.toLocaleString("en-BW", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  function inform(text, error) {
+    message.textContent = text;
+    message.style.color = error ? "#b42318" : "#16794b";
+  }
+
+  function load() {
+    try {
+      const stored = localStorage.getItem(KEY);
+      const parsed = stored ? JSON.parse(stored) : [];
+
+      if (!Array.isArray(parsed)) {
+        throw new Error("Invalid saved records.");
+      }
+
+      records = parsed.filter(item =>
+        item &&
+        typeof item.id === "string" &&
+        typeof item.date === "string" &&
+        typeof item.category === "string" &&
+        typeof item.description === "string" &&
+        Number.isFinite(Number(item.amount))
+      );
+
+      storageReady = true;
+    } catch (error) {
+      storageReady = false;
+      inform("Records could not be loaded. No new records can be saved until storage is checked.", true);
+      console.error("SmartBiz BW storage error:", error);
+    }
+  }
+
+  function persist() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(records));
+      storageReady = true;
+      return true;
+    } catch (error) {
+      storageReady = false;
+      inform("Unable to save records. Check browser storage and available space.", true);
+      console.error("SmartBiz BW save error:", error);
+      return false;
+    }
+  }
+
+  function summary() {
+    const income = records.reduce((sum, item) =>
+      sum + (item.category === "Income" ? Number(item.amount) : 0), 0);
+
+    const expenses = records.reduce((sum, item) =>
+      sum + (item.category === "Expense" ? Number(item.amount) : 0), 0);
+
+    totalActivities.textContent = records.length;
+    totalIncome.textContent = money(income);
+    totalExpenses.textContent = money(expenses);
+    netDifference.textContent = money(income - expenses);
+    netDifference.style.color = income < expenses ? "#b42318" : "#13243a";
+  }
+
+  function button(label, action, id) {
+    const element = document.createElement("button");
+    element.type = "button";
+    element.textContent = label;
+    element.className = "btn secondary";
+    element.style.marginRight = "8px";
+    element.dataset.action = action;
+    element.dataset.id = id;
+    return element;
+  }
+
+  function render() {
+    summary();
+    list.replaceChildren();
+
+    const shown = records.filter(item =>
+      (!filterCategory.value || item.category === filterCategory.value) &&
+      (!filterDate.value || item.date === filterDate.value)
+    ).sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
+
+    if (!shown.length) {
+      const empty = document.createElement("p");
+      empty.textContent = records.length
+        ? "No records match these filters."
+        : "No business activities recorded yet.";
+      empty.style.color = "#65738a";
+      list.appendChild(empty);
+      return;
+    }
+
+    shown.forEach(item => {
+      const card = document.createElement("article");
+      card.style.cssText =
+        "border:1px solid #d6dfeb;border-radius:10px;padding:16px;margin-bottom:12px;overflow-wrap:anywhere;";
+
+      const heading = document.createElement("strong");
+      heading.textContent = item.category + " · " + item.date;
+
+      const text = document.createElement("p");
+      text.textContent = item.description;
+      text.style.lineHeight = "1.6";
+
+      const value = document.createElement("p");
+      value.textContent = Number(item.amount) > 0
+        ? "Amount: " + money(Number(item.amount))
+        : "Amount: Not recorded";
+
+      const actions = document.createElement("div");
+      actions.append(
+        button("Edit", "edit", item.id),
+        button("Delete", "delete", item.id)
+      );
+
+      card.append(heading, text, value, actions);
+      list.appendChild(card);
+    });
+  }
+
+  function resetForm() {
+    form.reset();
+    editId.value = "";
+    date.value = today();
+    saveButton.textContent = "Save Activity";
+    cancelButton.style.display = "none";
   }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    alert("Tracker form detected successfully. Page refresh prevented.");
+
+    if (!storageReady) {
+      inform("Storage is unavailable. Please check your browser settings.", true);
+      return;
+    }
+
+    const descriptionValue = description.value.trim();
+    const amountValue = amount.value.trim();
+    const amountNumber = amountValue === "" ? 0 : Number(amountValue);
+
+    if (!date.value || !category.value || !descriptionValue) {
+      inform("Complete the date, category, and description.", true);
+      return;
+    }
+
+    if (!Number.isFinite(amountNumber) || amountNumber < 0) {
+      inform("Enter a valid non-negative amount.", true);
+      return;
+    }
+
+    const previous = records.slice();
+    const existingId = editId.value;
+
+    const record = {
+      id: existingId || (
+        Date.now().toString(36) + Math.random().toString(36).slice(2, 9)
+      ),
+      date: date.value,
+      category: category.value,
+      amount: amountNumber,
+      description: descriptionValue
+    };
+
+    if (existingId) {
+      const index = records.findIndex(item => item.id === existingId);
+
+      if (index < 0) {
+        inform("The record to edit could not be found.", true);
+        return;
+      }
+
+      records[index] = record;
+    } else {
+      records.push(record);
+    }
+
+    if (!persist()) {
+      records = previous;
+      render();
+      return;
+    }
+
+    resetForm();
+    render();
+    inform(existingId ? "Activity updated successfully." : "Activity saved successfully.", false);
   });
 
-  console.log("SmartBiz BW: Tracker diagnostic loaded.");
+  list.addEventListener("click", function (event) {
+    const target = event.target.closest("button[data-action]");
+    if (!target) return;
+
+    const record = records.find(item => item.id === target.dataset.id);
+    if (!record) return;
+
+    if (target.dataset.action === "edit") {
+      editId.value = record.id;
+      date.value = record.date;
+      category.value = record.category;
+      amount.value = record.amount || "";
+      description.value = record.description;
+      saveButton.textContent = "Update Activity";
+      cancelButton.style.display = "inline-block";
+      inform("Make your changes, then select Update Activity.", false);
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    if (target.dataset.action === "delete" &&
+        confirm("Delete this business activity?")) {
+      const previous = records.slice();
+      records = records.filter(item => item.id !== record.id);
+
+      if (!persist()) {
+        records = previous;
+        render();
+        return;
+      }
+
+      if (editId.value === record.id) resetForm();
+      render();
+      inform("Activity deleted.", false);
+    }
+  });
+
+  cancelButton.addEventListener("click", function () {
+    resetForm();
+    inform("Editing cancelled.", false);
+  });
+
+  filterCategory.addEventListener("change", render);
+  filterDate.addEventListener("change", render);
+
+  $("brClearFilters").addEventListener("click", function () {
+    filterCategory.value = "";
+    filterDate.value = "";
+    render();
+    inform("Filters cleared.", false);
+  });
+
+  $("brExportCsv").addEventListener("click", function () {
+    if (!records.length) {
+      inform("There are no records to export.", true);
+      return;
+    }
+
+    function csvCell(value) {
+      let text = String(value ?? "");
+
+      if (/^[\s]*[=+\-@]/.test(text)) text = "'" + text;
+
+      return '"' + text.replace(/"/g, '""') + '"';
+    }
+
+    const rows = [
+      ["Date", "Category", "Description", "Amount (BWP)"],
+      ...records.map(item => [
+        item.date, item.category, item.description, Number(item.amount).toFixed(2)
+      ])
+    ];
+
+    const csv = "\uFEFF" + rows
+      .map(row => row.map(csvCell).join(","))
+      .join("\r\n");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "smartbiz-bw-business-records.csv";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    inform("CSV export prepared.", false);
+  });
+
+  load();
+  date.value = date.value || today();
+  render();
+
+  if (storageReady) inform("Business Records Tracker is ready.", false);
+
+  form.dataset.trackerReady = "true";
 })();
 </script>
 </body></html>
