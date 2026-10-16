@@ -244,6 +244,98 @@ css
     overflow: hidden !important;
   }
 }
+/* =========================================
+   SMARTBIZ BW CAMPAIGN PLANNER FORM DESIGN
+   ========================================= */
+
+#marketingCampaignPlanner input,
+#marketingCampaignPlanner select,
+#marketingCampaignPlanner textarea {
+  font-family: inherit;
+  font-size: 14px;
+  color: #13243a;
+  background: #ffffff;
+  border: 1px solid #d5deeb;
+  border-radius: 9px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Highlight the active field */
+#marketingCampaignPlanner input:focus,
+#marketingCampaignPlanner select:focus,
+#marketingCampaignPlanner textarea:focus {
+  outline: none;
+  border-color: #1f5eff;
+  box-shadow: 0 0 0 3px rgba(31, 94, 255, 0.12);
+}
+
+/* Improve placeholder readability */
+#marketingCampaignPlanner input::placeholder,
+#marketingCampaignPlanner textarea::placeholder {
+  color: #8995a8;
+  opacity: 1;
+}
+
+/* Consistent field sizing */
+#marketingCampaignPlanner input,
+#marketingCampaignPlanner select {
+  min-height: 44px;
+}
+
+/* Give the message field more breathing room */
+#marketingCampaignPlanner textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Improve form labels */
+#marketingCampaignPlanner label {
+  display: block;
+  color: #13243a;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+/* Refine the campaign action buttons */
+#marketingCampaignPlanner button {
+  border-radius: 9px;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#marketingCampaignPlanner button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(19, 36, 58, 0.12);
+}
+
+/* Make generated results feel like a workspace */
+#marketingCampaignPlanner #cpResult {
+  border-radius: 14px;
+  border-color: #dbe3ef;
+  background: #f7f9fc;
+  padding: 24px;
+}
+
+/* Keep the planner comfortable on small screens */
+@media screen and (max-width: 600px) {
+  #marketingCampaignPlanner {
+    margin: 14px 8px !important;
+    padding: 14px !important;
+  }
+
+  #marketingCampaignPlanner button {
+    width: 100%;
+  }
+
+  #marketingCampaignPlanner #cpResult {
+    padding: 16px;
+  }
+}
+
+/* END SMARTBIZ BW CAMPAIGN PLANNER FORM DESIGN */
 </style>
 </head>
 <body>
