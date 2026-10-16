@@ -234,7 +234,16 @@ css
   }
 }
 /* END POSTER PRINT FIX */
-
+/* SMARTBIZ BW: KEEP MARKETING PLANNER OUT OF PRINTED DOCUMENTS */
+@media print {
+  html body #marketingCampaignPlanner {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+}
 </style>
 </head>
 <body>
