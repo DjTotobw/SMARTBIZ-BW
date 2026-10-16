@@ -2801,6 +2801,7 @@ function shareMarketingCaption() {
 // END MARKETING CAPTIONS FUNCTIONS
 // SMARTBIZ BW MARKETING CAMPAIGN PLANNER FUNCTIONS
 
+```javascript
 function generateMarketingCampaign() {
   const $cp = id => document.getElementById(id);
 
@@ -2808,13 +2809,14 @@ function generateMarketingCampaign() {
   const product = $cp('cpProduct').value.trim();
   const goal = $cp('cpGoal').value;
   const audience = $cp('cpAudience').value.trim();
-  const budget = Number($cp('cpBudget').value);
+  const budgetInput = $cp('cpBudget').value.trim();
+  const budget = Number(budgetInput);
   const duration = $cp('cpDuration').value;
   const channels = $cp('cpChannels').value;
   const frequency = $cp('cpFrequency').value;
   const offer = $cp('cpOffer').value.trim();
 
-  if (!business || !product || !audience || $cp('cpBudget').value === '') {
+  if (!business || !product || !audience || budgetInput === '') {
     alert('Please enter your business name, product or service, target customers and campaign budget.');
     return;
   }
@@ -2825,69 +2827,208 @@ function generateMarketingCampaign() {
   }
 
   const budgetText = 'P' + budget.toFixed(2);
+  const money = amount => 'P' + amount.toFixed(2);
+
+  const days = parseInt(duration, 10);
+  const weeks = Math.max(1, Math.ceil(days / 7));
 
   let plan = '';
 
+  // CAMPAIGN OVERVIEW
   plan += 'SMARTBIZ BW — MARKETING CAMPAIGN PLAN\n';
   plan += '=====================================\n\n';
 
-  plan += 'BUSINESS DETAILS\n';
+  plan += '1. CAMPAIGN OVERVIEW\n';
   plan += 'Business: ' + business + '\n';
   plan += 'Product or Service: ' + product + '\n';
-  plan += 'Target Customers: ' + audience + '\n\n';
-
-  plan += 'CAMPAIGN OBJECTIVES\n';
+  plan += 'Target Customers: ' + audience + '\n';
   plan += 'Main Goal: ' + goal + '\n';
   plan += 'Duration: ' + duration + '\n';
   plan += 'Marketing Channels: ' + channels + '\n';
   plan += 'Posting Frequency: ' + frequency + '\n';
   plan += 'Total Budget: ' + budgetText + '\n\n';
 
-  plan += 'CAMPAIGN ACTIVITIES\n';
-  plan += '1. Prepare a clear promotional message explaining the benefits of ' + product + '.\n';
-  plan += '2. Create an attractive promotional poster using SmartBiz BW.\n';
-  plan += '3. Publish the promotion through ' + channels + '.\n';
-  plan += '4. Respond promptly to customer questions and enquiries.\n';
-  plan += '5. Follow up with interested customers and encourage purchases.\n';
-  plan += '6. Record enquiries, sales and customer feedback throughout the campaign.\n\n';
+  // STRATEGY
+  plan += '2. RECOMMENDED MARKETING STRATEGY\n';
 
-  plan += 'POSTING PLAN\n';
+  if (goal === 'Increase sales') {
+    plan += 'Focus on showing customers the value of ' + product + ', answering buying questions and making the purchasing process simple.\n';
+  } else if (goal === 'Attract new customers') {
+    plan += 'Introduce ' + product + ' to people who may not know your business. Explain what you offer, who it helps and how customers can contact you.\n';
+  } else if (goal === 'Increase brand awareness') {
+    plan += 'Build recognition through consistent branding, useful content, product demonstrations and clear business contact details.\n';
+  } else if (goal === 'Promote a special offer') {
+    plan += 'Communicate the offer clearly, including its actual terms and expiry date if applicable. Make it easy for interested customers to enquire or buy.\n';
+  } else if (goal === 'Launch a new product') {
+    plan += 'Introduce the product, explain its main benefits, show how it works and invite your target customers to enquire or place orders.\n';
+  } else {
+    plan += 'Encourage repeat business through helpful follow-ups, customer appreciation, relevant updates and good service.\n';
+  }
+
+  plan += '\nRecommended actions:\n';
+  plan += '• Use clear photographs or an attractive promotional poster.\n';
+  plan += '• Explain the customer problem your product or service addresses.\n';
+  plan += '• Include a clear way to order, enquire or visit your business.\n';
+  plan += '• Respond promptly to genuine enquiries.\n';
+  plan += '• Track which activities produce useful enquiries and completed sales.\n\n';
+
+  // BUDGET BREAKDOWN
+  plan += '3. CAMPAIGN BUDGET BREAKDOWN\n';
+  plan += 'Total available budget: ' + budgetText + '\n';
+
+  const budgetItems = [
+    ['Promotional design and content', 0.20],
+    ['Paid advertising', 0.40],
+    ['Communication and data', 0.15],
+    ['Local promotion and distribution', 0.15],
+    ['Contingency reserve', 0.10]
+  ];
+
+  budgetItems.forEach(item => {
+    plan += item[0] + ': ' + money(budget * item[1]) + '\n';
+  });
+
+  plan += '\nThese percentages are a starting suggestion, not fixed spending requirements. ';
+  plan += 'Adjust them to suit your business, actual costs and chosen channels. ';
+  plan += 'You can use free design tools and organic posts instead of paid services.\n';
+
+  if (budget === 0) {
+    plan += 'ZERO-BUDGET APPROACH: Use free social posts, WhatsApp Status, existing customer referrals and direct conversations. Do not purchase advertising or services unless funding becomes available.\n';
+  }
+
+  plan += '\n';
+
+  // CAMPAIGN CALENDAR
+  plan += '4. CAMPAIGN CALENDAR\n';
+  plan += 'Use the following schedule as a guide. Adjust it to your workload and customer response.\n\n';
+
+  const calendar = [
+    {
+      phase: 'Week 1 — Prepare and launch',
+      activity: 'Prepare your promotional message, check contact details, publish your first campaign post and inform relevant customers.'
+    },
+    {
+      phase: 'Week 2 — Build interest',
+      activity: 'Share a product benefit, answer common questions, respond to enquiries and follow up with interested customers.'
+    },
+    {
+      phase: 'Week 3 — Improve engagement',
+      activity: 'Publish another useful message or demonstration. Review which posts attracted enquiries and improve weaker content.'
+    },
+    {
+      phase: 'Week 4 — Review and convert',
+      activity: 'Remind interested customers how to buy, follow up politely and compare enquiries, completed sales and expenses.'
+    }
+  ];
+
+  for (let week = 0; week < weeks; week++) {
+    const item = calendar[Math.min(week, calendar.length - 1)];
+    const startDay = week * 7 + 1;
+    const endDay = Math.min((week + 1) * 7, days);
+
+    plan += 'Days ' + startDay + '–' + endDay + ' (' + item.phase + ')\n';
+    plan += item.activity + '\n';
+
+    if (week >= 3) {
+      plan += 'Continue the cycle: publish useful content, follow up on enquiries and use recorded results to refine your campaign.\n';
+    }
+
+    plan += '\n';
+  }
+
+  // POSTING FREQUENCY
+  plan += '5. POSTING AND CONTENT PLAN\n';
 
   if (frequency === 'Daily') {
-    plan += 'Publish or share relevant promotional content every day.\n';
+    plan += 'Aim for one useful post or update each day. Vary the content between product benefits, demonstrations, customer questions, offers and reminders.\n';
   } else if (frequency === '3 times per week') {
-    plan += 'Publish content three times each week, using different messages or product benefits.\n';
+    plan += 'Plan three posts each week: one highlighting a customer need, one showing your product or service, and one inviting customers to enquire or buy.\n';
   } else {
-    plan += 'Publish at least one main promotional post each week and share important updates when necessary.\n';
+    plan += 'Publish at least one strong main post each week. Use additional updates or direct responses when they are useful and appropriate.\n';
   }
 
-  plan += '\nBUDGET MANAGEMENT\n';
-  plan += 'Maximum planned campaign budget: ' + budgetText + '\n';
-  plan += 'Track every expense and compare actual spending with the planned budget.\n';
-  plan += 'Prioritise the channels that generate genuine customer enquiries and sales.\n\n';
+  plan += 'Avoid repeatedly posting the same message without adding value. Respect customer preferences and platform rules.\n\n';
 
-  plan += 'SUCCESS MEASUREMENTS\n';
-  plan += '• Number of enquiries received.\n';
-  plan += '• Number of new customers acquired.\n';
-  plan += '• Number of sales completed.\n';
-  plan += '• Total revenue generated.\n';
-  plan += '• Campaign spending compared with revenue.\n\n';
+  // READY-TO-USE PROMOTIONAL MESSAGE
+  plan += '6. READY-TO-USE PROMOTIONAL MESSAGE\n\n';
 
-  plan += 'REVIEW SCHEDULE\n';
-  plan += 'Review performance weekly. At the end of ' + duration + ', compare results with your original goal and decide what to improve.\n\n';
+  plan += 'Meet ' + business + '!\n';
+  plan += 'Looking for ' + product + '?\n';
+  plan += business + ' is here to help ' + audience + '.\n';
 
   if (offer) {
-    plan += 'SPECIAL OFFER / CAMPAIGN MESSAGE\n';
-    plan += offer + '\n\n';
+    plan += '\nCampaign details: ' + offer + '\n';
   }
 
+  plan += '\nInterested? Contact ' + business + ' to ask questions or find out how to order.\n';
+  plan += 'Please add your correct phone number, location, price and any other important details before publishing.\n\n';
+
+  // WHATSAPP MESSAGES
+  plan += '7. WHATSAPP MARKETING MESSAGES\n\n';
+
+  plan += 'MESSAGE A — PROMOTION\n';
+  plan += 'Hello! We would like to introduce you to ' + business + '.\n';
+  plan += 'We offer ' + product + ' for customers who need a suitable solution.\n';
+
+  if (offer) {
+    plan += offer + '\n';
+  }
+
+  plan += 'Would you like more information? Please reply to this message and we will be happy to assist.\n\n';
+
+  plan += 'MESSAGE B — POLITE FOLLOW-UP\n';
+  plan += 'Hello! Thank you for your interest in ' + business + '.\n';
+  plan += 'We are following up to see whether you need any more information about ' + product + '.\n';
+  plan += 'Please let us know if we can help. There is no pressure to buy.\n\n';
+
+  plan += 'Send promotional messages only to people who have agreed to receive them, and respect requests to stop.\n\n';
+
+  // SALES CONVERSION
+  plan += '8. TURN ENQUIRIES INTO SALES\n';
+  plan += '1. Respond politely and explain the product or service clearly.\n';
+  plan += '2. Ask what the customer needs before recommending an option.\n';
+  plan += '3. Provide accurate prices, terms and delivery or service information.\n';
+  plan += '4. Explain the next step for placing an order or booking.\n';
+  plan += '5. Follow up once where appropriate, without pressuring the customer.\n';
+  plan += '6. Record the enquiry outcome so you can learn what works.\n\n';
+
+  // PERFORMANCE TRACKER
+  plan += '9. CAMPAIGN PERFORMANCE TRACKER\n';
+  plan += 'Record your actual results at least once a week.\n\n';
+
+  plan += 'Week | Enquiries | New Customers | Sales | Revenue | Expenses\n';
+  plan += 'Week 1 | ______ | ______ | ______ | P______ | P______\n';
+  if (weeks >= 2) plan += 'Week 2 | ______ | ______ | ______ | P______ | P______\n';
+  if (weeks >= 3) plan += 'Week 3 | ______ | ______ | ______ | P______ | P______\n';
+  if (weeks >= 4) plan += 'Week 4 | ______ | ______ | ______ | P______ | P______\n';
+
+  if (weeks > 4) {
+    plan += 'Later weeks | Record the same figures for each remaining week.\n';
+  }
+
+  plan += '\nSuggested measures:\n';
+  plan += '• Enquiry conversion rate = sales ÷ enquiries × 100, when enquiries are greater than zero.\n';
+  plan += '• Revenue after campaign spending = campaign revenue minus campaign expenses. This is not the same as profit because other business costs may apply.\n';
+  plan += '• Best-performing channel = the channel generating the most valuable enquiries or sales for its cost.\n\n';
+
+  // CAMPAIGN REVIEW
+  plan += '10. END-OF-CAMPAIGN REVIEW\n';
+  plan += 'At the end of ' + duration + ', answer these questions:\n';
+  plan += '• Did the campaign achieve its main goal?\n';
+  plan += '• Which channel brought the most relevant enquiries?\n';
+  plan += '• How many enquiries became paying customers?\n';
+  plan += '• How much was spent, and what revenue was generated?\n';
+  plan += '• Which message attracted the strongest response?\n';
+  plan += '• What should be continued, stopped or improved next time?\n\n';
+
   plan += 'IMPORTANT NOTE\n';
-  plan += 'This is a suggested campaign plan, not a guarantee of sales. Adjust activities and spending according to your results and available resources.';
+  plan += 'This plan provides practical suggestions, not guaranteed results. Confirm all business details, prices and offers before publishing. Spend within your means, protect customer privacy and use actual results to guide future decisions.';
 
   $cp('cpOutput').textContent = plan;
   $cp('cpResult').style.display = 'block';
   $cp('cpResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+```
 
 
 function copyMarketingCampaign() {
