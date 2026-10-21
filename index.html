@@ -14,61 +14,7 @@ main{max-width:1120px;margin:22px auto;padding:0 16px 40px}.tabs{display:flex;ga
 .btn{border:0;border-radius:9px;padding:10px 13px;font-weight:750;cursor:pointer;font-size:13px}.btn.primary{background:var(--blue);color:#fff}.btn.secondary{background:#edf2fa;color:var(--navy)}.btn.danger{background:#fff0ef;color:#a52b26}.btn.gold{background:var(--gold);color:#17283e}.row-head,.item-row{display:grid;grid-template-columns:minmax(100px,1.7fr) 72px 95px 34px;gap:7px;align-items:center}.row-head{font-size:11px;color:var(--muted);font-weight:800;margin-bottom:7px}.item-row{margin-bottom:8px}.item-row input{padding:9px 7px;min-width:0}.remove{border:0;background:#fff0ef;color:#a52b26;border-radius:8px;height:36px;cursor:pointer;font-size:17px}.totals{border-top:1px solid var(--line);margin-top:16px;padding-top:14px;display:grid;gap:9px}.total-line{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}.total-line.grand{font-weight:850;color:var(--navy);font-size:20px;padding-top:9px;border-top:1px dashed var(--line)}.preview{position:sticky;top:14px}.paper{border:1px solid var(--line);border-radius:12px;padding:22px;background:white;min-height:450px}.paper-top{display:flex;justify-content:space-between;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:15px;margin-bottom:17px}.paper h2{font-size:20px;margin:0 0 5px;color:var(--navy)}.paper .small{font-size:11px;color:var(--muted);line-height:1.5;white-space:pre-line}.doc-title{text-align:right}.doc-title strong{font-size:22px;letter-spacing:1px}.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:15px 0}.paper table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px}.paper th{text-align:left;background:#edf2fa;color:var(--navy);padding:9px 7px}.paper td{padding:9px 7px;border-bottom:1px solid #e7ebf2;vertical-align:top}.paper th:last-child,.paper td:last-child{text-align:right}.paper .summary{margin:14px 0 0 auto;max-width:220px}.paper .summary div{display:flex;justify-content:space-between;padding:5px 0;font-size:12px}.paper .summary .grand{font-weight:850;font-size:15px;border-top:1px solid var(--navy);margin-top:5px;padding-top:9px}.paper .notes{margin-top:24px;border-top:1px solid var(--line);padding-top:12px}.paper .notes strong{font-size:11px}.paper .notes p{font-size:11px;color:var(--muted);white-space:pre-line;line-height:1.5}.notice{font-size:12px;line-height:1.5;color:var(--muted);margin-top:14px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px}.hide{display:none!important}
 @media(max-width:820px){.grid{grid-template-columns:1fr}.preview{position:static}.fields{grid-template-columns:1fr 1fr}.paper{padding:15px}}
 @media(max-width:480px){.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.row-head,.item-row{grid-template-columns:minmax(85px,1.5fr) 52px 78px 30px;gap:5px}.card{padding:15px}.paper-grid{grid-template-columns:1fr}.paper-top{flex-direction:column}.doc-title{text-align:left}}
-@media print {
-body {
-background: #fff;
-}
-
-.no-print,
-header,
-main > .tabs,
-main > .grid > .card:first-child,
-.footer,
-#marketingCampaignPlanner {
-display: none !important;
-}
-
-main {
-margin: 0;
-padding: 0;
-max-width: none;
-}
-
-.grid {
-display: block;
-}
-
-.preview {
-position: static;
-}
-
-.card {
-border: 0;
-box-shadow: none;
-padding: 0;
-}
-
-.paper {
-border: 0;
-padding: 8mm;
-min-height: auto;
-}
-
-.paper table {
-font-size: 10pt;
-}
-
-.paper .small,
-.paper .notes p {
-font-size: 9pt;
-}
-
-@page {
-size: A4;
-margin: 10mm;
-}
-}
-
+@media print{body{background:#fff}.no-print,header,main>.tabs,main>.grid>.card:first-child,.footer{display:none!important}main{margin:0;padding:0;max-width:none}.grid{display:block}.preview{position:static}.card{border:0;box-shadow:none;padding:0}.paper{border:0;padding:8mm;min-height:auto}.paper table{font-size:10pt}.paper .small,.paper .notes p{font-size:9pt}@page{size:A4;margin:10mm}}
 /* SmartBiz BW — Premium Corporate Invoice Upgrade */
 
 .paper {
@@ -204,7 +150,7 @@ margin: 10mm;
     box-shadow: none !important;
   }
 }
-css
+```css
 /* SMARTBIZ BW: PRINT ONLY THE PROMOTIONAL POSTER */
 @media print {
   @page {
@@ -234,108 +180,8 @@ css
   }
 }
 /* END POSTER PRINT FIX */
-/* SMARTBIZ BW: KEEP MARKETING PLANNER OUT OF PRINTED DOCUMENTS */
-@media print {
-  html body #marketingCampaignPlanner {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    overflow: hidden !important;
-  }
-}
-/* =========================================
-   SMARTBIZ BW CAMPAIGN PLANNER FORM DESIGN
-   ========================================= */
+```
 
-#marketingCampaignPlanner input,
-#marketingCampaignPlanner select,
-#marketingCampaignPlanner textarea {
-  font-family: inherit;
-  font-size: 14px;
-  color: #13243a;
-  background: #ffffff;
-  border: 1px solid #d5deeb;
-  border-radius: 9px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Highlight the active field */
-#marketingCampaignPlanner input:focus,
-#marketingCampaignPlanner select:focus,
-#marketingCampaignPlanner textarea:focus {
-  outline: none;
-  border-color: #1f5eff;
-  box-shadow: 0 0 0 3px rgba(31, 94, 255, 0.12);
-}
-
-/* Improve placeholder readability */
-#marketingCampaignPlanner input::placeholder,
-#marketingCampaignPlanner textarea::placeholder {
-  color: #8995a8;
-  opacity: 1;
-}
-
-/* Consistent field sizing */
-#marketingCampaignPlanner input,
-#marketingCampaignPlanner select {
-  min-height: 44px;
-}
-
-/* Give the message field more breathing room */
-#marketingCampaignPlanner textarea {
-  min-height: 100px;
-  resize: vertical;
-  line-height: 1.6;
-}
-
-/* Improve form labels */
-#marketingCampaignPlanner label {
-  display: block;
-  color: #13243a;
-  font-size: 13px;
-  margin-bottom: 3px;
-}
-
-/* Refine the campaign action buttons */
-#marketingCampaignPlanner button {
-  border-radius: 9px;
-  padding: 12px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#marketingCampaignPlanner button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 14px rgba(19, 36, 58, 0.12);
-}
-
-/* Make generated results feel like a workspace */
-#marketingCampaignPlanner #cpResult {
-  border-radius: 14px;
-  border-color: #dbe3ef;
-  background: #f7f9fc;
-  padding: 24px;
-}
-
-/* Keep the planner comfortable on small screens */
-@media screen and (max-width: 600px) {
-  #marketingCampaignPlanner {
-    margin: 14px 8px !important;
-    padding: 14px !important;
-  }
-
-  #marketingCampaignPlanner button {
-    width: 100%;
-  }
-
-  #marketingCampaignPlanner #cpResult {
-    padding: 16px;
-  }
-}
-
-/* END SMARTBIZ BW CAMPAIGN PLANNER FORM DESIGN */
 </style>
 </head>
 <body>
@@ -414,6 +260,7 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;">
 
+```
 <div>
   <label for="bcBusinessName">Business Name</label>
   <input id="bcBusinessName" type="text" placeholder="Your business name" style="width:100%;box-sizing:border-box;margin:6px 0 14px;padding:10px;">
@@ -465,6 +312,7 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
     Your card details will appear in this preview.
   </p>
 </div>
+```
 
   </div>
   <button
@@ -483,6 +331,7 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
 
   <h2 style="color:#13243a;margin-top:0;">SmartBiz BW Marketing Tools</h2>
 
+  ```html
 <!-- SMARTBIZ BW PREMIUM WELCOME BANNER -->
 
 <div style="
@@ -610,12 +459,14 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
 </div>
 
 <!-- END SMARTBIZ BW PREMIUM WELCOME BANNER -->
+```
 
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;">
 
+```
 <!-- TOOL 1 -->
-
+```html
 <!-- TOOL 1: PROMOTIONAL POSTER CREATOR -->
 
 <div style="
@@ -694,7 +545,10 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
 </div>
 
 <!-- END TOOL 1 -->
+```
 
+
+```html
 <!-- TOOL 2: SOCIAL MEDIA ADVERTISEMENTS -->
 
 <div style="
@@ -773,8 +627,10 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
 </div>
 
 <!-- END TOOL 2 -->
+```
 
 
+```html
 <!-- TOOL 3: WHATSAPP MARKETING MESSAGES -->
 
 <div style="
@@ -853,6 +709,7 @@ style="max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px
 </div>
 
 <!-- END TOOL 3 -->
+```
 
 
 <!-- TOOL 4: BUSINESS PROMOTION TEMPLATES -->
@@ -876,6 +733,7 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
 
   <div style="padding:19px;">
 
+```
 <span style="
   display:inline-block;
   padding:5px 9px;
@@ -928,6 +786,7 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
 >
   Explore Promotion Ideas →
 </button>
+```
 
   </div>
 
@@ -956,6 +815,7 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
 
   <div style="padding:19px;">
 
+```
 <span style="
   display:inline-block;
   padding:5px 9px;
@@ -1008,6 +868,7 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
 >
   Create Marketing Captions →
 </button>
+```
 
   </div>
 
@@ -1022,6 +883,7 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
   <p style="font-size:13px;color:#65738a;line-height:1.6;">Plan promotions, set campaign goals, record advertising activities, and track results.</p>
   <button type="button" class="btn primary" onclick="document.getElementById('marketingCampaignPlanner').style.display='block';document.getElementById('marketingCampaignPlanner').scrollIntoView({behavior:'smooth'});">Open Tool</button>
 </div>
+```
 
   </div>
 </section>
@@ -1039,6 +901,7 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
 
   <div style="padding:20px;border:1px solid #d6dfeb;border-radius:12px;background:#f8faff;box-sizing:border-box;">
 
+```
 <div style="font-size:32px;">💰</div>
 
 <h3 style="color:#13243a;margin-bottom:8px;">Course 1: Money Management for Entrepreneurs</h3>
@@ -1136,11 +999,13 @@ style="display:block;width:100%;height:175px;object-fit:cover;"
   <p id="moneyQuizFeedback" aria-live="polite" style="font-weight:bold;line-height:1.7;margin-top:12px;"></p>
 
 </div>
+```
 
   </div>
 
   <div style="margin-top:18px;padding:18px;border:1px solid #e5ad32;border-radius:12px;background:#fffdf5;box-sizing:border-box;">
 
+```
 <h3 style="color:#13243a;margin-top:0;">🔒 Premium Learning Resources</h3>
 
 <p style="color:#65738a;font-size:14px;line-height:1.7;">
@@ -1495,11 +1360,12 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
       Copy Advertisement
     </button>
 
-    <
+    <```html
 <button type="button" class="btn secondary"
   onclick="document.getElementById('socialAds').style.display='none';document.getElementById('marketingTools').scrollIntoView({behavior:'smooth'});">
   Back to Marketing Tools
 </button>
+```
 
 
   </div>
@@ -1877,140 +1743,142 @@ style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#f
   <!-- SMARTBIZ BW MARKETING CAMPAIGN PLANNER -->
 
 <section id="marketingCampaignPlanner"
-<!-- SMARTBIZ BW CAMPAIGN PLANNER HERO -->
-<div style="
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  background:#13243a;
-  color:#ffffff;
-  border-radius:16px;
-  overflow:hidden;
-  margin-bottom:22px;
-  min-height:290px;
-">
+style="display:none;max-width:1100px;margin:25px auto;padding:22px;background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-sizing:border-box;">
 
-  <!-- HERO TEXT -->
-  <div style="
-    padding:30px 26px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    box-sizing:border-box;
-  ">
+  <h2 style="color:#13243a;margin-top:0;">
+    Marketing Campaign Planner
+  </h2>
 
-    <div style="
-      display:inline-block;
-      background:#1f5eff;
-      color:#ffffff;
-      padding:7px 12px;
-      border-radius:20px;
-      font-size:12px;
-      font-weight:bold;
-      margin-bottom:16px;
-      width:fit-content;
-    ">
-      ✦ SMARTBIZ BW MARKETING STUDIO
+  <p style="color:#65738a;line-height:1.6;">
+    Plan your marketing campaigns, set a budget, choose marketing channels
+    and organise activities to help your business attract more customers.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px;">
+
+    <div>
+      <label for="cpBusiness"><strong>Business Name</strong></label>
+      <input id="cpBusiness" type="text"
+      placeholder="Enter your business name"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
     </div>
 
-    <h2 style="
-      color:#ffffff;
-      font-size:clamp(27px,3vw,38px);
-      line-height:1.15;
-      margin:0 0 14px;
-      letter-spacing:-0.7px;
-    ">
-      Turn Your Ideas Into
-      <span style="color:#e5ad32;">Real Customers.</span>
-    </h2>
-
-    <p style="
-      color:#e0e8f5;
-      font-size:15px;
-      line-height:1.8;
-      margin:0 0 20px;
-    ">
-      Build a smarter marketing campaign with practical strategies,
-      ready-to-use content, a campaign calendar and budget guidance
-      tailored to your business.
-    </p>
-
-    <div style="
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      font-size:12px;
-      font-weight:600;
-    ">
-      <span style="background:#203a59;padding:8px 10px;border-radius:7px;">
-        🎯 Campaign Strategy
-      </span>
-
-      <span style="background:#203a59;padding:8px 10px;border-radius:7px;">
-        📱 Social Content
-      </span>
-
-      <span style="background:#203a59;padding:8px 10px;border-radius:7px;">
-        📅 Campaign Calendar
-      </span>
-
-      <span style="background:#203a59;padding:8px 10px;border-radius:7px;">
-        💰 Budget Planning
-      </span>
+    <div>
+      <label for="cpProduct"><strong>Product or Service</strong></label>
+      <input id="cpProduct" type="text"
+      placeholder="What are you promoting?"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
     </div>
 
-  </div>
+    <div>
+      <label for="cpGoal"><strong>Marketing Goal</strong></label>
+      <select id="cpGoal"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+        <option value="Increase sales">Increase sales</option>
+        <option value="Attract new customers">Attract new customers</option>
+        <option value="Increase brand awareness">Increase brand awareness</option>
+        <option value="Promote a special offer">Promote a special offer</option>
+        <option value="Launch a new product">Launch a new product</option>
+        <option value="Retain existing customers">Retain existing customers</option>
+      </select>
+    </div>
 
-  <!-- HERO IMAGE -->
-  <div style="
-    position:relative;
-    min-height:290px;
-    background:#203a59;
-    overflow:hidden;
-  ">
+    <div>
+      <label for="cpAudience"><strong>Target Customers</strong></label>
+      <input id="cpAudience" type="text"
+      placeholder="e.g. Students, parents, small businesses"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
 
-    <img
-      src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1100&q=85"
-      alt="Small-business professionals planning their marketing strategy"
-      style="
-        width:100%;
-        height:100%;
-        min-height:290px;
-        object-fit:cover;
-        display:block;
-      "
-    >
+    <div>
+      <label for="cpBudget"><strong>Campaign Budget (P)</strong></label>
+      <input id="cpBudget" type="number" min="0" step="0.01"
+      placeholder="e.g. 500"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+    </div>
 
-    <div style="
-      position:absolute;
-      inset:0;
-      background:linear-gradient(
-        90deg,
-        rgba(19,36,58,0.45),
-        rgba(19,36,58,0.02)
-      );
-      pointer-events:none;
-    "></div>
+    <div>
+      <label for="cpDuration"><strong>Campaign Duration</strong></label>
+      <select id="cpDuration"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+        <option value="7 days">7 days</option>
+        <option value="14 days">14 days</option>
+        <option value="30 days">30 days</option>
+        <option value="60 days">60 days</option>
+        <option value="90 days">90 days</option>
+      </select>
+    </div>
 
-    <div style="
-      position:absolute;
-      bottom:18px;
-      right:18px;
-      background:#e5ad32;
-      color:#13243a;
-      padding:10px 15px;
-      border-radius:9px;
-      font-size:13px;
-      font-weight:bold;
-      box-shadow:0 5px 18px rgba(0,0,0,0.2);
-    ">
-      Work Smarter. Grow Bigger.
+    <div>
+      <label for="cpChannels"><strong>Marketing Channels</strong></label>
+      <select id="cpChannels"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+        <option value="WhatsApp and Facebook">WhatsApp and Facebook</option>
+        <option value="Facebook and Instagram">Facebook and Instagram</option>
+        <option value="WhatsApp, Facebook and Instagram">WhatsApp, Facebook and Instagram</option>
+        <option value="TikTok and Instagram">TikTok and Instagram</option>
+        <option value="LinkedIn and Facebook">LinkedIn and Facebook</option>
+        <option value="Flyers and posters">Flyers and posters</option>
+        <option value="Social media and local promotions">Social media and local promotions</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="cpFrequency"><strong>Posting Frequency</strong></label>
+      <select id="cpFrequency"
+      style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;">
+        <option value="Daily">Daily</option>
+        <option value="3 times per week">3 times per week</option>
+        <option value="Weekly">Weekly</option>
+      </select>
     </div>
 
   </div>
 
-</div>
-<!-- END SMARTBIZ BW CAMPAIGN PLANNER HERO -->
+  <div style="margin-top:18px;">
+    <label for="cpOffer"><strong>Special Offer or Campaign Details</strong></label>
+    <textarea id="cpOffer" rows="3"
+    placeholder="Describe your promotion, discount or campaign message."
+    style="width:100%;padding:10px;margin-top:6px;box-sizing:border-box;"></textarea>
+  </div>
 
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
+
+    <button type="button" class="btn primary"
+    onclick="generateMarketingCampaign()">
+      Generate Campaign Plan
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="copyMarketingCampaign()">
+      Copy Campaign Plan
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="shareMarketingCampaign()">
+      Share on WhatsApp
+    </button>
+
+    <button type="button" class="btn secondary"
+    onclick="document.getElementById('marketingCampaignPlanner').style.display='none';document.getElementById('marketingToolsDashboard').scrollIntoView({behavior:'smooth'});">
+      Back to Marketing Tools
+    </button>
+
+  </div>
+
+  <div id="cpResult"
+  style="display:none;margin-top:22px;padding:20px;border:1px solid #d6dfeb;border-radius:10px;background:#f7f9fc;">
+
+    <h3 style="margin-top:0;color:#13243a;">
+      Your Marketing Campaign Plan
+    </h3>
+
+    <div id="cpOutput"
+    style="white-space:pre-wrap;line-height:1.8;overflow-wrap:anywhere;"></div>
+
+  </div>
+
+</section>
 
 <!-- END SMARTBIZ BW MARKETING CAMPAIGN PLANNER -->
 
@@ -2801,7 +2669,6 @@ function shareMarketingCaption() {
 // END MARKETING CAPTIONS FUNCTIONS
 // SMARTBIZ BW MARKETING CAMPAIGN PLANNER FUNCTIONS
 
-```javascript
 function generateMarketingCampaign() {
   const $cp = id => document.getElementById(id);
 
@@ -2809,14 +2676,13 @@ function generateMarketingCampaign() {
   const product = $cp('cpProduct').value.trim();
   const goal = $cp('cpGoal').value;
   const audience = $cp('cpAudience').value.trim();
-  const budgetInput = $cp('cpBudget').value.trim();
-  const budget = Number(budgetInput);
+  const budget = Number($cp('cpBudget').value);
   const duration = $cp('cpDuration').value;
   const channels = $cp('cpChannels').value;
   const frequency = $cp('cpFrequency').value;
   const offer = $cp('cpOffer').value.trim();
 
-  if (!business || !product || !audience || budgetInput === '') {
+  if (!business || !product || !audience || $cp('cpBudget').value === '') {
     alert('Please enter your business name, product or service, target customers and campaign budget.');
     return;
   }
@@ -2827,208 +2693,69 @@ function generateMarketingCampaign() {
   }
 
   const budgetText = 'P' + budget.toFixed(2);
-  const money = amount => 'P' + amount.toFixed(2);
-
-  const days = parseInt(duration, 10);
-  const weeks = Math.max(1, Math.ceil(days / 7));
 
   let plan = '';
 
-  // CAMPAIGN OVERVIEW
   plan += 'SMARTBIZ BW — MARKETING CAMPAIGN PLAN\n';
   plan += '=====================================\n\n';
 
-  plan += '1. CAMPAIGN OVERVIEW\n';
+  plan += 'BUSINESS DETAILS\n';
   plan += 'Business: ' + business + '\n';
   plan += 'Product or Service: ' + product + '\n';
-  plan += 'Target Customers: ' + audience + '\n';
+  plan += 'Target Customers: ' + audience + '\n\n';
+
+  plan += 'CAMPAIGN OBJECTIVES\n';
   plan += 'Main Goal: ' + goal + '\n';
   plan += 'Duration: ' + duration + '\n';
   plan += 'Marketing Channels: ' + channels + '\n';
   plan += 'Posting Frequency: ' + frequency + '\n';
   plan += 'Total Budget: ' + budgetText + '\n\n';
 
-  // STRATEGY
-  plan += '2. RECOMMENDED MARKETING STRATEGY\n';
+  plan += 'CAMPAIGN ACTIVITIES\n';
+  plan += '1. Prepare a clear promotional message explaining the benefits of ' + product + '.\n';
+  plan += '2. Create an attractive promotional poster using SmartBiz BW.\n';
+  plan += '3. Publish the promotion through ' + channels + '.\n';
+  plan += '4. Respond promptly to customer questions and enquiries.\n';
+  plan += '5. Follow up with interested customers and encourage purchases.\n';
+  plan += '6. Record enquiries, sales and customer feedback throughout the campaign.\n\n';
 
-  if (goal === 'Increase sales') {
-    plan += 'Focus on showing customers the value of ' + product + ', answering buying questions and making the purchasing process simple.\n';
-  } else if (goal === 'Attract new customers') {
-    plan += 'Introduce ' + product + ' to people who may not know your business. Explain what you offer, who it helps and how customers can contact you.\n';
-  } else if (goal === 'Increase brand awareness') {
-    plan += 'Build recognition through consistent branding, useful content, product demonstrations and clear business contact details.\n';
-  } else if (goal === 'Promote a special offer') {
-    plan += 'Communicate the offer clearly, including its actual terms and expiry date if applicable. Make it easy for interested customers to enquire or buy.\n';
-  } else if (goal === 'Launch a new product') {
-    plan += 'Introduce the product, explain its main benefits, show how it works and invite your target customers to enquire or place orders.\n';
-  } else {
-    plan += 'Encourage repeat business through helpful follow-ups, customer appreciation, relevant updates and good service.\n';
-  }
-
-  plan += '\nRecommended actions:\n';
-  plan += '• Use clear photographs or an attractive promotional poster.\n';
-  plan += '• Explain the customer problem your product or service addresses.\n';
-  plan += '• Include a clear way to order, enquire or visit your business.\n';
-  plan += '• Respond promptly to genuine enquiries.\n';
-  plan += '• Track which activities produce useful enquiries and completed sales.\n\n';
-
-  // BUDGET BREAKDOWN
-  plan += '3. CAMPAIGN BUDGET BREAKDOWN\n';
-  plan += 'Total available budget: ' + budgetText + '\n';
-
-  const budgetItems = [
-    ['Promotional design and content', 0.20],
-    ['Paid advertising', 0.40],
-    ['Communication and data', 0.15],
-    ['Local promotion and distribution', 0.15],
-    ['Contingency reserve', 0.10]
-  ];
-
-  budgetItems.forEach(item => {
-    plan += item[0] + ': ' + money(budget * item[1]) + '\n';
-  });
-
-  plan += '\nThese percentages are a starting suggestion, not fixed spending requirements. ';
-  plan += 'Adjust them to suit your business, actual costs and chosen channels. ';
-  plan += 'You can use free design tools and organic posts instead of paid services.\n';
-
-  if (budget === 0) {
-    plan += 'ZERO-BUDGET APPROACH: Use free social posts, WhatsApp Status, existing customer referrals and direct conversations. Do not purchase advertising or services unless funding becomes available.\n';
-  }
-
-  plan += '\n';
-
-  // CAMPAIGN CALENDAR
-  plan += '4. CAMPAIGN CALENDAR\n';
-  plan += 'Use the following schedule as a guide. Adjust it to your workload and customer response.\n\n';
-
-  const calendar = [
-    {
-      phase: 'Week 1 — Prepare and launch',
-      activity: 'Prepare your promotional message, check contact details, publish your first campaign post and inform relevant customers.'
-    },
-    {
-      phase: 'Week 2 — Build interest',
-      activity: 'Share a product benefit, answer common questions, respond to enquiries and follow up with interested customers.'
-    },
-    {
-      phase: 'Week 3 — Improve engagement',
-      activity: 'Publish another useful message or demonstration. Review which posts attracted enquiries and improve weaker content.'
-    },
-    {
-      phase: 'Week 4 — Review and convert',
-      activity: 'Remind interested customers how to buy, follow up politely and compare enquiries, completed sales and expenses.'
-    }
-  ];
-
-  for (let week = 0; week < weeks; week++) {
-    const item = calendar[Math.min(week, calendar.length - 1)];
-    const startDay = week * 7 + 1;
-    const endDay = Math.min((week + 1) * 7, days);
-
-    plan += 'Days ' + startDay + '–' + endDay + ' (' + item.phase + ')\n';
-    plan += item.activity + '\n';
-
-    if (week >= 3) {
-      plan += 'Continue the cycle: publish useful content, follow up on enquiries and use recorded results to refine your campaign.\n';
-    }
-
-    plan += '\n';
-  }
-
-  // POSTING FREQUENCY
-  plan += '5. POSTING AND CONTENT PLAN\n';
+  plan += 'POSTING PLAN\n';
 
   if (frequency === 'Daily') {
-    plan += 'Aim for one useful post or update each day. Vary the content between product benefits, demonstrations, customer questions, offers and reminders.\n';
+    plan += 'Publish or share relevant promotional content every day.\n';
   } else if (frequency === '3 times per week') {
-    plan += 'Plan three posts each week: one highlighting a customer need, one showing your product or service, and one inviting customers to enquire or buy.\n';
+    plan += 'Publish content three times each week, using different messages or product benefits.\n';
   } else {
-    plan += 'Publish at least one strong main post each week. Use additional updates or direct responses when they are useful and appropriate.\n';
+    plan += 'Publish at least one main promotional post each week and share important updates when necessary.\n';
   }
 
-  plan += 'Avoid repeatedly posting the same message without adding value. Respect customer preferences and platform rules.\n\n';
+  plan += '\nBUDGET MANAGEMENT\n';
+  plan += 'Maximum planned campaign budget: ' + budgetText + '\n';
+  plan += 'Track every expense and compare actual spending with the planned budget.\n';
+  plan += 'Prioritise the channels that generate genuine customer enquiries and sales.\n\n';
 
-  // READY-TO-USE PROMOTIONAL MESSAGE
-  plan += '6. READY-TO-USE PROMOTIONAL MESSAGE\n\n';
+  plan += 'SUCCESS MEASUREMENTS\n';
+  plan += '• Number of enquiries received.\n';
+  plan += '• Number of new customers acquired.\n';
+  plan += '• Number of sales completed.\n';
+  plan += '• Total revenue generated.\n';
+  plan += '• Campaign spending compared with revenue.\n\n';
 
-  plan += 'Meet ' + business + '!\n';
-  plan += 'Looking for ' + product + '?\n';
-  plan += business + ' is here to help ' + audience + '.\n';
+  plan += 'REVIEW SCHEDULE\n';
+  plan += 'Review performance weekly. At the end of ' + duration + ', compare results with your original goal and decide what to improve.\n\n';
 
   if (offer) {
-    plan += '\nCampaign details: ' + offer + '\n';
+    plan += 'SPECIAL OFFER / CAMPAIGN MESSAGE\n';
+    plan += offer + '\n\n';
   }
-
-  plan += '\nInterested? Contact ' + business + ' to ask questions or find out how to order.\n';
-  plan += 'Please add your correct phone number, location, price and any other important details before publishing.\n\n';
-
-  // WHATSAPP MESSAGES
-  plan += '7. WHATSAPP MARKETING MESSAGES\n\n';
-
-  plan += 'MESSAGE A — PROMOTION\n';
-  plan += 'Hello! We would like to introduce you to ' + business + '.\n';
-  plan += 'We offer ' + product + ' for customers who need a suitable solution.\n';
-
-  if (offer) {
-    plan += offer + '\n';
-  }
-
-  plan += 'Would you like more information? Please reply to this message and we will be happy to assist.\n\n';
-
-  plan += 'MESSAGE B — POLITE FOLLOW-UP\n';
-  plan += 'Hello! Thank you for your interest in ' + business + '.\n';
-  plan += 'We are following up to see whether you need any more information about ' + product + '.\n';
-  plan += 'Please let us know if we can help. There is no pressure to buy.\n\n';
-
-  plan += 'Send promotional messages only to people who have agreed to receive them, and respect requests to stop.\n\n';
-
-  // SALES CONVERSION
-  plan += '8. TURN ENQUIRIES INTO SALES\n';
-  plan += '1. Respond politely and explain the product or service clearly.\n';
-  plan += '2. Ask what the customer needs before recommending an option.\n';
-  plan += '3. Provide accurate prices, terms and delivery or service information.\n';
-  plan += '4. Explain the next step for placing an order or booking.\n';
-  plan += '5. Follow up once where appropriate, without pressuring the customer.\n';
-  plan += '6. Record the enquiry outcome so you can learn what works.\n\n';
-
-  // PERFORMANCE TRACKER
-  plan += '9. CAMPAIGN PERFORMANCE TRACKER\n';
-  plan += 'Record your actual results at least once a week.\n\n';
-
-  plan += 'Week | Enquiries | New Customers | Sales | Revenue | Expenses\n';
-  plan += 'Week 1 | ______ | ______ | ______ | P______ | P______\n';
-  if (weeks >= 2) plan += 'Week 2 | ______ | ______ | ______ | P______ | P______\n';
-  if (weeks >= 3) plan += 'Week 3 | ______ | ______ | ______ | P______ | P______\n';
-  if (weeks >= 4) plan += 'Week 4 | ______ | ______ | ______ | P______ | P______\n';
-
-  if (weeks > 4) {
-    plan += 'Later weeks | Record the same figures for each remaining week.\n';
-  }
-
-  plan += '\nSuggested measures:\n';
-  plan += '• Enquiry conversion rate = sales ÷ enquiries × 100, when enquiries are greater than zero.\n';
-  plan += '• Revenue after campaign spending = campaign revenue minus campaign expenses. This is not the same as profit because other business costs may apply.\n';
-  plan += '• Best-performing channel = the channel generating the most valuable enquiries or sales for its cost.\n\n';
-
-  // CAMPAIGN REVIEW
-  plan += '10. END-OF-CAMPAIGN REVIEW\n';
-  plan += 'At the end of ' + duration + ', answer these questions:\n';
-  plan += '• Did the campaign achieve its main goal?\n';
-  plan += '• Which channel brought the most relevant enquiries?\n';
-  plan += '• How many enquiries became paying customers?\n';
-  plan += '• How much was spent, and what revenue was generated?\n';
-  plan += '• Which message attracted the strongest response?\n';
-  plan += '• What should be continued, stopped or improved next time?\n\n';
 
   plan += 'IMPORTANT NOTE\n';
-  plan += 'This plan provides practical suggestions, not guaranteed results. Confirm all business details, prices and offers before publishing. Spend within your means, protect customer privacy and use actual results to guide future decisions.';
+  plan += 'This is a suggested campaign plan, not a guarantee of sales. Adjust activities and spending according to your results and available resources.';
 
   $cp('cpOutput').textContent = plan;
   $cp('cpResult').style.display = 'block';
   $cp('cpResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-```
 
 
 function copyMarketingCampaign() {
